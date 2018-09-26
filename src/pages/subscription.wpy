@@ -1,0 +1,133 @@
+<template>
+  <view class="vessel">
+    <view class="takeDetail">
+      <view class="top">
+        <view class="area">南山-蛇口</view>
+        <view class="push">三天推送</view>
+      </view>
+      <view class="center">
+        <view class="acreage">面积 :
+          <text>200~500m²</text>
+        </view>
+      </view>
+      <view class="foot">
+        <view class="rent">租金范围 :
+          <text>2~5千元/月</text>
+        </view>
+        <view class="newHome">10套新铺</view>
+      </view>
+    </view>
+    <text class="delete">删除</text>
+  </view>
+  <view @tap="addSubscibe" class="addSubscription">添加订阅</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Subscription extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的订阅'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {
+    addSubscibe() {
+      wx.navigateTo({
+        url: '/pages/addsubs'
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.vessel {
+  padding: 20rpx 24rpx;
+  height: 100%;
+  .takeDetail {
+    height: 200rpx;
+    background-color: #fff;
+    padding: 30rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .area {
+        font-size: 30rpx;
+      }
+      .push {
+        width: 120rpx;
+        height: 40rpx;
+        background: rgba(0, 180, 215, 1);
+        border-radius: 4rpx;
+        color: #fff;
+        text-align: center;
+        line-height: 40rpx;
+        font-size: 22rpx;
+      }
+    }
+    .center {
+      font-size: 30rpx;
+      .acreage {
+        color: #666;
+        text {
+        }
+      }
+    }
+    .foot {
+      display: flex;
+      font-size: 30rpx;
+      .rent {
+        color: #666;
+        text {
+        }
+      }
+    }
+  }
+  .delete {
+    display: flex;
+    justify-content: flex-end;
+    color: #00b4d7;
+
+    margin-top: 20rpx;
+  }
+}
+.addSubscription {
+  width: 702rpx;
+  height: 80rpx;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 176, 214, 1),
+    rgba(0, 214, 211, 1)
+  );
+  border-radius: 6rpx;
+
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+  font-weight: 900;
+  position: absolute;
+  bottom: 86rpx;
+  left: 24rpx;
+}
+</style>

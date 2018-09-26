@@ -1,0 +1,155 @@
+<template>
+  <view class="tab-box">
+    <!-- 顶部区域 -->
+    <tabBars :tabList.sync="tabList" :selectIndex="selectIndex"></tabBars>
+    <!-- 内容区域 -->
+    <view class="tab-content">
+      <view hidden="{{selectIndex!=0}}" class="total">
+        <view class="serve">
+          <view class="header">
+            <view class="left">升级会员服务-VIP会员</view>
+            <view class="right">去支付</view>
+          </view>
+          <view class="footer">
+            <view class="image">
+              <image src="../image/icon_money.png"></image>
+            </view>
+            <view class="detail">
+              <view class="num">消费金额: 399元</view>
+              <view class="date">创建时间: 2018-01-01
+                <text>19:10:10</text>
+              </view>
+              <view class="serial">订单编号: 2018020123636504890</view>
+            </view>
+          </view>
+        </view>
+        <view class="serve">
+          <view class="header">
+            <view class="left">升级会员服务-VIP会员</view>
+            <view class="right">去支付</view>
+          </view>
+          <view class="footer">
+            <view class="image">
+              <image src="../image/icon_money.png"></image>
+            </view>
+            <view class="detail">
+              <view class="num">消费金额: 399元</view>
+              <view class="date">创建时间: 2018-01-01
+                <text>19:10:10</text>
+              </view>
+              <view class="serial">订单编号: 2018020123636504890</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view hidden="{{selectIndex!=1}}" class="unfinished">2</view>
+      <view hidden="{{selectIndex!=2}}" class="completed">3</view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import tabBars from '../components/tabBars'
+export default class Order extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的订单'
+  }
+
+  data = {
+    selectIndex: 0,
+    tabList: ['全部', '未完成', '已完成']
+  }
+
+  components = {
+    tabBars
+  }
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.tab-box {
+}
+.tab-content {
+  .total {
+    padding: 20rpx 24rpx;
+    .serve {
+      height: 280rpx;
+      margin-bottom: 20rpx;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 176, 214, 1),
+        rgba(0, 214, 211, 1)
+      );
+      .header {
+        display: flex;
+        justify-content: space-between;
+        height: 64rpx;
+        align-items: center;
+        padding: 0 19rpx;
+        border-bottom: 1rpx solid rgba(255, 255, 255, 0.3);
+        .left {
+          font-size: 24rpx;
+          color: #fff;
+        }
+        .right {
+          width: 100rpx;
+          height: 40rpx;
+          background-color: #e3faff;
+          color: #00b4d7;
+          font-weight: 900;
+          font-size: 22rpx;
+          line-height: 40rpx;
+          text-align: center;
+        }
+      }
+      .footer {
+        height: 215rpx;
+        display: flex;
+        padding: 45rpx 0;
+        box-sizing: border-box;
+        .image {
+          width: 130rpx;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          image {
+            width: 58rpx;
+            height: 58rpx;
+          }
+        }
+        .detail {
+          font-size: 24rpx;
+          color: #fff;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          flex: 1;
+          text {
+            margin-left: 30rpx;
+          }
+        }
+      }
+    }
+  }
+  .unfinished {
+  }
+  .completed {
+  }
+}
+</style>

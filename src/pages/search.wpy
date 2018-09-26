@@ -1,0 +1,209 @@
+<template>
+  <view class="search-bar">
+    <icon type="search" size="14"></icon>
+    <input type="text" @input="searchProduct" placeholder='搜索' confirm-type="search" value="{{inputValue}}" @confirm="keySearch" /></input>
+    <text @tap="remove" hidden="{{btnDelete}}" class="iconfont icon-shanchu"></text>
+    <view @tap="cancel" class="cancel">{{message}}</view>
+  </view>
+  <view class="container" hidden="{{!hiddenList}}">
+    <view class="hotSearch">热门搜索
+      <view class="hotRegion">
+        <block wx:for="{{hotSearch}}" wx:key="">
+          <view @tap="search({{item.name}})" class="region">{{item.name}}</view>
+        </block>
+
+      </view>
+    </view>
+  </view>
+  <view class="list-box" hidden="{{hiddenList}}">
+    <block wx:for="{{detailList}}" wx:key="">
+      <view class="homes" @tap="toDetail">
+        <view class="left">
+          <image src="{{item.img}}"></image>
+        </view>
+        <view class="right">
+          <view class="title">{{item.area.name}} {{item.trading_area}} | {{item.uarea}}m²</view>
+          <view class="detail">
+            <view class="road">{{item.name}}</view>
+            <view class="sum">{{item.rent}}元/月</view>
+          </view>
+          <view class="location">
+            <block wx:for="{{item.tag_item}}" wx:key="" wx:for-item="subitem">
+              <view class="loc">{{subitem.name}}</view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Search extends wepy.page {
+  config = {
+    navigationBarTitleText: '搜索'
+  }
+
+  data = {
+    btnDelete: true,
+    hiddenList: true,
+    message: '取消',
+    inputValue: '',
+    hotSearch: [],
+    detailList: [],
+    cityId: '',
+    rows: 10,
+    page: 1
+  }
+
+  components = {}
+
+  methods = {
+    cancel() {
+      if (this.message === '取消') {
+        wx.switchTab({
+          url: '/pages/index'
+        })
+      } else {
+        this.getSearchData()
+        this.hiddenList = false
+      }
+    },
+    remove() {
+      this.inputValue = ''
+      this.message = '取消'
+      this.hiddenList = true
+    },
+    searchProduct(event) {
+      if (event.detail.value.trim().length === 0) {
+        this.message = '取消'
+        this.btnDelete = true
+      } else {
+        this.message = '搜索'
+        this.btnDelete = false
+      }
+      this.inputValue = event.detail.value
+    },
+    // 点击搜索
+    search(name) {
+      this.inputValue = name
+      this.message = '搜索'
+      this.btnDelete = false
+      this.hiddenList = false
+      this.getSearchData()
+    },
+    // 右下角搜索
+    keySearch() {
+      this.hiddenList = false
+      this.getSearchData()
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.cityId = option.cityId
+    this.getHotData()
+  }
+
+  onShow() {}
+  async getHotData() {
+    let res = await method.request({
+      url: 'api/v1/hot/search'
+    })
+    this.hotSearch = res.data.data
+    this.$apply()
+  }
+  async getSearchData() {
+    let res = await method.request({
+      url: 'api/v1/index/rentSearch',
+      data: {
+        rows: this.rows,
+        page: this.page,
+        cityId: this.cityId,
+        keyword: this.inputValue
+      }
+    })
+    if (res.data.code === 404) {
+      wx.showToast({
+        title: '没有数据啦!',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      })
+    }
+    this.detailList = res.data.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #fff;
+}
+.search-bar {
+  padding: 30rpx 24rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 36rpx;
+  }
+  input {
+    width: 620rpx;
+    height: 56rpx;
+    background-color: #fff;
+    padding-left: 60rpx;
+    box-sizing: border-box;
+    border-radius: 10rpx;
+
+    color: #999;
+    margin-right: 20rpx;
+    border: 1rpx solid #ddd;
+    flex: 1;
+  }
+  .icon-shanchu {
+    color: #ddd;
+    position: absolute;
+    right: 110rpx;
+    top: 40rpx;
+    z-index: 55;
+    font-size: 36rpx;
+  }
+  .cancel {
+    color: #00b4d7;
+  }
+}
+.hotSearch {
+  font-size: 32rpx;
+  font-weight: 900;
+  padding-left: 24rpx;
+  .hotRegion {
+    display: flex;
+    margin-top: 29rpx;
+    .region {
+      margin-right: 20rpx;
+      width: 110rpx;
+      height: 60rpx;
+      background-color: #eee;
+      text-align: center;
+      line-height: 60rpx;
+      font-size: 22rpx;
+    }
+  }
+}
+.list-box {
+  padding: 24rpx;
+}
+</style>

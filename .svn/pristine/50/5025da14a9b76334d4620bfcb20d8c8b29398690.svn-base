@@ -1,0 +1,57 @@
+
+  <swiper indicator-dots autoplay circular="circular">
+    <block  wx:for="{{swiperData}}" wx:key="">
+      <swiper-item>
+        <navigator url="" open-type="navigate" hover-class="none">
+          <image mode="aspectFill" src="{{item}}"/>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="main">
+    <view class="address">
+      <view class="detail">南山区蛇口工业六路65m²商铺转租/生意转让</view>
+      <view class="location">
+        <text class="subway">地铁</text>
+        <text class="subway">临近学校</text>
+      </view>
+    </view>
+    <view class="rental">
+      <view class="up">
+        <view class="rentmoney">
+          <view class="left">租金
+            <text>
+              <text class="num">2.5</text>万/月</text>3.8元/日.m²</view>
+          <view class="right">租金对比分析</view>
+        </view>
+        <view class="transfer">
+          <view class="left">转让费
+            <text>无</text>
+          </view>
+          <view class="right">转让费降价通知</view>
+        </view>
+      </view>
+      <view class="down">
+        <view class="area">
+          <view class="areas">面积
+            <text>610m²</text>
+          </view>
+          <view class="region">区域
+            <text>深圳市南山区</text>
+          </view>
+
+        </view>
+        <view class="detailed">
+          <view class="serial">商铺编号
+            <text>123456</text>
+          </view>
+          <view class="location">地址
+            <text>深圳市南山区</text>
+          </view>
+        </view>
+        <view class="dizhi">
+          详细地址
+        </view>
+      </view>
+    </view>
+  </view>

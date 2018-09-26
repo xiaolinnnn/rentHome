@@ -1,0 +1,141 @@
+
+<template>
+  <view class='container'>
+    <block wx:for="{{addressList}}" wx:key="">
+      <view class="address">
+        <view class="left">
+          <view>期望区域</view>
+          <view>计划经营</view>
+          <view>商铺类型</view>
+          <view>面积要求</view>
+          <view>租金预算</view>
+          <view>转 让 费</view>
+        </view>
+        <view class="right">
+          <view>{{item.trading_area}}</view>
+          <view>{{item.planned_operation}}</view>
+          <view>{{item.source}}</view>
+          <view>{{item.min_area}}~{{item.max_area}}m²</view>
+          <view>{{item.r_type==='month'?'月':'日'}}租金 {{item.min_budget}}~{{item.max_budget}}万元</view>
+          <view>{{item.is_sub===1?'面议':'不面议'}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view @tap="publish" class="release">发布</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class siteSelection extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的选址需求'
+  }
+
+  data = {
+    rows: 10,
+    page: 1,
+    addressList: [],
+    cityId: ''
+  }
+
+  components = {}
+
+  methods = {
+    publish() {
+      wx.navigateTo({
+        url: `/pages/helpMineHome?id=${this.cityId}`
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {
+    this.cityId = wx.getStorageSync('city')
+    this.getAddressData()
+  }
+
+  onShow() {}
+  async getAddressData() {
+    let userInfo = wx.getStorageSync('userInfo')
+    let token = userInfo.token
+    let res = await method.request({
+      url: `api/v1/store/rentSeek?rows=${this.rows}&page=${this.page}`,
+      data: {
+        token,
+        rows: this.rows,
+        page: this.page
+      }
+    })
+    this.addressList = res.data.data
+    this.addressList.forEach(item => {
+      if (item.source === '1') {
+        item.source = '摊位'
+      } else if (item.source === '2') {
+        item.source = '档口'
+      } else {
+        item.source = '店铺'
+      }
+    })
+
+    this.$apply()
+    console.log(res)
+  }
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  padding-bottom: 80rpx;
+  .address {
+    padding: 30rpx 23rpx;
+    height: 340rpx;
+    box-sizing: border-box;
+    display: flex;
+
+    background-color: #fff;
+    margin-bottom: 9rpx;
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      width: 142rpx;
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex: 1;
+      color: #666;
+    }
+  }
+}
+.release {
+  width: 100%;
+  height: 80rpx;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 176, 214, 1),
+    rgba(0, 214, 211, 1)
+  );
+  border-radius: 4rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 80rpx;
+  font-weight: 900;
+  font-size: 30rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+</style>

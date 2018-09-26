@@ -1,0 +1,54 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _wepy = require('./../npm/wepy/lib/wepy.js');
+
+var _wepy2 = _interopRequireDefault(_wepy);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var shopIndex = function (_wepy$page) {
+  _inherits(shopIndex, _wepy$page);
+
+  function shopIndex() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, shopIndex);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = shopIndex.__proto__ || Object.getPrototypeOf(shopIndex)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+      navigationBarTitleText: '深圳商铺指数'
+    }, _this.data = {}, _this.components = {}, _this.methods = {}, _this.events = {}, _this.watch = {}, _this.computed = {}, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(shopIndex, [{
+    key: 'onLoad',
+    value: function onLoad() {}
+  }, {
+    key: 'onShow',
+    value: function onShow() {}
+  }]);
+
+  return shopIndex;
+}(_wepy2.default.page);
+
+
+Page(require('./../npm/wepy/lib/wepy.js').default.$createPage(shopIndex , 'pages/shopIndex'));
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNob3BJbmRleC5qcyJdLCJuYW1lcyI6WyJzaG9wSW5kZXgiLCJjb25maWciLCJuYXZpZ2F0aW9uQmFyVGl0bGVUZXh0IiwiZGF0YSIsImNvbXBvbmVudHMiLCJtZXRob2RzIiwiZXZlbnRzIiwid2F0Y2giLCJjb21wdXRlZCIsIndlcHkiLCJwYWdlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUNBOzs7Ozs7Ozs7Ozs7SUFDcUJBLFM7Ozs7Ozs7Ozs7Ozs7OzRMQUNuQkMsTSxHQUFTO0FBQ1BDLDhCQUF3QjtBQURqQixLLFFBSVRDLEksR0FBTyxFLFFBRVBDLFUsR0FBYSxFLFFBRWJDLE8sR0FBVSxFLFFBRVZDLE0sR0FBUyxFLFFBRVRDLEssR0FBUSxFLFFBRVJDLFEsR0FBVyxFOzs7Ozs2QkFFRixDQUFFOzs7NkJBRUYsQ0FBRTs7OztFQW5CMEJDLGVBQUtDLEk7O2tCQUF2QlYsUyIsImZpbGUiOiJzaG9wSW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuaW1wb3J0IHdlcHkgZnJvbSAnd2VweSdcclxuZXhwb3J0IGRlZmF1bHQgY2xhc3Mgc2hvcEluZGV4IGV4dGVuZHMgd2VweS5wYWdlIHtcclxuICBjb25maWcgPSB7XHJcbiAgICBuYXZpZ2F0aW9uQmFyVGl0bGVUZXh0OiAn5rex5Zyz5ZWG6ZO65oyH5pWwJ1xyXG4gIH1cclxuXHJcbiAgZGF0YSA9IHt9XHJcblxyXG4gIGNvbXBvbmVudHMgPSB7fVxyXG5cclxuICBtZXRob2RzID0ge31cclxuXHJcbiAgZXZlbnRzID0ge31cclxuXHJcbiAgd2F0Y2ggPSB7fVxyXG5cclxuICBjb21wdXRlZCA9IHt9XHJcblxyXG4gIG9uTG9hZCgpIHt9XHJcblxyXG4gIG9uU2hvdygpIHt9XHJcbn1cclxuIl19

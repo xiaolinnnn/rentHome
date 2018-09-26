@@ -1,0 +1,131 @@
+<template>
+  <!-- 面积 -->
+  <view class="manage">
+    <view class="head">
+      <view>选择或者填写您的面积需求</view>
+      <view @tap="confirm" class="confirm">确定</view>
+    </view>
+    <view class="bottom footer">
+      <view class="area">
+        <block wx:for="{{proportionList}}" wx:key="">
+          <view id="area" @tap="selectItem({{index}},{{item.name}})" data-min_area="{{item.min_area}}" data-max_area="{{item.max_area}}" class="{{selectIndex==index?'option':''}}">{{item.name}}
+          </view>
+        </block>
+      </view>
+      <view class="require">
+        <view class="title">自定义面积要求</view>
+        <view class="form">
+          <input @input="areaDown"  type="text" value="{{areaDown}}" placeholder='面积下限m²' /></input>
+          <view class="to">至</view>
+          <input @input="areaUp"  type="text" value="{{areaUp}}" placeholder='面积上限m²' /></input>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Proportion extends wepy.component {
+  props = {
+    areaModel: {
+      type: Boolean,
+      default: false,
+      twoWay: true
+    },
+    isShowMask: {
+      type: Boolean,
+      default: false,
+      twoWay: true
+    }
+  }
+
+  data = {
+    proportionList: [
+      { name: '不限', min_area: 0, max_area: 0 },
+      { name: '20m²以下', min_area: 0, max_area: 20 },
+      { name: '20m²-50m²', min_area: 20, max_area: 50 },
+      { name: '50m²-100m²', min_area: 50, max_area: 100 },
+      { name: '100m²-200m²', min_area: 100, max_area: 200 },
+      { name: '200m²-500m²', min_area: 200, max_area: 500 },
+      { name: '500m²以上', min_area: 500, max_area: 0 }
+    ],
+    message: '',
+    min_area: '',
+    max_area: '',
+    areaDown: '',
+    areaUp: '',
+    mgs: '',
+    selectIndex: undefined
+  }
+
+  components = {}
+
+  methods = {
+    selectItem(index, name, e) {
+      this.selectIndex = index
+      this.message = name
+      this.min_area = e.currentTarget.dataset.min_area
+      this.max_area = e.currentTarget.dataset.max_area
+    },
+    confirm() {
+      this.selectIndex = -1
+      if (!this.areaDown && !this.areaUp && !this.message) {
+        wx.showToast({
+          title: '请输入面积',
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+        return
+      }
+      // if (this.areaDown > this.areaUp) {
+      //   wx.showToast({
+      //     title: '请重新输入',
+      //     icon: 'none',
+      //     duration: 1500,
+      //     mask: false
+      //   })
+      //   return
+      // }
+      if (this.areaDown || this.areaUp) {
+        this.min_area = this.areaDown
+        this.max_area = this.areaUp
+        this.message = this.min_area + '-' + this.max_area + 'm²'
+      }
+      this.isShowMask = false
+      this.areaModel = false
+      const area = {
+        min_area: this.min_area,
+        max_area: this.max_area,
+        message: this.message
+      }
+      this.$emit('childFn', area)
+      this.areaDown = ''
+      this.areaUp = ''
+    },
+    areaDown(e) {
+      this.areaDown = e.detail.value
+    },
+    areaUp(e) {
+      this.areaUp = e.detail.value
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+#area {
+  //   text-align: center;
+}
+</style>

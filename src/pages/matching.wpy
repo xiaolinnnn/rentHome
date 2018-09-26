@@ -1,0 +1,75 @@
+<template>
+    <view class="list">
+        <view class="homes" @tap="toDetail">
+            <view class="left">
+                <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"></image>
+            </view>
+            <view class="right">
+                <view class="title">南山区蛇口
+                    <text>60m²</text>
+                </view>
+                <view class="detail">
+                    <view class="road">育知东路60㎡商铺转租/写字楼</view>
+                    <view class="sum">1.68万/月</view>
+                </view>
+                <view class="location">
+                    <view class="loc">地铁</view>
+                    <view class="loc">临近学校</view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Matching extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的匹配列表'
+  }
+
+  data = {
+    rows: 10,
+    page: 1
+  }
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {
+    this.getMatchingData()
+  }
+
+  onShow() {}
+  async getMatchingData() {
+    let userInfo = wx.getStorageSync('userInfo')
+    let token = userInfo.token
+    let res = await method.request({
+      url: 'api/v1/match/list',
+      data: {
+        token,
+        rows: this.rows,
+        page: this.page,
+        type: 'rent'
+      }
+    })
+    console.log(res)
+  }
+}
+</script>
+
+<style lang='less'>
+.list {
+  margin-top: 6rpx;
+  padding: 24rpx;
+}
+</style>

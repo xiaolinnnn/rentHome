@@ -1,0 +1,61 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Ruby24-x64\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Program Files\MongoDB\Server\4.0\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;;G:\vscode\Microsoft VS Code Insiders\bin;G:\Microsoft VS Code Insiders\bin;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files\Bandizip\
+
+Yarn version: 
+  1.9.4
+
+Node version: 
+  10.1.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: connect ETIMEDOUT 104.16.16.35:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1161:14)
+
+npm manifest: 
+  {
+    "name": "home",
+    "version": "0.0.1",
+    "description": "A WePY project",
+    "main": "dist/app.js",
+    "scripts": {
+      "dev": "wepy build --watch",
+      "build": "cross-env NODE_ENV=production wepy build --no-cache",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "xiaolin <939158029@qq.com>",
+    "license": "MIT",
+    "dependencies": {
+      "wepy": "^1.6.0",
+      "wepy-async-function": "^1.4.6"
+    },
+    "devDependencies": {
+      "babel-eslint": "^7.2.1",
+      "babel-plugin-transform-class-properties": "^6.24.1",
+      "babel-plugin-transform-decorators-legacy": "^1.3.4",
+      "babel-plugin-transform-export-extensions": "^6.22.0",
+      "babel-plugin-transform-object-rest-spread": "^6.26.0",
+      "babel-preset-env": "^1.6.1",
+      "cross-env": "^5.1.3",
+      "eslint": "^3.18.0",
+      "eslint-config-standard": "^7.1.0",
+      "eslint-friendly-formatter": "^2.0.7",
+      "eslint-plugin-html": "^2.0.1",
+      "eslint-plugin-promise": "^3.5.0",
+      "eslint-plugin-standard": "^2.0.1",
+      "wepy-compiler-babel": "^1.5.1",
+      "wepy-compiler-less": "^1.3.12",
+      "wepy-eslint": "^1.5.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

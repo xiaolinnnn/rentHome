@@ -1,0 +1,41 @@
+
+    <view class="header">
+        <view class="top">
+            <text class="money">167.08</text>
+            <text class="balance">余额(元)</text>
+        </view>
+        <view class="bottom">
+            <view class="left">
+                <text class="moneys">267.27</text>
+                <text class="vield">佣金收益</text>
+            </view>
+            <view class="right">
+                <text class="moneys">1684.27</text>
+                <text class="vield">累计收入</text>
+            </view>
+        </view>
+    </view>
+    <view class="center">
+        <text class="detail">流水明细</text>
+        <view class="withdraw">提现</view>
+    </view>
+    <view class="footer">
+        <view class="left">
+            <text class="packet">红包收入</text>
+            <text class="remaining">余额:68.00</text>
+        </view>
+        <view class="right">
+            <view class="redMoney">+69.32</view>
+            <view class="date">2018-01-01</view>
+        </view>
+    </view>
+    <view class="footer">
+        <view class="left">
+            <text class="packet">红包收入</text>
+            <text class="remaining">余额:68.00</text>
+        </view>
+        <view class="right">
+            <view class="redMoney">+69.32</view>
+            <view class="date">2018-01-01</view>
+        </view>
+    </view>

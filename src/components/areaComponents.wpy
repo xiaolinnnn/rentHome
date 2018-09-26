@@ -1,0 +1,107 @@
+<template>
+  <view class="manage" hidden="{{!region}}">
+    <view class="head">
+      <view>最多可选择三个理想商圈</view>
+      <view class="confirm">确定</view>
+    </view>
+    <view class="bottom">
+      <scroll-view class="left" scroll-y scroll-with-animation @scroll="">
+        <view>
+          <block wx:for="{{cityList}}" wx:key="">
+            <view @tap="select({{index}})" class="{{index==leftIndex?'active':''}}">{{item.name}}</view>
+          </block>
+        </view>
+      </scroll-view>
+      <scroll-view class="right" scroll-y scroll-with-animation @scroll="">
+        <view class="right">
+          <block wx:for="{{cityList[leftIndex].tArea}}" wx:key="">
+            <view @tap="chioce({{index}})" class="{{item.status===true?'active':''}}">{{item.name}}</view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class areaComponents extends wepy.component {
+  props = {
+    cityList: {
+      type: Array,
+      default: [],
+      twoWay: true
+    },
+    subCityList: {
+      type: Array,
+      default: [],
+      twoWay: true
+    },
+    region: {
+      type: Boolean,
+      default: false,
+      twoWay: true
+    },
+    num: {
+      type: Number,
+      default: 0,
+      twoWay: true
+    }
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {
+    chioce(twoIndex) {
+      this.subCityList = this.cityList[this.leftIndex].tArea
+      console.log(this.subCityList)
+
+      // this.subCityList.filter((item, index, arr) => {
+      //   if (index === twoIndex) {
+      //     item.status = !item.status
+      //     if (item.status === true) {
+      //       this.num++
+      //     } else {
+      //       this.num--
+      //     }
+      //     return item.status === true
+      //   }
+      // })
+      this.num = 0
+      for (let index = 0; index < this.subCityList.length; index++) {
+        if (this.subCityList[index].status && this.num <= 3) {
+          this.num++
+        }
+      }
+      if (this.num === 3 && !this.subCityList[twoIndex].status) {
+        return
+      }
+      this.subCityList[twoIndex].status = !this.subCityList[twoIndex].status
+      // this.rightIndex = twoIndex
+    },
+    // 选择区域左边
+    select(index) {
+      this.cityList[this.leftIndex].tArea.forEach(item => {
+        item.status = false
+      })
+      //   this.rightIndex = -1
+      this.leftIndex = index
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+</style>

@@ -1,0 +1,36 @@
+
+    <view class="container">
+        <view class="title">最真实有用的商铺数据分析</view>
+    </view>
+    <view class="main">
+        <view class="box">
+            <view class="top">
+                <view class="market">今日行情</view>
+                <view class="date">更新于2018-06-01 14:50:02</view>
+            </view>
+            <view class="bottom">
+                <view class="section">
+                    <view class="exponent">81796</view>
+                    <view class="subtitle">深圳在转商铺(套)</view>
+                </view>
+                <view class="numList">
+                    <view class="list">
+                        <view class="num">267+</view>
+                        <view class="today">今日上新</view>
+                    </view>
+                    <view class="list">
+                        <view class="num">896</view>
+                        <view class="today">今日降价</view>
+                    </view>
+                    <view class="list">
+                        <view class="num">91</view>
+                        <view class="today">今日成交</view>
+                    </view>
+                    <view class="line1"/>
+                    <view class="line2"/>
+                </view>
+            </view>
+        </view>
+        <view class="circle1"/>
+        <view class="circle2"/>
+    </view>

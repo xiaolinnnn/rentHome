@@ -1,0 +1,87 @@
+<template>
+    <view class="container">
+        <block wx:for="{{systemList}}" wx:key="">
+            <view class='header'>
+                <view class="message">系统消息</view>
+                <view class="date">{{item.created_at}}</view>
+            </view>
+            <view class="content">
+                <view class="contents">
+                    {{item.text}}
+                </view>
+            </view>
+        </block>
+
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class systemMessage extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的消息'
+  }
+
+  data = {
+    id: '',
+    systemList: []
+  }
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.id = option.id
+    this.systemData()
+  }
+
+  onShow() {}
+  async systemData() {
+    let res = await method.request({
+      url: `api/v1/systemMsg/info?id=${this.id}`,
+      data: { id: this.id }
+    })
+    this.systemList = res.data.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  padding: 0 24rpx;
+  .header {
+    margin-top: 56rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .message {
+      font-weight: bold;
+    }
+    .date {
+      color: #999;
+      font-size: 22rpx;
+    }
+  }
+  .content {
+    margin-top: 30rpx;
+    padding: 40rpx 30rpx;
+    background-color: #fff;
+    .contents {
+      text-indent: 2em;
+    }
+  }
+}
+</style>

@@ -1,0 +1,145 @@
+<template>
+  <view class="rentComputed" hidden="{{!rentModel}}">
+    <view class="head">
+      <view>您的租金预算</view>
+      <view @tap="confirm" class="confirm">确定</view>
+    </view>
+    <view class="bottom">
+      <radio-group @change="change">
+        <radio checked value="月租金" color="#1abada" />
+        <label class="rent">月租金</label>
+        <radio value="日租金" color="#1abada" />
+        <label class="rent">日租金</label>
+      </radio-group>
+      <view wx:if="{{money}}" class="money">
+        <block wx:for="{{priceList}}" wx:key="">
+          <view @tap="priceItem({{index}},{{item.name}})" data-min_price="{{item.min_price}}" data-max_price="{{item.max_price}}" class="{{selectIndex==index?'option':''}}">{{item.name}}</view>
+        </block>
+      </view>
+      <view class="require rentMoney">
+        <view class="title">自定义月租金要求（元/月）</view>
+        <view class="form">
+          <input @input="priceDown" type="text" value="{{priceDown}}" placeholder='租金下限/元' /></input>
+          <view class="to">至</view>
+          <input  @input="priceUp" type="text" value="{{priceUp}}" placeholder='租金下限/元' /></input>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class rentPrice extends wepy.component {
+  props = {
+    rentModel: {
+      type: Boolean,
+      default: false,
+      twoWay: true
+    },
+    isShowMask: {
+      type: Boolean,
+      default: false,
+      twoWay: true
+    }
+  }
+
+  data = {
+    money: true,
+    radioValue: '',
+    priceIndex: undefined,
+    priceName: '',
+    min_price: '',
+    max_price: '',
+    priceDown: '',
+    priceUp: '',
+    selectIndex: undefined,
+    r_type: 'month',
+    priceList: [
+      { name: '2000以下', min_price: 0, max_price: 2000 },
+      { name: '2千~5千', min_price: 2000, max_price: 5000 },
+      { name: '5千~1万', min_price: 5000, max_price: 10000 },
+      { name: '1~2万', min_price: 10000, max_price: 20000 },
+      { name: '2~5万元', min_price: 20000, max_price: 50000 },
+      { name: '5万元以上', min_price: 50000, max_price: 0 }
+    ]
+  }
+
+  components = {}
+
+  methods = {
+    change(e) {
+      this.radioValue = e.detail.value
+      if (this.radioValue === '日租金') {
+        this.money = false
+        this.r_type = 'day'
+      } else {
+        this.money = true
+        this.r_type = 'month'
+      }
+    },
+    priceItem(index, name, e) {
+      this.priceName = name
+      this.selectIndex = index
+      this.min_price = e.currentTarget.dataset.min_price
+      this.max_price = e.currentTarget.dataset.max_price
+    },
+    confirm() {
+      this.selectIndex = -1
+      if (!this.priceDown && !this.priceUp && !this.priceName) {
+        wx.showToast({
+          title: '请输入租金',
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+        return
+      }
+      // if (this.priceDown > this.priceUp) {
+      //   wx.showToast({
+      //     title: '请重新输入',
+      //     icon: 'none',
+      //     duration: 1500,
+      //     mask: false
+      //   })
+      //   return
+      // }
+      if (this.priceDown || this.priceUp) {
+        this.min_price = this.priceDown
+        this.max_price = this.priceUp
+        this.priceName = this.min_price + '-' + this.max_price + '元'
+      }
+      const price = {
+        min_price: this.min_price,
+        max_price: this.max_price,
+        priceName: this.priceName,
+        r_type: this.r_type
+      }
+      this.$emit('priceFn', price)
+      this.priceDown = ''
+      this.priceUp = ''
+      this.isShowMask = false
+      this.rentModel = false
+    },
+    priceDown(e) {
+      this.priceDown = e.detail.value
+    },
+    priceUp(e) {
+      this.priceUp = e.detail.value
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+</style>

@@ -1,0 +1,37 @@
+<!--  -->
+<template>
+    <web-view src='http://test.pusandai.cn/shop_report.html?store_id={{store_id}}'></web-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Report extends wepy.page {
+  config = {
+    navigationBarTitleText: '商铺报告'
+  }
+
+  data = {
+    store_id: ''
+  }
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.store_id = option.id
+    console.log(this.store_id)
+  }
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+</style>

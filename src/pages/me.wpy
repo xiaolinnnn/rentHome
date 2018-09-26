@@ -1,0 +1,482 @@
+<template>
+  <view class="personCenter" wx:if="{{!isShowPerson}}">
+    <view class="info">
+      <image class="header" src="{{userInfo.avatar}}"></image>
+      <view class="personInfo">
+        <view class="headInfo">
+          <text class="name">{{userInfo.nickname}}</text>
+        </view>
+        <text class="phone">{{userInfo.mobile}}</text>
+        <view @tap="openVip" class="vip">
+          <image src="../image/icon_weirz.png"></image>点亮我
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{isShowBroker}}" class="broker">认证经纪人</view>
+    <view class="seeHome">今日剩余{{userInfo.to}}套铺源可查看(共{{userInfo.can}}套/日)</view>
+  </view>
+  <view class="personCenter" wx:if="{{isShowPerson}}">
+    <view class="pleaseLogin">请先登录</view>
+    <view class="operation">登录/注册</view>
+    <button class="weChat" open-type="getUserInfo" @tap="toLogin">微信登录</button>
+  </view>
+  <view class="person">
+    <view @tap="myWallet" class="list">
+      <image src="../image/btn_wallet.png"></image>
+      <text>我的钱包</text>
+    </view>
+    <view @tap="myCollect" class="list">
+      <image src="../image/btn_wallet.png"></image>
+      <text>我的收藏</text>
+    </view>
+    <view @tap="subscibe" class="list">
+      <image src="../image/btn_wallet.png"></image>
+      <text>我的订阅</text>
+    </view>
+    <view @tap="toOrder" class="list">
+      <image src="../image/btn_wallet.png"></image>
+      <text>我的订单</text>
+    </view>
+  </view>
+  <view class="feature">
+    <view @tap="message" class="lists">
+      <view class="left">我的消息</view>
+      <view class="right">
+        <text class="iconfont icon-jiantouyou"></text>
+      </view>
+    </view>
+    <view @tap="publish" class="lists">
+      <view class="left">我发布的店铺</view>
+      <view class="right">
+        <text class="iconfont icon-jiantouyou"></text>
+      </view>
+    </view>
+    <view @tap="matching" class="lists">
+      <view class="left">我的匹配列表</view>
+      <view class="right">
+        <text class="iconfont icon-jiantouyou"></text>
+      </view>
+    </view>
+    <view @tap="toAddress" class="lists">
+      <view class="left">选址需求</view>
+      <view class="right">
+        <text class="iconfont icon-jiantouyou"></text>
+      </view>
+    </view>
+  </view>
+  <view class="footer" @tap="phone">
+    <view class="mobile">客服电话</view>
+  </view>
+  <view class="buydes-dialog-container" wx:if="{{!isShowPhone}}">
+    <view class="buydes-dialog-container-bottom">
+      <view class="buydes-dialog-container-bottom-item">
+        <view class='view4_1'>
+          <text>业务咨询,服务热线投诉</text>
+        </view>
+        <view class='view4_2'>
+          <text>400-8888-8888</text>
+        </view>
+        <view class='view4_3'>
+          <text>服务时间：每天9:00到21:00</text>
+        </view>
+        <view class='view4_4'>
+          <view class='left fl' @tap='cancel'>
+            <text>取消</text>
+          </view>
+          <view class='right fr' @tap='cell'>
+            <text>拨打</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Me extends wepy.page {
+  config = {
+    navigationBarTitleText: '个人中心'
+  }
+
+  data = {
+    isShowPhone: true,
+    isShowPerson: true,
+    isShowBroker: false,
+    userInfo: [],
+    openid: '',
+    iv: '',
+    encryptedData: '',
+    unionid: '',
+    code: ''
+  }
+
+  components = {}
+
+  methods = {
+    // 收藏
+    myCollect() {
+      wx.navigateTo({
+        url: '/pages/collect'
+      })
+    },
+    // 钱包
+    myWallet() {
+      wx.navigateTo({
+        url: '/pages/mywallet'
+      })
+    },
+    // 订阅
+    subscibe() {
+      wx.navigateTo({
+        url: '/pages/subscription'
+      })
+    },
+    // 订单
+    toOrder() {
+      wx.navigateTo({
+        url: '/pages/order'
+      })
+    },
+    // 我的消息
+    message() {
+      wx.navigateTo({
+        url: '/pages/information'
+      })
+    },
+    // 发布的店铺
+    publish() {
+      wx.navigateTo({
+        url: '/pages/publishHome'
+      })
+    },
+    // 我的匹配列表
+    matching() {
+      wx.navigateTo({
+        url: '/pages/matching'
+      })
+    },
+    // 选址需求
+    toAddress() {
+      wx.navigateTo({
+        url: '/pages/siteSelection'
+      })
+    },
+    // 开会员
+    openVip() {
+      wx.navigateTo({
+        url: '/pages/purchaseService'
+      })
+    },
+    // 微信登录
+    toLogin() {
+      wx.login({
+        success: res => {
+          this.code = res.code
+          wx.getUserInfo({
+            withCredentials: 'false',
+            lang: 'zh_CN',
+            success: res => {
+              this.nickname = res.userInfo.nickName
+              this.avatar = res.userInfo.avatarUrl
+              this.iv = res.iv
+              this.encryptedData = res.encryptedData
+              this.getIdData()
+            }
+          })
+        }
+      })
+    },
+    // 点击客服电话
+    phone() {
+      this.isShowPhone = false
+    },
+    // 点击取消按钮
+    cancel() {
+      this.isShowPhone = true
+    },
+    // 拨打电话
+    cell() {
+      wx.makePhoneCall({
+        phoneNumber: '400-8888-8888',
+        success: () => {}
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {
+    let res = wx.getStorageSync('userInfo')
+    if (res) {
+      this.isShowPerson = false
+      this.userInfo = res
+      if (res.agent !== 0) {
+        this.isShowBroker = true
+      }
+      this.$apply()
+    } else {
+      this.isShowPerson = true
+    }
+  }
+  async getIdData() {
+    let res = await method.request({
+      url: 'api/v1/store/wxchatInfo',
+      data: {
+        code: this.code,
+        encryptedData: this.encryptedData,
+        iv: this.iv
+      }
+    })
+    this.unionId = JSON.parse(res.data.data).unionId
+    this.openId = JSON.parse(res.data.data).openId
+    let wxInfo = {
+      openid: this.openId,
+      unionid: this.unionId,
+      avatar: this.avatar,
+      nickname: this.nickname
+    }
+    wx.setStorage({
+      key: 'wxInfo',
+      data: wxInfo
+    })
+    let res1 = await method.request({
+      url: 'api/v1/user/weChatLogin',
+      method: 'post',
+      data: { unionid: this.unionId }
+    })
+    if (res1.data.code === '20003') {
+      wx.navigateTo({
+        url: '/pages/mobile'
+      })
+    } else {
+      this.userInfo = res1.data.data.userInfo
+      this.isShowPerson = false
+      if (res1.data.data.userInfo.agent !== 0) {
+        this.isShowBroker = true
+        this.$apply()
+      }
+      wx.setStorage({
+        key: 'userInfo',
+        data: res1.data.data.userInfo
+      })
+      this.$apply()
+    }
+  }
+}
+</script>
+
+<style lang='less'>
+.personCenter {
+  width: 100%;
+  height: 300rpx;
+  background: #00b6d6;
+  overflow: hidden;
+  .info {
+    margin-top: 52rpx;
+    display: flex;
+    margin-left: 51rpx;
+    .header {
+      width: 104rpx;
+      height: 104rpx;
+      border-radius: 50%;
+    }
+    .personInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      .headInfo {
+        .name {
+          font-size: 30rpx;
+          color: #fff;
+          margin-left: 20rpx;
+        }
+      }
+      .phone {
+        font-size: 30rpx;
+        color: #fff;
+        margin-left: 20rpx;
+      }
+      .vip {
+        position: absolute;
+        bottom: 10rpx;
+        right: -110rpx;
+        // left: 200rpx;
+        // top: 20rpx;
+        font-size: 22rpx;
+        color: #fff;
+        image {
+          width: 28rpx;
+          height: 28rpx;
+        }
+      }
+    }
+  }
+  .broker {
+    position: absolute;
+    right: 0;
+    top: 80rpx;
+    width: 179rpx;
+    height: 60rpx;
+    border-top-left-radius: 50rpx;
+    border-bottom-left-radius: 50rpx;
+    background: rgba(1, 103, 156, 0.3);
+    font-size: 24rpx;
+    color: #fff;
+    line-height: 60rpx;
+    text-align: center;
+  }
+  .seeHome {
+    font-size: 24rpx;
+    color: #fff;
+    margin-left: 53rpx;
+    margin-top: 57rpx;
+  }
+  .pleaseLogin {
+    color: #fff;
+
+    margin-top: 70rpx;
+    margin-left: 324rpx;
+  }
+  .operation {
+    width: 266rpx;
+    height: 67rpx;
+    background-color: #fff;
+    font-size: 32rpx;
+    text-align: center;
+    line-height: 64rpx;
+    color: #00b2d6;
+    font-weight: bold;
+    margin-top: 40rpx;
+    margin-left: 242rpx;
+    border-radius: 6rpx;
+  }
+  .weChat {
+    width: 266rpx;
+    height: 67rpx;
+    background-color: #fff;
+    font-size: 32rpx;
+    text-align: center;
+    line-height: 64rpx;
+    border-radius: 6rpx;
+    margin-top: -67rpx;
+    opacity: 0;
+  }
+}
+.person {
+  height: 160rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    image {
+      width: 40rpx;
+      height: 40rpx;
+    }
+    text {
+      margin-top: 20rpx;
+
+      color: #333;
+    }
+  }
+}
+.feature {
+  margin-top: 6rpx;
+  padding-bottom: 82rpx;
+  .lists {
+    display: flex;
+    justify-content: space-between;
+    height: 109rpx;
+    border-bottom: 1rpx solid#ddd;
+    padding: 0 25rpx;
+    line-height: 109rpx;
+    background-color: #fff;
+    .left {
+      font-size: 30rpx;
+    }
+    .right {
+      color: #999;
+      text {
+        color: #ccc;
+        font-size: 22rpx;
+        margin-left: 25rpx;
+      }
+    }
+  }
+}
+.footer {
+  display: flex;
+  justify-content: space-around;
+  // align-items: center;
+  .mobile {
+    width: 220rpx;
+    height: 54rpx;
+    background: rgba(0, 180, 215, 1);
+    border-radius: 27rpx;
+    color: #fff;
+    font-size: 24rpx;
+    text-align: center;
+    line-height: 54rpx;
+  }
+}
+.buydes-dialog-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(14, 19, 18, 0.281);
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  .buydes-dialog-container-bottom {
+    width: 460rpx;
+    height: 280rpx;
+
+    position: fixed;
+    top: 420rpx;
+    left: 146rpx;
+    background: #fff;
+    .buydes-dialog-container-bottom-item {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      .view4_1 {
+        margin-top: 30rpx;
+      }
+      .view4_2 {
+        color: #ee3e3e;
+        margin-top: 15rpx;
+      }
+      .view4_3 {
+        font-size: 22rpx;
+        margin-top: 20rpx;
+      }
+      .view4_4 {
+        height: 80rpx;
+        margin-top: 40rpx;
+        border-top: solid 1rpx #dddddd;
+
+        position: relative;
+        padding: 23rpx 91rpx;
+        box-sizing: border-box;
+        .right {
+          color: #00b4d7;
+          border-left: 1rpx solid #ddd;
+          padding-left: 91rpx;
+        }
+      }
+    }
+  }
+}
+</style>

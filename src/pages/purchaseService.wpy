@@ -1,0 +1,328 @@
+<template>
+    <tabBars :tabList.sync="tabList" :selectIndex="selectIndex"></tabBars>
+    <view hidden="{{selectIndex!=0}}" class="total">
+        <view class='vip'>
+            <image src='../image/icon_vip.png' />
+            <text class='member'>VIP会员</text>
+            <text>已经有<text class='yellow' a>12345</text>名开店人员成功销售专业管家服务</text>
+        </view>
+        <view class='buy'>
+            <view class='one'>
+                <view class='left'>
+                    <text class='size'>3个月期</text>
+                    <text class='date'>2018-12-31到期</text>
+                </view>
+                <view>
+                    <text class='price'>￥399</text>
+                </view>
+            </view>
+            <view class='two'>
+                <view class='left'>
+                    <text class='size'>6个月期</text>
+                    <text class='date'>2018-12-31到期</text>
+                </view>
+                <view>
+                    <text class='price'>￥499</text>
+                </view>
+            </view>
+        </view>
+        <view class='buyvip'>
+            <text>购买</text>
+        </view>
+        <view class='detail'>
+            <view class='item'>
+                <image src='../image/icon_eye.png'></image>
+                <text>每天查看<text class='spec'>30次</text></text>
+            </view>
+            <text class='spec'></text>
+            <view class='item'>
+                <image src='../image/icon_hj.png'></image>
+                <text>开店速度<text class='spec'>快3倍</text></text>
+            </view>
+            <view class='item'>
+                <image src='../image/icon_zizhi.png'></image>
+                <text><text class='spec'>6项</text>办照资质审核</text>
+            </view>
+            <view class='item'>
+                <image src='../image/icon_chai.png'></image>
+                <text>防拆迁担保\n<text class='spec'>10倍赔</text></text>
+            </view>
+            <view class='item'>
+                <image src='../image/icon_bi.png'></image>
+                <text>议价<text class='spec'>最低价</text>担保\n高出赔差价</text>
+            </view>
+            <view class='item'>
+                <image src='../image/icon_gold.png'></image>
+                <text>行业专家指导经营\n<text class='spec'>赚钱</text>有保障</text>
+            </view>
+        </view>
+        <view class='more'>查看更多VIP会员独享特权</view>
+    </view>
+    <view hidden="{{selectIndex!=1}}" class="unfinished">
+        <view class='vip'>
+            <image src='../image/icon_guanjia.png' />
+            <text class='member'>管家服务</text>
+            <text>已经有<text class='yellow' a>12345</text>名开店人员成功销售专业管家服务</text>
+        </view>
+        <view class='buy'>
+            <view class='one'>
+                <view class='left'>
+                    <text class='size'>3个月期</text>
+                    <text class='date'>2018-12-31到期</text>
+                </view>
+                <view>
+                    <text class='price'>￥399</text>
+                </view>
+            </view>
+            <view class='two'>
+                <view class='left'>
+                    <text class='size'>6个月期</text>
+                    <text class='date'>2018-12-31到期</text>
+                </view>
+                <view>
+                    <text class='price'>￥499</text>
+                </view>
+            </view>
+        </view>
+        <view class='buyvip'>
+            <text>购买</text>
+        </view>
+    </view>
+    <view hidden="{{selectIndex!=2}}" class="completed">
+        <view class='vip'>
+            <image src='../image/icon_turn.png' />
+            <text class='member'>快速开店服务</text>
+            <text>已经有<text class='yellow' a>12345</text>名开店人员成功销售专业管家服务</text>
+        </view>
+        <view class='buy'>
+            <view class='one'>
+                <view class='left'>
+                    <text class='size'>3个月期</text>
+                    <text class='date'>2018-12-31到期</text>
+                </view>
+                <view>
+                    <text class='price'>￥399</text>
+                </view>
+            </view>
+            <view class='two'>
+                <view class='left'>
+                    <text class='size'>6个月期</text>
+                    <text class='date'>2018-12-31到期</text>
+                </view>
+                <view>
+                    <text class='price'>￥499</text>
+                </view>
+            </view>
+        </view>
+        <view class='buyvip'>
+            <text>购买</text>
+        </view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import tabBars from '../components/tabBars'
+export default class purchaseService extends wepy.page {
+  config = {
+    navigationBarTitleText: '服务购买'
+  }
+
+  data = {
+    selectIndex: 0,
+    tabList: ['会员', '管家服务', '快速转店服务']
+  }
+
+  components = {
+    tabBars
+  }
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+/* pages/vip.wxss */
+
+page {
+  background: rgba(255, 244, 233, 1);
+}
+
+.vip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.vip image {
+  margin-top: 42rpx;
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.vip .member {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(255, 174, 0, 1);
+  line-height: 70rpx;
+}
+
+.vip .yellow {
+  color: rgba(255, 174, 0, 1);
+}
+
+.vip .disc {
+  font-size: 22rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
+  line-height: 70rpx;
+}
+
+.buy {
+  width: 700rpx;
+  margin: 38rpx auto;
+}
+
+.one {
+  width: 660rpx;
+  height: 100rpx;
+  border-radius: 6rpx;
+  background: rgba(255, 255, 255, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.two {
+  width: 660rpx;
+  height: 100rpx;
+  border-radius: 6rpx;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 144, 0, 1),
+    rgba(255, 183, 43, 1)
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.size {
+  font-size: 26rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+}
+
+.date {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+}
+
+.price {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+}
+
+.one .size {
+  color: rgba(51, 51, 51, 1);
+}
+
+.one .date {
+  color: rgba(153, 153, 153, 1);
+}
+
+.one .price {
+  color: rgba(255, 96, 0, 1);
+}
+
+.two {
+  color: #fff;
+}
+
+.buyvip {
+  margin: 0 auto;
+  width: 120rpx;
+  height: 60rpx;
+  background: rgba(238, 62, 62, 1);
+  border-radius: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(244, 244, 244, 1);
+}
+
+.detail {
+  margin: 0 auto;
+  margin-top: 40rpx;
+  background: #fff;
+  width: 660rpx;
+  height: 400rpx;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.detail .item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 40rpx;
+}
+
+.detail image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.detail text {
+  margin-top: 30rpx;
+  font-size: 22rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(255, 166, 73, 1);
+  line-height: 30rpx;
+}
+
+.detail .spec {
+  font-size: 24rpx;
+}
+
+.more {
+  width: 260rpx;
+  margin: 40rpx auto;
+  font-size: 22rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  text-decoration: underline;
+  color: rgba(238, 62, 62, 1);
+  line-height: 30rpx;
+}
+</style>

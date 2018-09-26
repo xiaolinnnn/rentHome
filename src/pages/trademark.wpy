@@ -1,0 +1,107 @@
+<template>
+  <view class='container'>
+    <block wx:for="{{brandList}}" wx:key="">
+      <view class="brand">
+        <view class="left">
+          <image src="{{item.brand_logo}}"></image>
+        </view>
+        <view class="right">
+          <view class="top">
+            <view class="title">{{item.brand_name}}</view>
+            <view class="shop">计划开店: {{item.shop_number}}</view>
+          </view>
+          <view class="middle">面积范围: {{item.min_area}}~{{item.max_area}}㎡</view>
+          <view class="bottom">租金预算: {{item.rent_budget}}元/天㎡</view>
+          <view></view>
+        </view>
+      </view>
+    </block>
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Trademark extends wepy.page {
+  config = {
+    navigationBarTitleText: '品牌选址'
+  }
+
+  data = {
+    cityId: '',
+    rows: 10,
+    page: 1,
+    brandList: []
+  }
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.cityId = option.cityId
+    this.getBrandData()
+  }
+
+  onShow() {}
+  async getBrandData() {
+    let res = await method.request({
+      url: `api/v1/brandBusiness/list?rows=${this.rows}&page=${this.page}`,
+      data: { cityId: this.cityId }
+    })
+    this.brandList = res.data.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  padding: 30rpx 25rpx;
+  .brand {
+    height: 200rpx;
+    background-color: #fff;
+    padding: 31rpx 20rpx 29rpx 29rpx;
+    box-sizing: border-box;
+    display: flex;
+    margin-bottom: 20rpx;
+    .left {
+      width: 140rpx;
+      image {
+        width: 140rpx;
+        height: 140rpx;
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      margin-left: 22rpx;
+      .top {
+        display: flex;
+        justify-content: space-between;
+        .title {
+          color: #273e71;
+          font-size: 30rpx;
+        }
+      }
+      .middle,
+      .bottom {
+        color: #666;
+        font-size: 24rpx;
+      }
+    }
+  }
+}
+</style>

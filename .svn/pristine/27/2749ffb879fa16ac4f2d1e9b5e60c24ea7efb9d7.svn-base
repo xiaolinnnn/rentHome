@@ -1,0 +1,102 @@
+<template>
+  <view class="demand">
+    <view class="head"></view>
+    <view class="footer">
+      <view class="list">
+        <view class="img">
+          <image src="../image/home_icon_see.png"></image>
+        </view>
+        <text>帮我找铺</text>
+      </view>
+      <view class="list">
+        <view class="img">
+          <image src="../image/home_icon_see.png"></image>
+        </view>
+        <text>快速转店</text>
+      </view>
+      <view class="list">
+        <view class="img">
+          <image src="../image/home_icon_see.png"></image>
+        </view>
+        <text>商铺银行</text>
+      </view>
+      <view class="guanbi">
+        <image src="../image/icon_guanbi.png"></image>
+      </view>
+    </view>
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class issueDemand extends wepy.page {
+  config = {
+    navigationBarTitleText: '发布需求'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.demand {
+  height: 100%;
+  .head {
+    height: 40%;
+  }
+  .footer {
+    height: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    .list {
+      .img {
+        width: 100rpx;
+        height: 100rpx;
+        background-color: #fff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 125rpx;
+        margin-bottom: 20rpx;
+        image {
+          width: 60rpx;
+          height: 60rpx;
+        }
+      }
+      text {
+        color: #666;
+        font-size: 30rpx;
+        margin-left: -10rpx;
+      }
+    }
+    .guanbi {
+      position: absolute;
+      bottom: 100rpx;
+      left: 338rpx;
+      image {
+        width: 58rpx;
+        height: 58rpx;
+      }
+    }
+  }
+}
+</style>

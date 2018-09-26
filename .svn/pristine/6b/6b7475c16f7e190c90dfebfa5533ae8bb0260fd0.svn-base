@@ -1,0 +1,236 @@
+
+  <swiper indicator-dots autoplay circular="circular">
+    <block  wx:for="{{swiperData}}" wx:key="">
+      <swiper-item>
+        <navigator url="" open-type="navigate" hover-class="none">
+          <image mode="aspectFill" src="{{item}}"/>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="main">
+    <view class="address">
+      <view class="detail">南山区蛇口工业六路65m²商铺转租/生意转让</view>
+      <view class="location">
+        <text class="subway">地铁</text>
+        <text class="subway">临近学校</text>
+      </view>
+    </view>
+    <view class="rental">
+      <view class="up">
+        <view class="rentmoney">
+          <view class="left">租金
+            <text>
+              <text class="num">2.5</text>万/月</text>3.8元/日.m²</view>
+          <view class="right">租金对比分析</view>
+        </view>
+        <view class="transfer">
+          <view class="left">转让费
+            <text>无</text>
+          </view>
+          <view class="right">转让费降价通知</view>
+        </view>
+      </view>
+      <view class="down">
+        <view class="area">
+          <view class="areas">面积
+            <text>610m²</text>
+          </view>
+          <view class="region">区域
+            <text>深圳市南山区</text>
+          </view>
+
+        </view>
+        <view class="detailed">
+          <view class="serial">商铺编号
+            <text>123456</text>
+          </view>
+          <view class="location">地址
+            <text>深圳市南山区</text>
+          </view>
+        </view>
+        <view class="dizhi">
+          详细地址
+        </view>
+      </view>
+    </view>
+    <!-- 地图 -->
+    <view class="map">
+      <image src=""/>
+    </view>
+    <view class="facility">
+      <view class="rec">
+        <view class="left">配套设施</view>
+        <view class="right">更多
+          <image src="../image/icon_more.png"/>
+        </view>
+      </view>
+      <view class="equipment">
+        <view class="list">
+          <image src="../image/icon_fire.png"/>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"/>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"/>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"/>
+          <text>天然气</text>
+        </view>
+      </view>
+    </view>
+    <view class="homeInfo">
+      <view class="info">铺源信息</view>
+      <view class="feature">
+        <view class="lists">
+          <view class="left">经营状态</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">物业信息</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">位置信息</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">租约相关</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">转让相关</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="introduce">
+      <view class="shop">商铺介绍</view>
+      <view class="personInfo">
+        <view class="left">
+          <image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLpRc4s0HSWlyEqricPqK7WU9x54OrdWwcGFNajicCdhGniaUf6icFNiczjBrpibEoPicNxrlS63BWDUgRcw/132"/>
+          <view class="Infos">
+            <view class="name">胡歌</view>
+            <view class="text">已核验铺源
+              <text>1000</text>家</view>
+          </view>
+        </view>
+        <view class="right">
+          <image src="../image/btn_phone.png"/>
+        </view>
+      </view>
+      <text class="recommend"> 附近有物美价廉超市(北庄枣园)，世纪华联超市，26所学 校，盛芳茗苑。宾和丽小区。首邑上城等写字楼，押一付三， 开店</text>
+    </view>
+    <view class="report">
+      <view class="titles">
+        <view class="homeReport">商铺报告</view>
+        <view class="seeReport">查看完整报告</view>
+      </view>
+      <view class="reportDetail">
+        附近有物美价廉超市(北庄枣园)，世纪华联超市，26所学 校，盛芳茗苑。宾和丽小区。首邑上城等写字楼，押一付三， 开店 拷贝
+      </view>
+    </view>
+    <view class="process">
+      <view class="homeProcess">店铺租赁评估进程</view>
+      <view class="figure">
+        <view class="progress">
+          <image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLpRc4s0HSWlyEqricPqK7WU9x54OrdWwcGFNajicCdhGniaUf6icFNiczjBrpibEoPicNxrlS63BWDUgRcw/132"/>
+          <text>店主</text>
+          <view class="circle"/>
+        </view>
+        <view class="progress">
+          <image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLpRc4s0HSWlyEqricPqK7WU9x54OrdWwcGFNajicCdhGniaUf6icFNiczjBrpibEoPicNxrlS63BWDUgRcw/132"/>
+          <text>张三</text>
+          <view class="circle"/>
+        </view>
+        <view class="progress">
+          <image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLpRc4s0HSWlyEqricPqK7WU9x54OrdWwcGFNajicCdhGniaUf6icFNiczjBrpibEoPicNxrlS63BWDUgRcw/132"/>
+          <text>李四</text>
+          <view class="circle"/>
+        </view>
+        <view class="line1"/>
+        <view class="line2"/>
+      </view>
+      <view class="schedules">
+        <view class="schedule">
+          <view class="title">店主挂牌</view>
+          <view class="date">2018-01-01</view>
+        </view>
+        <view class="schedule">
+          <view class="title">店主挂牌</view>
+          <view class="date">2018-01-01</view>
+        </view>
+        <view class="schedule">
+          <view class="title">店主挂牌</view>
+          <view class="date">2018-01-01</view>
+        </view>
+      </view>
+    </view>
+    <view class="problem">
+      <view class="familiar">常见问题</view>
+      <view class="question">
+        <view class="lists">
+          <view class="left">2017年商铺转让合同书(范本)</view>
+          <view class="right">查看</view>
+        </view>
+        <view class="lists">
+          <view class="left">签约的产权方式个人，需要对方提供...</view>
+          <view class="right">查看 </view>
+        </view>
+        <view class="lists">
+          <view class="left">租聘合同合同地址会跟房本地址一致吗？</view>
+          <view class="right">查看</view>
+        </view>
+
+      </view>
+    </view>
+    <view class="query">
+      <view class="head">
+        <view class="image">
+          <image src="../image/icon_Que.png"/>
+          对本铺还有疑问？
+        </view>
+        <text>专家将为您解答</text>
+      </view>
+      <view class="footer">
+        <input type="text" placeholder="点击输入(描述你的问题)"/>
+      </view>
+    </view>
+     <view class="guessLike">
+      <view class="like">猜你喜欢</view>
+      <view class="homes">
+        <view class="left">
+          <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"/>
+        </view>
+        <view class="right">
+          <view class="title">南山区蛇口
+            <text>60m²</text>
+          </view>
+          <view class="detail">
+            <view class="road">育知东路60㎡商铺转租/写字楼</view>
+            <view class="sum">1.68万/月</view>
+          </view>
+          <view class="location">
+            <view class="loc">地铁</view>
+            <view class="loc">临近学校</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="collects"/>
+  </view>

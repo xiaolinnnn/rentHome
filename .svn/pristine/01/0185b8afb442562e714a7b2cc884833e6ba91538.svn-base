@@ -1,0 +1,56 @@
+.homes {
+  height: 210rpx;
+  padding: 35rpx 0;
+  box-sizing: border-box;
+  display: flex;
+  border-bottom: 1rpx solid #ddd;
+  .left {
+    image {
+      width: 200rpx;
+      height: 140rpx;
+    }
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 20rpx;
+
+    .title {
+      font-size: 30rpx;
+      color: #333;
+      text {
+        border-left: 1rpx solid #ccc;
+       
+        padding-left: 10rpx;
+      }
+    }
+    .detail {
+      display: flex;
+
+      .road {
+        font-size: 22rpx;
+        color: #999;
+        margin-right: 62rpx;
+      }
+      .sum {
+       
+        color: #ee3e3e;
+        font-weight: 900;
+      }
+    }
+    .location {
+      display: flex;
+      .loc {
+        width: 110rpx;
+        height: 36rpx;
+        text-align: center;
+        
+        background-color: #eee;
+        line-height: 36rpx;
+        font-size: 20rpx;
+        margin-right: 10rpx;
+      }
+    }
+  }
+}

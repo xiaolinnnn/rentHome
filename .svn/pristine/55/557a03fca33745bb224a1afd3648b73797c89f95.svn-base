@@ -1,0 +1,195 @@
+<template>
+  <view class="container">
+    <view class="header">
+      <searchBar></searchBar>
+      <image src="../image/icon_dingwei.png"></image>
+    </view>
+    <view class="lists">
+      <view class="list">区域
+        <text class="iconfont icon-jiantouxia"></text>
+      </view>
+      <view class="list">面积
+        <text class="iconfont icon-jiantouxia"></text>
+      </view>
+      <view class="list">费用
+        <text class="iconfont icon-jiantouxia"></text>
+      </view>
+      <view class="list">更多
+        <text class="iconfont icon-jiantouxia"></text>
+      </view>
+    </view>
+  </view>
+  <view class="main">
+    <view class="top">
+      <view>南山区
+        <text class="iconfont icon-shanchu"></text>
+      </view>
+      <view>50~100m²
+        <text class="iconfont icon-shanchu"></text>
+      </view>
+      <view>1500元以下
+        <text class="iconfont icon-shanchu"></text>
+      </view>
+      <view>市场
+        <text class="iconfont icon-shanchu"></text>
+      </view>
+    </view>
+    <view class="homes" @tap="toDetail">
+      <view class="left">
+        <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"></image>
+      </view>
+      <view class="right">
+        <view class="title">南山区蛇口
+          <text>60m²</text>
+        </view>
+        <view class="detail">
+          <view class="road">育知东路60㎡商铺转租/写字楼</view>
+          <view class="sum">1.68万/月</view>
+        </view>
+        <view class="location">
+          <view class="loc">地铁</view>
+          <view class="loc">临近学校</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import searchBar from '../components/searchBar'
+
+export default class searchHome extends wepy.page {
+  config = {
+    navigationBarTitleText: '店铺列表'
+  }
+  data = {}
+
+  components = {
+    searchBar
+  }
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+.container {
+  height: 176rpx;
+  background-color: #00b4d7;
+  overflow: hidden;
+  .header {
+    display: flex;
+    margin-top: 20rpx;
+    padding: 0 83rpx;
+    image {
+      width: 24rpx;
+      height: 36rpx;
+      margin-left: 30rpx;
+      margin-top: 10rpx;
+    }
+  }
+  .lists {
+    display: flex;
+    color: #fff;
+    font-size: 26rpx;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 48rpx;
+    text {
+      font-size: 20rpx;
+    }
+  }
+}
+.main {
+  padding: 30rpx 24rpx;
+  background-color: #f4f4f4;
+  height: 100%;
+  overflow: hidden;
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100rpx;
+    background-color: #fff;
+    overflow: hidden;
+    view {
+      position: relative;
+      font-size: 22rpx;
+      width: 140rpx;
+      height: 48rpx;
+      background-color: #d8f8ff;
+      color: #00b2d6;
+      line-height: 48rpx;
+      text-align: center;
+      text {
+        position: absolute;
+        right: -5rpx;
+        bottom: -15rpx;
+        font-size: 22rpx;
+      }
+    }
+  }
+  .bottom {
+    display: flex;
+    border-bottom: 1rpx solid #ddd;
+    padding: 30rpx 0;
+    .left {
+      width: 50%;
+      image {
+        width: 340rpx;
+        height: 230rpx;
+      }
+    }
+    .right {
+      width: 50%;
+      height: 230rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      .title {
+        font-size: 30rpx;
+        color: #333;
+        text {
+          font-size: 26rpx;
+        }
+      }
+      .detail {
+        color: #999;
+        font-size: 22rpx;
+      }
+      .particulars {
+        view {
+          float: left;
+          color: #111;
+          font-size: 20rpx;
+          width: 110rpx;
+          height: 36rpx;
+          background-color: #eee;
+          line-height: 36rpx;
+          text-align: center;
+          margin-right: 6rpx;
+          margin-bottom: 5rpx;
+        }
+      }
+      .money {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 26rpx;
+        color: #ee3e3e;
+        font-weight: bold;
+      }
+    }
+  }
+}
+</style>

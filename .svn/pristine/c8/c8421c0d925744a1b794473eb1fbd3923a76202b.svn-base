@@ -1,0 +1,31 @@
+
+    <view class="container">
+        <view class="brand">
+            <view class="left">
+                <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3275824772,1342111386&fm=26&gp=0.jpg"/>
+            </view>
+            <view class="right">
+                <view class="top">
+                    <view class="title">渝月</view>
+                    <view class="shop">计划开店: 10</view>
+                </view>
+                <view class="middle">面积范围: 100~200㎡</view>
+                <view class="bottom">租金预算: 10.0元/天㎡</view>
+                <view/>
+            </view>
+        </view>
+          <view class="brand">
+            <view class="left">
+                <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3275824772,1342111386&fm=26&gp=0.jpg"/>
+            </view>
+            <view class="right">
+                <view class="top">
+                    <view class="title">渝月</view>
+                    <view class="shop">计划开店: 10</view>
+                </view>
+                <view class="middle">面积范围: 100~200㎡</view>
+                <view class="bottom">租金预算: 10.0元/天㎡</view>
+                <view/>
+            </view>
+        </view>
+    </view>

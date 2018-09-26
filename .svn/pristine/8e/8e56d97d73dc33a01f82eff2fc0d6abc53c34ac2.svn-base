@@ -1,0 +1,1 @@
+page{background-color:#f4f4f4}.message{padding:30rpx 24rpx;height:140rpx;background-color:#fff;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-around;margin-top:6rpx}.message .top{display:flex;justify-content:space-between}.message .top .info{font-weight:bold}.message .top .date{font-size:22rpx;color:#ccc}.message .bottom{font-size:22rpx;color:#666}

@@ -1,0 +1,398 @@
+
+<template>
+  <swiper indicator-dots autoplay circular>
+    <block wx:for="{{swiperData}}" wx:key="">
+      <swiper-item>
+        <navigator url="" open-type="navigate" hover-class="none">
+          <image mode="aspectFill" src="{{item}}"></image>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="main">
+    <view class="address">
+      <view class="detail">南山区蛇口工业六路65m²商铺转租/生意转让</view>
+      <view class="location">
+        <text class="subway">地铁</text>
+        <text class="subway">临近学校</text>
+      </view>
+    </view>
+    <view class="rental">
+      <view class="up">
+        <view class="rentmoney">
+          <view class="left">租金
+            <text>
+              <text class="num">2.5</text>万/月</text>3.8元/日.m²</view>
+          <view class="right">租金对比分析</view>
+        </view>
+        <view class="transfer">
+          <view class="left">转让费
+            <text>无</text>
+          </view>
+          <view class="right">转让费降价通知</view>
+        </view>
+      </view>
+      <view class="down">
+        <view class="area">
+          <view class="areas">面积
+            <text>610m²</text>
+          </view>
+          <view class="region">区域
+            <text>深圳市南山区</text>
+          </view>
+
+        </view>
+        <view class="detailed">
+          <view class="serial">商铺编号
+            <text>123456</text>
+          </view>
+          <view class="location">地址
+            <text>深圳市南山区</text>
+          </view>
+        </view>
+        <view class="dizhi">
+          详细地址
+        </view>
+      </view>
+    </view>
+    <!-- 地图 -->
+    <view class="map">
+      <image src=""></image>
+    </view>
+    <view class="facility">
+      <view class="rec">
+        <view class="left">配套设施</view>
+        <view class="right">更多
+          <image src="../image/icon_more.png"></image>
+        </view>
+      </view>
+      <view class="equipment">
+        <view class="list">
+          <image src="../image/icon_fire.png"></image>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"></image>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"></image>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"></image>
+          <text>天然气</text>
+        </view>
+      </view>
+    </view>
+    <view class="homeInfo">
+      <view class="info">铺源信息</view>
+      <view class="feature">
+        <view class="lists">
+          <view class="left">经营状态</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">物业信息</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">位置信息</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">租约相关</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">转让相关</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="introduce">
+      <view class="shop">商铺介绍</view>
+      <view class="personInfo">
+        <image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLpRc4s0HSWlyEqricPqK7WU9x54OrdWwcGFNajicCdhGniaUf6icFNiczjBrpibEoPicNxrlS63BWDUgRcw/132"></image>
+        <view class="Infos">
+          <view class="name">胡歌</view>
+          <view class="text">已核验铺源<text>1000</text>家</view>
+        </view>
+        <view class="right">
+          <image src="../image/btn_phone.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Detail extends wepy.page {
+  config = {
+    navigationBarTitleText: '店铺列表'
+  }
+
+  data = {
+    swiperData: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ]
+  }
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #fff;
+}
+swiper {
+  height: 436rpx;
+}
+.main {
+  padding: 0 25rpx;
+  .address {
+    height: 160rpx;
+    box-sizing: border-box;
+    padding: 31rpx 0 38rpx;
+    color: #111;
+    border-bottom: 1rpx solid #ddd;
+    background-color: #fff;
+    .detail {
+      font-size: 32rpx;
+      font-weight: bold;
+    }
+    .location {
+      margin-top: 24rpx;
+      text {
+        display: block;
+        font-size: 20rpx;
+        background-color: #eee;
+        margin-right: 10rpx;
+        width: 120rpx;
+        height: 36rpx;
+        float: left;
+        text-align: center;
+        line-height: 36rpx;
+      }
+    }
+  }
+  .rental {
+    margin-top: 40rpx;
+    .up {
+      height: 136rpx;
+      font-size: 26rpx;
+      color: #999;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      .rentmoney {
+        display: flex;
+        justify-content: space-between;
+        .left {
+          text {
+            color: #ed3142;
+            margin: 0 8rpx;
+          }
+          .num {
+            font-size: 30rpx;
+          }
+        }
+        .right {
+          color: #ed3142;
+        }
+      }
+      .transfer {
+        display: flex;
+        justify-content: space-between;
+        .left {
+          text {
+            color: #ed3142;
+          }
+        }
+        .right {
+          color: #ed3142;
+        }
+      }
+    }
+    .down {
+      margin-top: 67rpx;
+      height: 136rpx;
+      color: #999;
+      font-size: 26rpx;
+      display: flex;
+      position: relative;
+      text {
+        color: #111;
+        margin-left: 10rpx;
+      }
+      .region,
+      .location {
+        margin-top: 37rpx;
+      }
+      .serial,
+      .location {
+        margin-left: 80rpx;
+      }
+      .dizhi {
+        width: 120rpx;
+        height: 44rpx;
+        background-color: #00b4d7;
+        border-radius: 4rpx;
+        color: #fff;
+        text-align: center;
+        line-height: 44rpx;
+        position: absolute;
+        bottom: 30rpx;
+        right: 27rpx;
+      }
+    }
+  }
+  .map {
+    height: 240rpx;
+    padding: 20rpx 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+    image {
+      width: 702rpx;
+      height: 200rpx;
+    }
+  }
+  .facility {
+    height: 240rpx;
+    padding: 36rpx 0 46rpx 0;
+    box-sizing: border-box;
+    .rec {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .left {
+        font-size: 32rpx;
+        color: #111;
+        font-weight: bold;
+      }
+      .right {
+        font-size: 26rpx;
+        color: #555;
+        image {
+          width: 8rpx;
+          height: 18rpx;
+        }
+      }
+    }
+    .equipment {
+      display: flex;
+      align-items: center;
+      margin-top: 45rpx;
+      .list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 40rpx;
+        image {
+          width: 42rpx;
+          height: 42rpx;
+        }
+        text {
+          font-size: 26rpx;
+          color: #666;
+          margin-top: 24rpx;
+        }
+      }
+    }
+  }
+  .homeInfo {
+    .info {
+      font-size: 30rpx;
+      color: #111;
+      margin-top: 32rpx;
+      font-weight: bold;
+    }
+    .feature {
+      margin-top: 6rpx;
+      .lists {
+        display: flex;
+        justify-content: space-between;
+        height: 109rpx;
+        border-bottom: 1rpx solid#ddd;
+        line-height: 109rpx;
+        background-color: #fff;
+        .left {
+          font-size: 26rpx;
+          color: #111;
+        }
+        .right {
+          font-size: 26rpx;
+          color: #666;
+          text {
+            color: #ccc;
+            font-size: 22rpx;
+            margin-left: 25rpx;
+          }
+        }
+      }
+    }
+  }
+  .introduce {
+    height: 400rpx;
+    background-color: lightcyan;
+    overflow: hidden;
+    .shop {
+      font-size: 30rpx;
+      color: #111;
+      margin-top: 32rpx;
+      font-weight: bold;
+    }
+    .personInfo {
+       display: flex;
+      image {
+        width: 80rpx;
+        height: 80rpx;
+        border-radius: 50%;
+      }
+      .Infos {
+        .name {
+           color: #145384;
+           font-size: 26rpx;
+        }
+        .text {
+           color: #666;
+            font-size: 22rpx;
+        }
+      }
+      .right {
+        image {
+          width: 30rpx;
+          height: 30rpx;
+        }
+      }
+    }
+  }
+}
+</style>

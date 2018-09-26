@@ -1,0 +1,31 @@
+<template>
+    <view class='container'>地图哈哈</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class mapHome extends wepy.page {
+  config = {
+    navigationBarTitleText: '地图找铺'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+</style>

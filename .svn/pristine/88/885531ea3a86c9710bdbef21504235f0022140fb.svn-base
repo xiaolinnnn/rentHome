@@ -1,0 +1,116 @@
+
+<template>
+  <view class='container'>
+    <view class="address">
+      <view class="left">
+        <view>期望区域</view>
+        <view>计划经营</view>
+        <view>商铺类型</view>
+        <view>面积要求</view>
+        <view>租金预算</view>
+        <view>转 让 费</view>
+      </view>
+      <view class="right">
+        <view>深圳市海岸城花园城/蛇口老街</view>
+        <view>火锅店</view>
+        <view>店铺</view>
+        <view>150~200m²</view>
+        <view>月租金 2~3万元</view>
+        <view>面议</view>
+      </view>
+    </view>
+    <view class="address">
+      <view class="left">
+        <view>期望区域</view>
+        <view>计划经营</view>
+        <view>商铺类型</view>
+        <view>面积要求</view>
+        <view>租金预算</view>
+        <view>转 让 费</view>
+      </view>
+      <view class="right">
+        <view>深圳市海岸城花园城/蛇口老街</view>
+        <view>火锅店</view>
+        <view>店铺</view>
+        <view>150~200m²</view>
+        <view>月租金 2~3万元</view>
+        <view>面议</view>
+      </view>
+    </view>
+    <view class="release">发布</view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class siteSelection extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的选址需求'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  padding: 20rpx 0;
+  .address {
+    padding: 30rpx 23rpx;
+    height: 340rpx;
+    box-sizing: border-box;
+    display: flex;
+    
+    background-color: #fff;
+    margin-bottom: 9rpx;
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      
+      width: 142rpx;
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex: 1;
+      color: #666;
+    }
+  }
+  .release {
+    width: 702rpx;
+    height: 80rpx;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 176, 214, 1),
+      rgba(0, 214, 211, 1)
+    );
+    border-radius: 4rpx;
+    text-align: center;
+    color: #fff;
+    line-height: 80rpx;
+    font-weight: 900;
+    font-size: 30rpx;
+    margin-top: 227rpx;
+    margin-left: 25rpx;
+  }
+}
+</style>

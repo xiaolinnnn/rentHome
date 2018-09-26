@@ -1,0 +1,135 @@
+
+  <swiper indicator-dots autoplay circular="circular">
+    <block  wx:for="{{swiperData}}" wx:key="">
+      <swiper-item>
+        <navigator url="" open-type="navigate" hover-class="none">
+          <image mode="aspectFill" src="{{item}}"/>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="main">
+    <view class="address">
+      <view class="detail">南山区蛇口工业六路65m²商铺转租/生意转让</view>
+      <view class="location">
+        <text class="subway">地铁</text>
+        <text class="subway">临近学校</text>
+      </view>
+    </view>
+    <view class="rental">
+      <view class="up">
+        <view class="rentmoney">
+          <view class="left">租金
+            <text>
+              <text class="num">2.5</text>万/月</text>3.8元/日.m²</view>
+          <view class="right">租金对比分析</view>
+        </view>
+        <view class="transfer">
+          <view class="left">转让费
+            <text>无</text>
+          </view>
+          <view class="right">转让费降价通知</view>
+        </view>
+      </view>
+      <view class="down">
+        <view class="area">
+          <view class="areas">面积
+            <text>610m²</text>
+          </view>
+          <view class="region">区域
+            <text>深圳市南山区</text>
+          </view>
+
+        </view>
+        <view class="detailed">
+          <view class="serial">商铺编号
+            <text>123456</text>
+          </view>
+          <view class="location">地址
+            <text>深圳市南山区</text>
+          </view>
+        </view>
+        <view class="dizhi">
+          详细地址
+        </view>
+      </view>
+    </view>
+    <!-- 地图 -->
+    <view class="map">
+      <image src=""/>
+    </view>
+    <view class="facility">
+      <view class="rec">
+        <view class="left">配套设施</view>
+        <view class="right">更多
+          <image src="../image/icon_more.png"/>
+        </view>
+      </view>
+      <view class="equipment">
+        <view class="list">
+          <image src="../image/icon_fire.png"/>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"/>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"/>
+          <text>天然气</text>
+        </view>
+        <view class="list">
+          <image src="../image/icon_fire.png"/>
+          <text>天然气</text>
+        </view>
+      </view>
+    </view>
+    <view class="homeInfo">
+      <view class="info">铺源信息</view>
+      <view class="feature">
+        <view class="lists">
+          <view class="left">经营状态</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">物业信息</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">位置信息</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">租约相关</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">转让相关</view>
+          <view class="right">4项
+            <text class="iconfont icon-jiantouyou"/>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="introduce">
+      <view class="shop">商铺介绍</view>
+      <view class="personInfo">
+        <image src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLpRc4s0HSWlyEqricPqK7WU9x54OrdWwcGFNajicCdhGniaUf6icFNiczjBrpibEoPicNxrlS63BWDUgRcw/132"/>
+        <view class="Infos">
+          <view class="name">胡歌</view>
+          <view class="text">已核验铺源1000家</view>
+        </view>
+        <view class="right">
+          <image src="../image/btn_phone.png"/>
+        </view>
+      </view>
+    </view>
+  </view>

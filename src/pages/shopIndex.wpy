@@ -1,0 +1,118 @@
+<template>
+ 
+
+<web-view src='http://test.pusandai.cn/shop_index.html?cityId={{cityId}}'></web-view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class shopIndex extends wepy.page {
+  config = {
+    navigationBarTitleText: '深圳商铺指数'
+  }
+
+  data = {
+    cityId: ''
+  }
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.cityId = option.id
+    console.log(this.cityId)
+  }
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  height: 370rpx;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 176, 214, 1),
+    rgba(0, 214, 211, 1)
+  );
+  display: flex;
+  justify-content: space-around;
+  color: #98fefa;
+  font-size: 28rpx;
+  .title {
+    margin-top: 66rpx;
+  }
+}
+.main {
+  padding: 0 25rpx;
+  position: relative;
+  .box {
+    height: 400rpx;
+    background-color: #fff;
+    margin-top: -169rpx;
+    .top {
+      height: 110rpx;
+      border-bottom: 1rpx solid #ddd;
+      padding: 20rpx 32rpx;
+      box-sizing: border-box;
+
+      .market {
+        font-weight: 900;
+      }
+      .date {
+        font-size: 22rpx;
+        color: #666;
+        margin-top: 13rpx;
+      }
+    }
+    .bottom {
+      height: 289rpx;
+      overflow: hidden;
+      padding-top: 57rpx;
+      box-sizing: border-box;
+      .section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .exponent {
+          color: #f02222;
+          font-size: 46rpx;
+        }
+        .subtitle {
+          color: #999;
+          font-size: 22rpx;
+        }
+      }
+    }
+  }
+  .circle1,
+  .circle2 {
+    width: 25rpx;
+    height: 25rpx;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 176, 214, 1),
+      rgba(0, 214, 211, 1)
+    );
+    border-radius: 50%;
+    position: absolute;
+    top: 95rpx;
+  }
+  .circle1 {
+    left: 13rpx;
+  }
+  .circle2 {
+    right: 13rpx;
+  }
+}
+</style>

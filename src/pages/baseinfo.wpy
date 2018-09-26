@@ -1,0 +1,198 @@
+<template>
+  <view class='top'>
+    完善好店铺信息，将会加快转出哦
+  </view>
+  <form>
+    <view @tap="idealArea" class='item'>
+      <text class='name'>区域</text>
+      <view class="input">{{message}}</view>
+    </view>
+    <view class='item'>
+      <text class='name'>地址</text>
+      <input type='text' class='input' placeholder='输入店铺的详细地址' placeholder-class='placeholder'></input>
+    </view>
+    <view class='item'>
+      <text class='name'>店铺面积</text>
+      <view class='right'>
+        <input type='text' class='input' placeholder='请输入商铺的使用面积' placeholder-class='placeholder'></input>
+        <text class='lastname'>m²</text>
+      </view>
+    </view>
+    <view class='item'>
+      <text class='name'>月租金</text>
+      <view class='right'>
+        <input type='text' class='input' placeholder='请输入商铺的月租金' placeholder-class='placeholder'></input>
+        <text class='lastname'>元/月</text>
+      </view>
+    </view>
+    <view class='item'>
+      <text class='name'>转让费</text>
+      <view class='right'>
+        <input type='text' class='input' placeholder='请输入商铺的转让费' placeholder-class='placeholder'></input>
+        <text class='lastname'>万元</text>
+      </view>
+    </view>
+    <view class='item' id='facemeet'>
+      <text class='name'>面议</text>
+      <switch checked @change='swtichChange' class="wx-switch-input"></switch>
+    </view>
+    <view class='save'>保存</view>
+  </form>
+  <view class="manage" hidden="{{!region}}">
+    <view class="head">
+      <view>最多可选择一个理想商圈</view>
+      <view @tap="confirm" class="confirm">确定</view>
+    </view>
+    <view class="bottom">
+      <scroll-view class="left" scroll-y scroll-with-animation @scroll="">
+        <view>
+          <block wx:for="{{cityList}}" wx:key="">
+            <view @tap="select({{index}},{{item.id}})" class="{{index==leftIndex?'active':''}}">{{item.name}}</view>
+          </block>
+        </view>
+      </scroll-view>
+      <scroll-view class="right" scroll-y scroll-with-animation @scroll="">
+        <view class="right">
+          <block wx:for="{{cityList[leftIndex].tArea}}" wx:key="">
+            <view @tap="chioce({{index}},{{item.name}})" class="{{index===rightIndex?'active':''}}">{{item.name}}</view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view @tap="vanish" class="mask" hidden="{{!isShowMask}}"></view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Subscription extends wepy.page {
+  config = {
+    navigationBarTitleText: '基本信息'
+  }
+
+  data = {
+    cityId: '',
+    aid: '',
+    region: false,
+    isShowMask: false,
+    leftIndex: 0,
+    rightIndex: undefined,
+    cityList: [],
+    message: '请选择理想开店区域'
+  }
+
+  components = {}
+
+  methods = {
+    select(index) {
+      this.leftIndex = index
+    },
+    chioce(index, name) {
+      this.rightIndex = index
+    },
+    vanish() {
+      this.region = false
+      this.isShowMask = false
+    },
+    idealArea() {
+      this.region = true
+      this.isShowMask = true
+    },
+    swtichChange() {}
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.cityId = option.id
+    this.getCityList()
+  }
+
+  onShow() {}
+  async getCityList() {
+    let res = await method.request({
+      url: 'api/v1/area',
+      method: 'post',
+      data: {
+        cityId: this.cityId
+      }
+    })
+    this.aid = res.data.data[0].id
+    this.cityList = res.data.data
+    this.$apply()
+  }
+}
+</script>
+<style lang='less'>
+.top {
+  width: 100%;
+  height: 100rpx;
+  background: rgba(215, 248, 255, 1);
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(0, 180, 215, 1);
+}
+.item {
+  width: 93%;
+  margin: 0 auto;
+  height: 110rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid rgba(221, 221, 221, 1);
+}
+#facemeet {
+  border: none;
+}
+.item .name {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(17, 17, 17, 1);
+}
+.item .right {
+  display: flex;
+}
+.item .input {
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+}
+.item .placeholder {
+  text-align: right;
+}
+.item .right .lastname {
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(17, 17, 17, 1);
+}
+.save {
+  width: 93%;
+  height: 80rpx;
+  margin: 62rpx auto 35rpx;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 176, 214, 1),
+    rgba(0, 214, 211, 1)
+  );
+  border-radius: 4rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+}
+</style>

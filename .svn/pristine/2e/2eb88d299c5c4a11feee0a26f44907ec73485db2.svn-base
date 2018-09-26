@@ -1,0 +1,15 @@
+
+  <view class="message">
+    <view class="top">
+      <view class="info">系统消息</view>
+      <view class="date">06-28 12:12:29</view>
+    </view>
+    <view class="bottom">单价7.5万到15万，稀缺资源，紧临两大... ...</view>
+  </view>
+  <view class="message">
+    <view class="top">
+      <view class="info">系统消息</view>
+      <view class="date">06-28 12:12:29</view>
+    </view>
+    <view class="bottom">单价7.5万到15万，稀缺资源，紧临两大... ...</view>
+  </view>

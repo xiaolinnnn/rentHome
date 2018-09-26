@@ -1,0 +1,209 @@
+<template>
+    <view class='title'>
+        <text class='tiname'>经营状态</text>
+    </view>
+    <view class='info'>
+        <view class='item'>
+            <text class='name'>当前经营</text>
+            <text class='detail'>{{detailList.oper_type}}</text>
+        </view>
+        <view class='item'>
+            <text class='name w2'>证照</text>
+            <text class='detail l2'>{{detailList.licence===1?'可办照':'不可办照'}}</text>
+        </view>
+        <view class='item'>
+            <text class='name'>已有证件</text>
+            <text class='detail'>
+                <block wx:for="{{detailList.cert_imgs}}" wx:key="">
+                    <text class='col'>{{item}}</text>
+                </block>
+            </text>
+        </view>
+        <view class='item'>
+            <text class='name'>经营状态</text>
+            <text class='detail'>{{detailList.status===1?'营业中':'停业'}}</text>
+        </view>
+    </view>
+    <view class='title'>
+        <text class='tiname'>物业信息</text>
+    </view>
+    <view class='info'>
+        <view class='item'>
+            <text class='name'>商铺类型</text>
+            <text class='detail'>{{detailList.type_id}}</text>
+        </view>
+        <view class='item'>
+            <text class='name'>建筑面积</text>
+            <text class='detail'>{{detailList.sarea}}㎡</text>
+        </view>
+        <view class='item'>
+            <text class='name'>使用面积</text>
+            <text class='detail'>{{detailList.uarea}}㎡</text>
+        </view>
+        <view class='item'>
+            <text class='name w2'>楼层</text>
+            <text class='detail l2'>{{detailList.floor}}</text>
+        </view>
+        <view class='item'>
+            <text class='name'>是否分割</text>
+            <text class='detail'>{{detailList.is_split===0?'否':'是'}}</text>
+        </view>
+        <view class='item'>
+            <text class='name'>临主干道</text>
+            <text class='detail'>{{detailList.mroad===0?'否':'是'}}</text>
+        </view>
+    </view>
+    <view class='title'>
+        <text class='tiname'>位置信息</text>
+    </view>
+    <view class='info'>
+        <view class='item'>
+            <text class='name w2'>区域</text>
+            <text class='detail l2'>{{detailList.name}}</text>
+        </view>
+        <view class='item'>
+            <text class='name'>临近干道</text>
+            <text class='detail'>{{detailList.mroad===0?'否':'是'}}</text>
+        </view>
+    </view>
+    <view class='title'>
+        <text class='tiname'>租约相关</text>
+    </view>
+    <view class='info'>
+        <view class='item'>
+            <text class='name w3'>月租金</text>
+            <text class='detail l3'>{{detailList.rent}}元/月</text>
+        </view>
+        <view class='item'>
+            <text class='name w2'>押金</text>
+            <text class='detail'>{{detailList.deposit}}元/月</text>
+        </view>
+        <view class='item'>
+            <text class='name'>支付方式</text>
+            <text class='detail'>{{detailList.rent_dur}}</text>
+        </view>
+        <view class='item'>
+            <text class='name'>分时出租</text>
+            <text class='detail'>{{detailList.time_share===1?'是':'否'}}</text>
+        </view>
+        <view class='item'>
+            <text class='name'>最长租约</text>
+            <text class='detail'>{{detailList.max_rent_dur}}</text>
+        </view>
+        <view class='item'>
+            <text class='name'>当前租约</text>
+            <text class='detail'>{{detailList.current_lease}}</text>
+        </view>
+    </view>
+    <view class='title'>
+        <text class='tiname'>转让相关</text>
+    </view>
+    <view class='info'>
+        <view class='item'>
+            <text class='name'>转让费用</text>
+            <text class='detail'>{{detailList.transfer_fee}}万</text>
+        </view>
+        <view class='item'>
+            <text class='name'>转让内容</text>
+            <text class='detail'>{{detailList.transfer_items?detailList.transfer_items:''}}</text>
+        </view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class homeInfo extends wepy.page {
+  config = {
+    navigationBarTitleText: '更多商铺信息'
+  }
+
+  data = {
+    store_id: '',
+    detailList: []
+  }
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.store_id = option.id
+    this.getDetailData()
+  }
+
+  onShow() {}
+  async getDetailData() {
+    let res = await method.request({
+      url: 'api/v1/store',
+      data: {
+        store_id: this.store_id
+      }
+    })
+    this.detailList = res.data.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang='less'>
+.title {
+  width: 748rpx;
+  height: 80rpx;
+  background: rgba(216, 248, 255, 1);
+}
+
+.title .tiname {
+  font-size: 30rpx;
+  line-height: 80rpx;
+  padding-left: 25rpx;
+  font-weight: bold;
+  color: rgba(0, 180, 215, 1);
+}
+
+.item:nth-child(1) {
+  margin-top: 32rpx;
+}
+
+.item:last-child {
+  margin-bottom: 30rpx;
+}
+
+.item {
+  margin-left: 25rpx;
+  margin-top: 20rpx;
+}
+
+.item .name {
+  width: 20%;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: rgba(17, 17, 17, 1);
+  display: inline-block;
+  text-align: justify;
+  text-justify: distribute-all-lines;
+  text-align-last: justify;
+  -moz-text-align-last: justify;
+  -webkit-text-align-last: justify;
+  vertical-align: top;
+}
+.item .detail {
+  vertical-align: top;
+  font-size: 26rpx;
+  display: inline-block;
+  flex-direction: column;
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
+  margin-left: 40rpx;
+}
+.col {
+  display: block;
+  line-height: 40rpx;
+}
+</style>

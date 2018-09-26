@@ -1,0 +1,130 @@
+
+  <view class="top">
+    <view class="header">
+      <image src="../image/icon_dingwei.png"/>
+      <text class="city">深圳</text>
+      
+    <view class="section">
+        <text class="iconfont icon-sousuo"/>
+        <input type="text" placeholder="搜索"/>
+    </view>
+
+      <image class="phone" src="../image/btn_phone.png"/>
+    </view>
+  </view>
+  <!-- 轮播图 -->
+  <swiper indicator-dots autoplay circular="circular">
+    <block  wx:for="{{swiperData}}" wx:key="">
+      <swiper-item>
+        <navigator url="" open-type="navigate" hover-class="none">
+          <image mode="aspectFill" src="{{item}}"/>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 分类 -->
+  <view class="classify">
+    <view class="list">
+      <image src="../image/home_icon_see.png"/>
+      <text>查看新铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"/>
+      <text>查看新铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"/>
+      <text>查看新铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"/>
+      <text>查看新铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"/>
+      <text>查看新铺</text>
+    </view>
+  </view>
+  <!-- 租金列表 -->
+  <view class="rent">
+    <view class="header">
+      <view class="left">深圳本周商铺租金均价</view>
+      <view class="right">查看详细
+        <image src="../image/icon_more.png"/>
+      </view>
+    </view>
+    <view class="center">
+      <image src="../image/icon_shang.png"/>
+      <view class="money">7.68</view>
+      <view class="day">
+        <view class="up">环比上周升
+          <text>1.76%</text>
+        </view>
+        <view class="down">元/m²/天</view>
+      </view>
+    </view>
+    <view class="footer">
+      <view class="left">
+        <view class="figure">883+</view>
+        <view class="num">在转店铺数</view>
+      </view>
+      <view class="middle">
+        <view class="figure ">883+</view>
+        <view class="num">在转店铺数</view>
+      </view>
+      <view class="right">
+        <view class="figure ">883+</view>
+        <view class="num">在转店铺数</view>
+      </view>
+    </view>
+  </view>
+  <!-- 品牌合作商 -->
+  <view class="brand">
+    <view class="rec">
+      <view class="left">品牌合作商</view>
+      <view class="right">more
+        <image src="../image/icon_more.png"/>
+      </view>
+    </view>
+    <view class="cooperation">
+      <view class="lists">
+        <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2794142615,386385845&fm=200&gp=0.jpg"/>
+        <text>星巴克</text>
+      </view>
+      <view class="lists">
+        <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2794142615,386385845&fm=200&gp=0.jpg"/>
+        <text>星巴克</text>
+      </view>
+      <view class="lists">
+        <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2794142615,386385845&fm=200&gp=0.jpg"/>
+        <text>星巴克</text>
+      </view>
+    </view>
+  </view>
+  <!-- 推荐房源 -->
+  <view class="recommend">
+    <view class="rec">
+      <view class="left">推荐房源</view>
+      <view class="right">more
+        <image src="../image/icon_more.png"/>
+      </view>
+    </view>
+    <view class="homes" bindtap="toDetail">
+      <view class="left">
+        <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"/>
+      </view>
+      <view class="right">
+        <view class="title">南山区蛇口
+          <text>60m²</text>
+        </view>
+        <view class="detail">
+          <view class="road">育知东路60㎡商铺转租/写字楼</view>
+          <view class="sum">1.68万/月</view>
+        </view>
+        <view class="location">
+          <view class="loc">地铁</view>
+          <view class="loc">临近学校</view>
+        </view>
+      </view>
+    </view>
+  </view>

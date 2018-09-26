@@ -1,0 +1,32 @@
+
+<template>
+    <view class='container'>我是详情</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Detail extends wepy.page {
+  config = {
+    navigationBarTitleText: '商铺列表'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+</style>

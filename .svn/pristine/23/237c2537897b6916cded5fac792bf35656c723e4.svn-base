@@ -1,0 +1,15 @@
+
+    <view class="search-bar">
+        <icon type="search" size="14"/>
+        <input type="text" placeholder="搜索" confirm-type="search"/>
+        <text class="cancel">取消</text>
+    </view>
+    <view class="hotSearch">热门搜索
+        <view class="hotRegion">
+            <view class="region">南山区</view>
+            <view class="region">深圳</view>
+            <view class="region">东莞</view>
+            <view class="region">龙岗</view>
+        </view>
+
+    </view>

@@ -1,0 +1,54 @@
+
+  <view class="tab-box">
+    <!-- 顶部区域 -->
+    
+    <view class="tab-bar">
+        <block  wx:for="{{$tabBars$tabList}}" wx:key="">
+            <view bindtap="$tabBars$selectItem" class="item {{$tabBars$selectIndex==index?'active':''}}" data-wpyselectitem-a="{{index}}">{{item}}</view>
+        </block>
+    </view>
+
+    <!-- 内容区域 -->
+    <view class="tab-content">
+      <view hidden="{{selectIndex!=0}}" class="total">
+        <view class="serve">
+          <view class="header">
+            <view class="left">升级会员服务-VIP会员</view>
+            <view class="right">去支付</view>
+          </view>
+          <view class="footer">
+            <view class="image">
+              <image src="../image/icon_money.png"/>
+            </view>
+            <view class="detail">
+              <view class="num">消费金额: 399元</view>
+              <view class="date">创建时间: 2018-01-01
+                <text>19:10:10</text>
+              </view>
+              <view class="serial">订单编号: 2018020123636504890</view>
+            </view>
+          </view>
+        </view>
+        <view class="serve">
+          <view class="header">
+            <view class="left">升级会员服务-VIP会员</view>
+            <view class="right">去支付</view>
+          </view>
+          <view class="footer">
+            <view class="image">
+              <image src="../image/icon_money.png"/>
+            </view>
+            <view class="detail">
+              <view class="num">消费金额: 399元</view>
+              <view class="date">创建时间: 2018-01-01
+                <text>19:10:10</text>
+              </view>
+              <view class="serial">订单编号: 2018020123636504890</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view hidden="{{selectIndex!=1}}" class="unfinished">2</view>
+      <view hidden="{{selectIndex!=2}}" class="completed">3</view>
+    </view>
+  </view>

@@ -1,0 +1,71 @@
+
+  <view class="cassette">
+    <view class="homeSource base">
+      <view class="title">铺源类型</view>
+      <view class="type">
+        <view class="list">实勘</view>
+        <view class="list">新上</view>
+        <view class="list">热门</view>
+      </view>
+    </view>
+    <view class="facility base">
+      <view class="title">配套设施</view>
+      <view class="facilitys">
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">可明火</view>
+        <view class="list">重置</view>
+      </view>
+    </view>
+    <view class="store base">
+      <view class="title">商铺类型</view>
+      <view class="storeType">
+        <view class="list">步行商业街</view>
+        <view class="list">步行商业街</view>
+        <view class="list">步行商业街</view>
+        <view class="list">步行商业街</view>
+        <view class="list">步行商业街</view>
+        <view class="list">步行商业街</view>
+        <view class="list">步行商业街</view>
+        <view class="list">步行商业街</view>
+        <view class="list">重置</view>
+      </view>
+    </view>
+    <view class="more">
+      <view class="lists">
+        <view class="left">适合经营</view>
+        <view class="right">不限
+          <text class="iconfont icon-jiantouyou"/>
+        </view>
+      </view>
+      <view class="lists">
+        <view class="left">楼层</view>
+        <view class="right">不限
+          <text class="iconfont icon-jiantouyou"/>
+        </view>
+      </view>
+      <view class="lists">
+        <view class="left">面宽</view>
+        <view class="right">不限
+          <text class="iconfont icon-jiantouyou"/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 底部定位 -->
+  <view class="operate">
+    <view class="nums">找到
+      <text>1496</text>套复合要求的商铺</view>
+    <view class="control">
+      <view class="empty">清空</view>
+      <view class="examine">查看</view>
+    </view>
+  </view>

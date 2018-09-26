@@ -1,0 +1,162 @@
+<template>
+  <view class='top'>
+    照片越多，越快转出
+  </view> 
+  <view class='title'>
+    <text class='name'>证照照片\n</text>
+    <text class='tip'>至少上传一张</text>
+  </view>
+  <view class='photo'>
+    <view class='box'>
+      <view class='upload' id='license'>
+        <text class='plus' bindtap='action'>+</text>
+      </view>
+      <text class='picname'>拍照/从相册选择</text>
+      <image src="{{tempFilePaths }}" catchTap="chooseImageTap" mode="aspectFit" style="width: 100%; height: 450rpx" />
+    </view>
+  </view>
+  <view class='save'>上传</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class turnHome extends wepy.page {
+  config = {
+    navigationBarTitleText: '快速转店'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+   // 选择照片
+  action() {
+    let that = this
+    wx.showActionSheet({
+      itemList: ['拍照', '从相册选择'],
+      itemColor: 'blue',
+      success: function(res) {
+        if (!res.cancle) {
+          if (res.tapIndex === 0) {
+            that.chooseWxImage('camera')
+          } else if (res.tapIndex === 1) {
+            that.chooseWxImage('album')
+          }
+        }
+      },
+      fail: function(res) {},
+      complete: function(res) {}
+    })
+  }
+  chooseWxImage(type) {
+    let that = this
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      sourceType: [type],
+      success: function(res) {
+        console.log(res)
+        that.setData({
+          tempFilePaths: res.tempFilePaths[0]
+        })
+      }
+    })
+  }
+ }
+ </script>
+
+ <style lang='less'>
+
+ .top {
+  width: 100%;
+  height: 100rpx;
+  background: rgba(215, 248, 255, 1);
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(0, 180, 215, 1);
+}
+
+.title {
+  width: 100%;
+  padding-left: 25rpx;
+  margin-top: 40rpx;
+}
+
+.title .name {
+  font-size: 30rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(51, 51, 51, 1);
+}
+
+.title .tip {
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(255, 142, 142, 1);
+}
+
+.photo {
+  width: 100%;
+  /* display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; */
+}
+
+.photo .box {
+  width: 222rpx;
+  text-align: center;
+  margin-top: 38rpx;
+  margin-left: 25rpx;
+}
+
+.photo .upload {
+  width: 222rpx;
+  height: 200rpx;
+  background: rgba(238, 238, 238, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo .upload .plus {
+  font-size: 80rpx;
+  color: gray;
+}
+
+.photo .picname {
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+  margin-top: 22rpx;
+}
+
+.save {
+  width: 93%;
+  height: 80rpx;
+  margin: 62rpx auto 35rpx;
+  background: linear-gradient(90deg, rgba(0, 176, 214, 1), rgba(0, 214, 211, 1));
+  border-radius: 4rpx;
+  font-size: 30rpx;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+</style>

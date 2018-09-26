@@ -1,0 +1,105 @@
+<template>
+    <view class="container">
+        <view class="totalCollect">-----收藏总数为
+            <text>{{collectNum}}</text>-----</view>
+        <block wx:for="{{collectList.rent}}" wx:key="">
+            <view class="homes" @tap="toDetail({{item.id}})">
+                <view class="left">
+                    <image src="{{item.img}}"></image>
+                </view>
+                <view class="right">
+                    <view class="title">{{item.name}}
+                        <text>{{item.uarea}}m²</text>
+                    </view>
+                    <view class="detail">
+                        <view class="road">{{item.address}}</view>
+                        <view class="sum">{{item.rent}}元/月</view>
+                    </view>
+                    <view class="location">
+                        <block wx:for="{{item.tag_item}}" wx:for-item="subitem" wx:key="">
+                            <view class="loc">{{subitem.name}}</view>
+                        </block>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Collect extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的收藏'
+  }
+
+  data = {
+    rows: 10,
+    page: 1,
+    token: '',
+    collectNum: '',
+    collectList: []
+  }
+
+  components = {}
+
+  methods = {
+    toDetail(id) {
+      wx.navigateTo({
+        url: `/pages/detail?id=${id}`
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {
+    this.getCollectData()
+  }
+
+  onShow() {}
+  async getCollectData() {
+    let userInfo = wx.getStorageSync('userInfo')
+    this.token = userInfo.token
+    let res = await method.request({
+      url: 'api/v1/store/call/list',
+      data: {
+        rows: this.rows,
+        page: this.page,
+        token: this.token,
+        type: 'rent'
+      }
+    })
+    console.log(res)
+    this.collectNum = res.data.data.favor_number
+    this.collectList = res.data.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang='less'>
+.container {
+  padding: 10rpx 25rpx;
+  .totalCollect {
+    height: 80rpx;
+    width: 100%;
+    line-height: 80rpx;
+    text-align: center;
+    background-color: #eee;
+    color: #111;
+    font-size: 28rpx;
+    text {
+      color: #ee3e3e;
+      font-weight: bold;
+      font-size: 30rpx;
+    }
+  }
+}
+</style>

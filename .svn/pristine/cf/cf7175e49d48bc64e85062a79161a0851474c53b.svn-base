@@ -1,0 +1,31 @@
+<template>
+    <view class='container'>首页</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class issueDemand extends wepy.page {
+  config = {
+    navigationBarTitleText: '发布需求'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+</style>

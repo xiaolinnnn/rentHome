@@ -1,0 +1,178 @@
+<template>
+    <view class='container'>
+        <view class="title">最真实有用的商铺数据分析</view>
+    </view>
+    <view class="main">
+        <view class="box">
+            <view class="top">
+                <view class="market">今日行情</view>
+                <view class="date">更新于2018-06-01 14:50:02</view>
+            </view>
+            <view class="bottom">
+                <view class="section">
+                    <view class="exponent">81796</view>
+                    <view class="subtitle">深圳在转商铺(套)</view>
+                </view>
+                <view class="numList">
+                    <view class="list">
+                        <view class="num">267+</view>
+                        <view class="today">今日上新</view>
+                    </view>
+                    <view class="list">
+                        <view class="num">896</view>
+                        <view class="today">今日降价</view>
+                    </view>
+                    <view class="list">
+                        <view class="num">91</view>
+                        <view class="today">今日成交</view>
+                    </view>
+                    <view class="line1"></view>
+                    <view class="line2"></view>
+                </view>
+            </view>
+        </view>
+        <view class="circle1"></view>
+        <view class="circle2"></view>
+    </view>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class shopIndex extends wepy.page {
+  config = {
+    navigationBarTitleText: '深圳商铺指数'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  height: 370rpx;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 176, 214, 1),
+    rgba(0, 214, 211, 1)
+  );
+  display: flex;
+  justify-content: space-around;
+  color: #98fefa;
+  font-size: 28rpx;
+  .title {
+    margin-top: 66rpx;
+  }
+}
+.main {
+  padding: 0 25rpx;
+  position: relative;
+  .box {
+    height: 400rpx;
+    background-color: #fff;
+    margin-top: -169rpx;
+    .top {
+      height: 110rpx;
+      border-bottom: 1rpx solid #ddd;
+      padding: 20rpx 32rpx;
+      box-sizing: border-box;
+
+      .market {
+        font-weight: 900;
+      }
+      .date {
+        font-size: 22rpx;
+        color: #666;
+        margin-top: 13rpx;
+      }
+    }
+    .bottom {
+      height: 289rpx;
+      overflow: hidden;
+      padding-top: 57rpx;
+      box-sizing: border-box;
+      .section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .exponent {
+          color: #f02222;
+          font-size: 46rpx;
+        }
+        .subtitle {
+          color: #999;
+          font-size: 22rpx;
+        }
+      }
+      .numList {
+        margin-top: 30rpx;
+        display: flex;
+        justify-content: space-around;
+        position: relative;
+        .list {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .num {
+            font-size: 38rpx;
+          }
+          .today {
+            font-size: 22rpx;
+            color: #999;
+          }
+        }
+        .line1,
+        .line2 {
+          position: absolute;
+          background-color: #ddd;
+          width: 1rpx;
+          height: 40rpx;
+          top: 15rpx;
+        }
+        .line1 {
+          left: 240rpx;
+        }
+        .line2 {
+          right: 232rpx;
+        }
+      }
+    }
+  }
+  .circle1,
+  .circle2 {
+    width: 25rpx;
+    height: 25rpx;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 176, 214, 1),
+      rgba(0, 214, 211, 1)
+    );
+    border-radius: 50%;
+    position: absolute;
+    top: 95rpx;
+  }
+  .circle1 {
+    left: 13rpx;
+  }
+  .circle2 {
+    right: 13rpx;
+  }
+}
+</style>

@@ -1,0 +1,57 @@
+<template>
+  <view class="section">
+    <text class="iconfont icon-sousuo"></text>
+    <input @tap="toSearch" type="text" placeholder='搜索' />
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class searchBar extends wepy.component {
+  props = {}
+
+  data = {}
+
+  components = {}
+
+  methods = {
+    toSearch() {
+      wx.navigateTo({
+        url: '/pages/search'
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+.section {
+  position: relative;
+  width: 550rpx;
+  height: 56rpx;
+  background-color: #fff;
+  padding-left: 52rpx;
+  box-sizing: border-box;
+  .icon-sousuo {
+    position: absolute;
+    left: 16rpx;
+    top: 16rpx;
+    color: #999;
+    font-size: 22rpx;
+  }
+  input {
+    font-size: 26rpx;
+    color: #999;
+  }
+}
+</style>

@@ -1,0 +1,131 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _wepy = require('./../npm/wepy/lib/wepy.js');
+
+var _wepy2 = _interopRequireDefault(_wepy);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Me = function (_wepy$page) {
+  _inherits(Me, _wepy$page);
+
+  function Me() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Me);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Me.__proto__ || Object.getPrototypeOf(Me)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+      navigationBarTitleText: '个人中心'
+    }, _this.data = {
+      isShowPhone: true,
+      isShowPerson: true
+    }, _this.components = {}, _this.methods = {
+      // 收藏
+      myCollect: function myCollect() {
+        wx.navigateTo({
+          url: '/pages/collect'
+        });
+      },
+
+      // 钱包
+      myWallet: function myWallet() {
+        wx.navigateTo({
+          url: '/pages/mywallet'
+        });
+      },
+
+      // 订阅
+      subscibe: function subscibe() {
+        wx.navigateTo({
+          url: '/pages/subscription'
+        });
+      },
+
+      // 订单
+      toOrder: function toOrder() {
+        wx.navigateTo({
+          url: '/pages/order'
+        });
+      },
+
+      // 我的消息
+      message: function message() {
+        wx.navigateTo({
+          url: '/pages/information'
+        });
+      },
+
+      // 发布的店铺
+      publish: function publish() {
+        wx.navigateTo({
+          url: '/pages/publishHome'
+        });
+      },
+
+      // 我的匹配列表
+      matching: function matching() {
+        wx.navigateTo({
+          url: '/pages/matching'
+        });
+      },
+
+      // 选址需求
+      toAddress: function toAddress() {
+        wx.navigateTo({
+          url: '/pages/siteSelection'
+        });
+      },
+
+      // 点击客服电话
+      phone: function phone() {
+        this.isShowPhone = false;
+      },
+
+      // 点击取消按钮
+      cancel: function cancel() {
+        this.isShowPhone = true;
+      },
+
+      // 拨打电话
+      cell: function cell() {
+        wx.makePhoneCall({
+          phoneNumber: '400-8888-8888',
+          success: function success() {}
+        });
+      }
+    }, _this.events = {}, _this.watch = {}, _this.computed = {}, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Me, [{
+    key: 'onLoad',
+    value: function onLoad() {}
+  }, {
+    key: 'onShow',
+    value: function onShow() {}
+  }]);
+
+  return Me;
+}(_wepy2.default.page);
+
+
+Page(require('./../npm/wepy/lib/wepy.js').default.$createPage(Me , 'pages/me'));
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1lLmpzIl0sIm5hbWVzIjpbIk1lIiwiY29uZmlnIiwibmF2aWdhdGlvbkJhclRpdGxlVGV4dCIsImRhdGEiLCJpc1Nob3dQaG9uZSIsImlzU2hvd1BlcnNvbiIsImNvbXBvbmVudHMiLCJtZXRob2RzIiwibXlDb2xsZWN0Iiwid3giLCJuYXZpZ2F0ZVRvIiwidXJsIiwibXlXYWxsZXQiLCJzdWJzY2liZSIsInRvT3JkZXIiLCJtZXNzYWdlIiwicHVibGlzaCIsIm1hdGNoaW5nIiwidG9BZGRyZXNzIiwicGhvbmUiLCJjYW5jZWwiLCJjZWxsIiwibWFrZVBob25lQ2FsbCIsInBob25lTnVtYmVyIiwic3VjY2VzcyIsImV2ZW50cyIsIndhdGNoIiwiY29tcHV0ZWQiLCJ3ZXB5IiwicGFnZSJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFDQTs7Ozs7Ozs7Ozs7O0lBQ3FCQSxFOzs7Ozs7Ozs7Ozs7Ozs4S0FDbkJDLE0sR0FBUztBQUNQQyw4QkFBd0I7QUFEakIsSyxRQUlUQyxJLEdBQU87QUFDTEMsbUJBQWEsSUFEUjtBQUVMQyxvQkFBYztBQUZULEssUUFLUEMsVSxHQUFhLEUsUUFFYkMsTyxHQUFVO0FBQ1I7QUFDQUMsZUFGUSx1QkFFSTtBQUNWQyxXQUFHQyxVQUFILENBQWM7QUFDWkMsZUFBSztBQURPLFNBQWQ7QUFHRCxPQU5POztBQU9SO0FBQ0FDLGNBUlEsc0JBUUc7QUFDVEgsV0FBR0MsVUFBSCxDQUFjO0FBQ1pDLGVBQUs7QUFETyxTQUFkO0FBR0QsT0FaTzs7QUFhUjtBQUNBRSxjQWRRLHNCQWNHO0FBQ1RKLFdBQUdDLFVBQUgsQ0FBYztBQUNaQyxlQUFLO0FBRE8sU0FBZDtBQUdELE9BbEJPOztBQW1CUjtBQUNBRyxhQXBCUSxxQkFvQkU7QUFDUkwsV0FBR0MsVUFBSCxDQUFjO0FBQ1pDLGVBQUs7QUFETyxTQUFkO0FBR0QsT0F4Qk87O0FBeUJSO0FBQ0FJLGFBMUJRLHFCQTBCRTtBQUNSTixXQUFHQyxVQUFILENBQWM7QUFDWkMsZUFBSztBQURPLFNBQWQ7QUFHRCxPQTlCTzs7QUErQlI7QUFDQUssYUFoQ1EscUJBZ0NFO0FBQ1JQLFdBQUdDLFVBQUgsQ0FBYztBQUNaQyxlQUFLO0FBRE8sU0FBZDtBQUdELE9BcENPOztBQXFDUjtBQUNBTSxjQXRDUSxzQkFzQ0c7QUFDVFIsV0FBR0MsVUFBSCxDQUFjO0FBQ1pDLGVBQUs7QUFETyxTQUFkO0FBR0QsT0ExQ087O0FBMkNSO0FBQ0FPLGVBNUNRLHVCQTRDSTtBQUNWVCxXQUFHQyxVQUFILENBQWM7QUFDWkMsZUFBSztBQURPLFNBQWQ7QUFHRCxPQWhETzs7QUFpRFI7QUFDQVEsV0FsRFEsbUJBa0RBO0FBQ04sYUFBS2YsV0FBTCxHQUFtQixLQUFuQjtBQUNELE9BcERPOztBQXFEUjtBQUNBZ0IsWUF0RFEsb0JBc0RDO0FBQ1AsYUFBS2hCLFdBQUwsR0FBbUIsSUFBbkI7QUFDRCxPQXhETzs7QUF5RFI7QUFDQWlCLFVBMURRLGtCQTBERDtBQUNMWixXQUFHYSxhQUFILENBQWlCO0FBQ2ZDLHVCQUFhLGVBREU7QUFFZkMsbUJBQVMsbUJBQU0sQ0FBRTtBQUZGLFNBQWpCO0FBSUQ7QUEvRE8sSyxRQWtFVkMsTSxHQUFTLEUsUUFFVEMsSyxHQUFRLEUsUUFFUkMsUSxHQUFXLEU7Ozs7OzZCQUVGLENBQUU7Ozs2QkFFRixDQUFFOzs7O0VBdEZtQkMsZUFBS0MsSTs7a0JBQWhCN0IsRSIsImZpbGUiOiJtZS5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5pbXBvcnQgd2VweSBmcm9tICd3ZXB5J1xyXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBNZSBleHRlbmRzIHdlcHkucGFnZSB7XHJcbiAgY29uZmlnID0ge1xyXG4gICAgbmF2aWdhdGlvbkJhclRpdGxlVGV4dDogJ+S4quS6uuS4reW/gydcclxuICB9XHJcblxyXG4gIGRhdGEgPSB7XHJcbiAgICBpc1Nob3dQaG9uZTogdHJ1ZSxcclxuICAgIGlzU2hvd1BlcnNvbjogdHJ1ZVxyXG4gIH1cclxuXHJcbiAgY29tcG9uZW50cyA9IHt9XHJcblxyXG4gIG1ldGhvZHMgPSB7XHJcbiAgICAvLyDmlLbol49cclxuICAgIG15Q29sbGVjdCgpIHtcclxuICAgICAgd3gubmF2aWdhdGVUbyh7XHJcbiAgICAgICAgdXJsOiAnL3BhZ2VzL2NvbGxlY3QnXHJcbiAgICAgIH0pXHJcbiAgICB9LFxyXG4gICAgLy8g6ZKx5YyFXHJcbiAgICBteVdhbGxldCgpIHtcclxuICAgICAgd3gubmF2aWdhdGVUbyh7XHJcbiAgICAgICAgdXJsOiAnL3BhZ2VzL215d2FsbGV0J1xyXG4gICAgICB9KVxyXG4gICAgfSxcclxuICAgIC8vIOiuoumYhVxyXG4gICAgc3Vic2NpYmUoKSB7XHJcbiAgICAgIHd4Lm5hdmlnYXRlVG8oe1xyXG4gICAgICAgIHVybDogJy9wYWdlcy9zdWJzY3JpcHRpb24nXHJcbiAgICAgIH0pXHJcbiAgICB9LFxyXG4gICAgLy8g6K6i5Y2VXHJcbiAgICB0b09yZGVyKCkge1xyXG4gICAgICB3eC5uYXZpZ2F0ZVRvKHtcclxuICAgICAgICB1cmw6ICcvcGFnZXMvb3JkZXInXHJcbiAgICAgIH0pXHJcbiAgICB9LFxyXG4gICAgLy8g5oiR55qE5raI5oGvXHJcbiAgICBtZXNzYWdlKCkge1xyXG4gICAgICB3eC5uYXZpZ2F0ZVRvKHtcclxuICAgICAgICB1cmw6ICcvcGFnZXMvaW5mb3JtYXRpb24nXHJcbiAgICAgIH0pXHJcbiAgICB9LFxyXG4gICAgLy8g5Y+R5biD55qE5bqX6ZO6XHJcbiAgICBwdWJsaXNoKCkge1xyXG4gICAgICB3eC5uYXZpZ2F0ZVRvKHtcclxuICAgICAgICB1cmw6ICcvcGFnZXMvcHVibGlzaEhvbWUnXHJcbiAgICAgIH0pXHJcbiAgICB9LFxyXG4gICAgLy8g5oiR55qE5Yy56YWN5YiX6KGoXHJcbiAgICBtYXRjaGluZygpIHtcclxuICAgICAgd3gubmF2aWdhdGVUbyh7XHJcbiAgICAgICAgdXJsOiAnL3BhZ2VzL21hdGNoaW5nJ1xyXG4gICAgICB9KVxyXG4gICAgfSxcclxuICAgIC8vIOmAieWdgOmcgOaxglxyXG4gICAgdG9BZGRyZXNzKCkge1xyXG4gICAgICB3eC5uYXZpZ2F0ZVRvKHtcclxuICAgICAgICB1cmw6ICcvcGFnZXMvc2l0ZVNlbGVjdGlvbidcclxuICAgICAgfSlcclxuICAgIH0sXHJcbiAgICAvLyDngrnlh7vlrqLmnI3nlLXor51cclxuICAgIHBob25lKCkge1xyXG4gICAgICB0aGlzLmlzU2hvd1Bob25lID0gZmFsc2VcclxuICAgIH0sXHJcbiAgICAvLyDngrnlh7vlj5bmtojmjInpkq5cclxuICAgIGNhbmNlbCgpIHtcclxuICAgICAgdGhpcy5pc1Nob3dQaG9uZSA9IHRydWVcclxuICAgIH0sXHJcbiAgICAvLyDmi6jmiZPnlLXor51cclxuICAgIGNlbGwoKSB7XHJcbiAgICAgIHd4Lm1ha2VQaG9uZUNhbGwoe1xyXG4gICAgICAgIHBob25lTnVtYmVyOiAnNDAwLTg4ODgtODg4OCcsXHJcbiAgICAgICAgc3VjY2VzczogKCkgPT4ge31cclxuICAgICAgfSlcclxuICAgIH1cclxuICB9XHJcblxyXG4gIGV2ZW50cyA9IHt9XHJcblxyXG4gIHdhdGNoID0ge31cclxuXHJcbiAgY29tcHV0ZWQgPSB7fVxyXG5cclxuICBvbkxvYWQoKSB7fVxyXG5cclxuICBvblNob3coKSB7fVxyXG59XHJcbiJdfQ==

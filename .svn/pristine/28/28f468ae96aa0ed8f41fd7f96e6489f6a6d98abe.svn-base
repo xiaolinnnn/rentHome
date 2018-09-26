@@ -1,0 +1,408 @@
+<style lang="less">
+// 头部
+.top {
+  position: absolute;
+  left: 30rpx;
+  top: 43rpx;
+  z-index: 555;
+  .header {
+    display: flex;
+    align-items: center;
+    image {
+      width: 18rpx;
+      height: 22rpx;
+    }
+    .city {
+      color: #fefefe;
+      font-weight: bold;
+      font-size: 30rpx;
+      margin: 0 12rpx;
+    }
+
+    .phone {
+      width: 37rpx;
+      height: 37rpx;
+      margin-left: 21rpx;
+    }
+  }
+}
+// 轮播图
+swiper {
+  height: 455rpx;
+  navigator {
+    height: 100%;
+    image {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+// 分类列表
+.classify {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  height: 329rpx;
+  align-items: center;
+  border-bottom: 10rpx solid #f4f4f4;
+  // 图标列表
+  .list {
+    width: 33.3333333333333%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    image {
+      width: 60rpx;
+      height: 60rpx;
+    }
+    text {
+      margin-top: 28rpx;
+      font-size: 24rpx;
+      color: #333;
+    }
+  }
+}
+// 租金列表
+.rent {
+  display: flex;
+  padding: 32rpx 24rpx;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-bottom: 10rpx solid #f4f4f4;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    .left {
+      font-size: 32rpx;
+      color: #111;
+      font-weight: bold;
+    }
+    .right {
+      font-size: 24rpx;
+      color: #555;
+    }
+    image {
+      width: 8rpx;
+      height: 18rpx;
+    }
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 67rpx;
+    image {
+      width: 16rpx;
+      height: 28rpx;
+    }
+    .money {
+      color: #ee3e3e;
+      font-size: 60rpx;
+    }
+    .day {
+      display: flex;
+      flex-direction: column;
+      .up {
+        font-size: 20rpx;
+        color: #333;
+        text {
+          color: #ee4150;
+        }
+      }
+      .down {
+        font-size: 20rpx;
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 57rpx;
+    .figure {
+      font-size: 40rpx;
+      color: #111;
+    }
+    .num {
+      font-size: 22rpx;
+      color: #999;
+    }
+    .left {
+    }
+  }
+}
+// 品牌合作
+.brand {
+  padding: 40rpx 25rpx;
+  border-bottom: 10rpx solid #f4f4f4;
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .brands {
+      font-size: 32rpx;
+      color: #111;
+      font-weight: bold;
+    }
+    .more {
+      display: flex;
+      .many {
+        color: #555;
+        font-size: 24rpx;
+        margin-right: 10rpx;
+      }
+      image {
+        width: 8rpx;
+        height: 18rpx;
+      }
+    }
+  }
+  .cooperation {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 41rpx;
+    .lists {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      image {
+        width: 180rpx;
+        height: 180rpx;
+      }
+      text {
+        font-size: 26rpx;
+        color: #111;
+        margin-top: 24rpx;
+      }
+    }
+  }
+}
+// 推荐房源
+.recommend {
+  padding: 40rpx 25rpx;
+  .homes {
+    height: 210rpx;
+    padding: 35rpx 0;
+    box-sizing: border-box;
+    display: flex;
+    border-bottom: 1rpx solid #ddd;
+    .left {
+      image {
+        width: 200rpx;
+        height: 140rpx;
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      margin-left: 20rpx;
+
+      .title {
+        font-size: 30rpx;
+        color: #333;
+        text {
+          border-left: 1rpx solid #ccc;
+          font-size: 26rpx;
+          padding-left: 10rpx;
+        }
+      }
+      .detail {
+        display: flex;
+
+        .road {
+          font-size: 22rpx;
+          color: #999;
+          margin-right: 62rpx;
+        }
+        .sum {
+          font-size: 26rpx;
+          color: #ee3e3e;
+        }
+      }
+      .location {
+        display: flex;
+        .loc {
+          width: 110rpx;
+          height: 36rpx;
+          text-align: center;
+          color: #111;
+          background-color: #eee;
+          line-height: 36rpx;
+          font-size: 20rpx;
+          margin-right: 10rpx;
+        }
+      }
+    }
+  }
+}
+.rec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .left {
+    font-size: 32rpx;
+    color: #111;
+    font-weight: bold;
+  }
+  .right {
+    font-size: 26rpx;
+    color: #555;
+    image {
+      width: 8rpx;
+      height: 18rpx;
+    }
+  }
+}
+</style>
+<template>
+  <view class="top">
+    <view class="header">
+      <image src="../image/icon_dingwei.png"></image>
+      <text class="city">深圳</text>
+      <searchBar></searchBar>
+      <image class="phone" src="../image/btn_phone.png"></image>
+    </view>
+  </view>
+  <!-- 轮播图 -->
+  <swiper indicator-dots autoplay circular>
+    <block wx:for="{{swiperData}}" wx:key="">
+      <swiper-item>
+        <navigator url="" open-type="navigate" hover-class="none">
+          <image mode="aspectFill" src="{{item}}"></image>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 分类 -->
+  <view class="classify">
+    <view class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>查看新铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>查看新铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>查看新铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>查看新铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>查看新铺</text>
+    </view>
+  </view>
+  <!-- 租金列表 -->
+  <view class="rent">
+    <view class="header">
+      <view class="left">深圳本周商铺租金均价</view>
+      <view class="right">查看详细
+        <image src="../image/icon_more.png"></image>
+      </view>
+    </view>
+    <view class="center">
+      <image src="../image/icon_shang.png"></image>
+      <view class="money">7.68</view>
+      <view class="day">
+        <view class="up">环比上周升
+          <text>1.76%</text>
+        </view>
+        <view class="down">元/m²/天</view>
+      </view>
+    </view>
+    <view class="footer">
+      <view class="left">
+        <view class="figure">883+</view>
+        <view class="num">在转店铺数</view>
+      </view>
+      <view class="middle">
+        <view class="figure ">883+</view>
+        <view class="num">在转店铺数</view>
+      </view>
+      <view class="right">
+        <view class="figure ">883+</view>
+        <view class="num">在转店铺数</view>
+      </view>
+    </view>
+  </view>
+  <!-- 品牌合作商 -->
+  <view class="brand">
+    <view class="rec">
+      <view class="left">品牌合作商</view>
+      <view class="right">more
+        <image src="../image/icon_more.png"></image>
+      </view>
+    </view>
+    <view class="cooperation">
+      <view class="lists">
+        <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2794142615,386385845&fm=200&gp=0.jpg"></image>
+        <text>星巴克</text>
+      </view>
+      <view class="lists">
+        <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2794142615,386385845&fm=200&gp=0.jpg"></image>
+        <text>星巴克</text>
+      </view>
+      <view class="lists">
+        <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2794142615,386385845&fm=200&gp=0.jpg"></image>
+        <text>星巴克</text>
+      </view>
+    </view>
+  </view>
+  <!-- 推荐房源 -->
+  <view class="recommend">
+    <view class="rec">
+      <view class="left">推荐房源</view>
+      <view class="right">more
+        <image src="../image/icon_more.png"></image>
+      </view>
+    </view>
+    <view class="homes">
+      <view class="left">
+        <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"></image>
+      </view>
+      <view class="right">
+        <view class="title">南山区蛇口
+          <text>60m²</text>
+        </view>
+        <view class="detail">
+          <view class="road">育知东路60㎡商铺转租/写字楼</view>
+          <view class="sum">1.68万/月</view>
+        </view>
+        <view class="location">
+          <view class="loc">地铁</view>
+          <view class="loc">临近学校</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import searchBar from '../components/searchBar'
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '租铺精灵'
+  }
+  data = {
+    swiperData: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ]
+  }
+  onLoad() {
+    console.log('onLoad')
+  }
+  components = {
+    searchBar
+  }
+}
+</script>

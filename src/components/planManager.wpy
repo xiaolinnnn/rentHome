@@ -1,0 +1,104 @@
+<template>
+  <view class="manage">
+    <view class="head">
+      <view>您想经营什么行业</view>
+      <view @tap="confirm" class="confirm">确定</view>
+    </view>
+    <view class="bottom">
+      <scroll-view class="left" scroll-y scroll-with-animation>
+        <view>
+          <block wx:for="{{manageList}}" wx:key="">
+            <view @tap="select({{index}})" class="{{index==leftIndex?'active':''}}">{{item.name}}</view>
+          </block>
+        </view>
+      </scroll-view>
+      <scroll-view class="right" scroll-y scroll-with-animation>
+        <view class="right">
+          <block wx:for="{{manageList[leftIndex].son}}" wx:key="">
+            <view @tap="chioce({{index}},{{item.id}},{{item.name}})" class="{{index==rightIndex?'active':''}}">{{item.name}}</view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class planManager extends wepy.component {
+  props = {
+    manageList: {
+      type: Array,
+      default: []
+    },
+    manageType: {
+      type: Boolean,
+      default: false,
+      twoWay: true
+    },
+    isShowMask: {
+      type: Boolean,
+      default: false,
+      twoWay: true
+    },
+    rightIndex: {
+      type: Number,
+      default: false,
+      twoWay: true
+    }
+  }
+
+  data = {
+    leftIndex: 0,
+    planned_operation: '',
+    manageName: ''
+  }
+
+  components = {}
+
+  methods = {
+    // 选择区域左边
+    chioce(twoIndex, id, name) {
+      this.rightIndex = twoIndex
+      this.planned_operation = id
+      this.manageName = name
+    },
+    // 选择区域左边
+    select(index) {
+      this.rightIndex = -1
+      this.leftIndex = index
+    },
+    confirm() {
+      if (!this.manageName) {
+        wx.showToast({
+          title: '请选择',
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+        return
+      }
+      this.isShowMask = false
+      this.manageType = false
+      const manage = {
+        planned_operation: this.planned_operation,
+        manageName: this.manageName
+      }
+      this.$emit('manageFn', manage)
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+</style>

@@ -1,0 +1,77 @@
+<template>
+  <block wx:for="{{homeList}}" wx:key="">
+    <view @tap="seeHome({{item.id}})" class='demand'>
+      <text class='title'>{{item.name}}</text>
+      <image src='{{item.img}}'></image>
+    </view>
+  </block>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class issueDemand extends wepy.page {
+  config = {
+    navigationBarTitleText: '发布需求'
+  }
+
+  data = {
+    homeList: [
+      { id: 1, name: '帮我找铺', img: '../image/demand1.png' },
+      { id: 2, name: '快速转店', img: '../image/demand2.png' },
+      { id: 3, name: '选址评估', img: '../image/demand3.png' }
+    ],
+    cityId: ''
+  }
+
+  components = {}
+
+  methods = {
+    seeHome(id) {
+      if (id === 1) {
+        wx.navigateTo({
+          url: `/pages/helpMineHome?id=${this.cityId}`
+        })
+      } else if (id === 2) {
+        wx.navigateTo({
+          url: `/pages/turnHome?id=${this.cityId}`
+        })
+      }
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {
+    this.cityId = wx.getStorageSync('city')
+  }
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+.demand {
+  margin: 20rpx auto;
+  width: 93%;
+  height: 260rpx;
+  text-align: center;
+}
+.demand image {
+  width: 100%;
+  height: 100%;
+}
+.title {
+  font-size: 30rpx;
+  font-weight: 500;
+  position: absolute;
+  line-height: 260rpx;
+  color: #fff;
+  margin-left: 41%;
+  /* margin-top: 30rpx; */
+}
+</style>

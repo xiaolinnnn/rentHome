@@ -1,0 +1,534 @@
+<template>
+  <view class='box'>
+    <view @tap="collect" class='b_left'>
+      <view class='bl_left'>
+        <image wx:if="{{!switchImage}}" src='../image/btn_shoucang_hui.png' mode='aspectFill' />
+        <image wx:if="{{switchImage}}" src='../image/btn_shoucang_hei.png' mode='aspectFill' />
+      </view>
+      <view class='bl_right'>
+        <text>收藏</text>
+      </view>
+    </view>
+    <view @tap="chaffer" class='b_center'>
+      <text>我要砍价</text>
+    </view>
+    <view @tap="appointment" class='b_right'>
+      <text>直播店主</text>
+    </view>
+  </view>
+  <swiper indicator-dots autoplay circular>
+    <block wx:for="{{detailList.imgs}}" wx:key="">
+      <swiper-item>
+        <navigator url="" open-type="navigate" hover-class="none">
+          <image mode="aspectFill" src="{{item}}"></image>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="main">
+    <view class="address">
+      <view class="detail">{{detailList.name}}</view>
+      <view class="location">
+        <block wx:for="{{detailList.tag_item}}" wx:key="">
+          <text class="subway">{{item.name}}</text>
+        </block>
+      </view>
+    </view>
+    <view class="rental">
+      <view class="up">
+        <view class="rentmoney">
+          <view class="left">租金
+            <text>
+              <text class="num">{{detailList.rent}}</text>元/月</text>{{detailList.day_rent}}元/日.m²</view>
+          <view @tap="comparison" class="right">租金对比分析</view>
+        </view>
+        <view class="transfer">
+          <view class="left">转让费
+            <text>{{detailList.transfer_fee}}万</text>
+          </view>
+          <view @tap="showFee" class="right">转让费降价通知</view>
+        </view>
+      </view>
+      <view class="down">
+        <view class="first">
+          <view class="mianji">面积
+            <text>{{detailList.sarea}}m²</text>
+          </view>
+          <view class="bianhao">编号
+            <text>{{detailList.id}}</text>
+          </view>
+        </view>
+        <view class="second">
+          <view class="quyu">区域
+            <text>{{detailList.name}}</text>
+          </view>
+          <view class="dizhi">地址
+            <text>{{detailList.is_view===0?detailList.trading_area+'附近':detailList.address}}</text>
+          </view>
+        </view>
+        <view class="detailAddress" @tap="addressDetail" wx:if="{{!isShowAddress}}">详细地址</view>
+      </view>
+    </view>
+    <!-- 地图 -->
+    <view class="map">
+      <image src="{{detailList.pic}}"></image>
+    </view>
+    <view class="facility">
+      <view class="rec">
+        <view class="left">配套设施</view>
+        <view class="right">
+
+        </view>
+      </view>
+      <scroll-view scroll-x scroll-with-animation="true" @scroll="">
+        <view class="equipment">
+          <block wx:for="{{detailList.facilities}}" wx:key="">
+            <view class="list">
+              <image src="{{item.icon}}"></image>
+              <text>{{item.text}}</text>
+            </view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="homeInfo">
+      <view class="info">铺源信息</view>
+      <view @tap="moreInfo" class="feature">
+        <view class="lists">
+          <view class="left">经营状态</view>
+          <view class="right">{{detailList.number.business}}项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">物业信息</view>
+          <view class="right">{{detailList.number.property}}项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">位置信息</view>
+          <view class="right">{{detailList.number.position}}项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">租约相关</view>
+          <view class="right">{{detailList.number.lease}}项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+        <view class="lists">
+          <view class="left">转让相关</view>
+          <view class="right">{{detailList.number.transfer}}项
+            <text class="iconfont icon-jiantouyou"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="introduce">
+      <view class="shop">商铺介绍</view>
+      <view class="personInfo">
+        <view class="left">
+          <image src="{{detailList.advisers.head_portrait}}"></image>
+          <view class="Infos">
+            <view class="name">{{detailList.advisers.name}}</view>
+            <view class="text">已核验铺源
+              <text>{{detailList.advisers.service_number}}</text>家</view>
+          </view>
+        </view>
+        <view @tap="telePhone" class="right">
+          <image src="../image/btn_phone.png"></image>
+        </view>
+      </view>
+      <text class="recommend">{{detailList.content}}</text>
+    </view>
+    <view class="report">
+      <view class="titles">
+        <view class="homeReport">商铺报告</view>
+        <view @tap="shopReport" class="seeReport">查看完整报告</view>
+      </view>
+    </view>
+    <view class="process">
+      <view class="homeProcess">店铺租赁评估进程</view>
+      <view class="figure">
+        <block wx:for="{{detailList.timeMachine}}" wx:key="">
+          <view class="progress">
+            <image src="{{item.head_portrait?item.head_portrait:'http://img4.imgtn.bdimg.com/it/u=3883867503,2887992989&fm=11&gp=0.jpg'}}"></image>
+            <text>{{item.name?item.name:'店主'}}</text>
+            <view class="circle"></view>
+          </view>
+        </block>
+        <!-- <view class="line1"></view>
+        <view class="line2"></view> -->
+      </view>
+      <view class="schedules">
+        <block wx:for="{{detailList.timeMachine}}" wx:key="">
+          <view class="schedule">
+            <view class="title">{{item.content}}</view>
+            <view class="date">{{item.created_at}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="problem">
+      <view class="familiar">常见问题</view>
+      <view class="question">
+        <block wx:for="{{detailList.problem}}" wx:key="">
+          <view @tap="toProblem({{item.id}})" class="lists">
+            <view class="left">{{item.problem}}</view>
+            <view class="right">查看</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="query">
+      <view class="head">
+        <view class="image">
+          <image src="../image/icon_Que.png"></image>
+          对本铺还有疑问？
+        </view>
+        <text>专家将为您解答</text>
+      </view>
+      <view class="footer">
+        <input @focus="inputQuestion" type="text" placeholder='点击输入(描述你的问题)' /></input>
+      </view>
+    </view>
+    <view class="guessLike">
+      <view class="like">猜你喜欢</view>
+      <block wx:for="{{detailList.storeList}}" wx:key="">
+        <view @tap="toDetail({{item.id}})" class="homes">
+          <view class="left">
+            <image src="{{item.imgs}}"></image>
+          </view>
+          <view class="right">
+            <view class="title">{{item.trading_area}}
+              <text>{{item.uarea}}m²</text>
+            </view>
+            <view class="detail">
+              <view class="road">{{item.address}}</view>
+              <view class="sum">{{item.rent}}元/月</view>
+            </view>
+            <view class="location">
+              <block wx:for="{{item.tag_item}}" wx:for-item="subitem" wx:key="">
+                <view class="loc">{{subitem.name}}</view>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+
+    </view>
+    <view @tap="correctError" class="collects">
+      <view class="left">
+        <text class="iconfont icon-shanchu"></text>
+        <view class="foundMistake">
+          <text>发现铺源信息有误</text>
+          <text>纠错可获得现金红包</text>
+        </view>
+      </view>
+      <view class="right">我要纠错
+        <text class="iconfont icon-jiantouyou"></text>
+      </view>
+    </view>
+  </view>
+  <!-- 转让费降价 -->
+  <view class="transfers" hidden="{{!isShowFee}}">
+    <view class="header">
+      <view class="inform">转让费降价第一时间通知我</view>
+      <view class="cost">目前业主转让费
+        <text>{{detailList.transfer_fee}}万</text>
+      </view>
+      <view class="fee">
+        <input @input="price" type="number" placeholder='' /></input>
+        <text>元</text>
+      </view>
+    </view>
+    <view class="footer">
+      <view @tap="abolish" class="left">取消</view>
+      <view @tap="confirm" class="right">确定</view>
+    </view>
+  </view>
+  <!-- 砍价 -->
+  <view class="transfers" hidden="{{!bargain}}">
+    <view class="header">
+      <view class="price">我们会根据您的意向价与店主砍价</view>
+      <view class="cost makePrice">
+        <block wx:for="{{priceList}}" wx:key="">
+          <view @tap="select({{index}})" class="{{index==selectIndex?'select':''}}">{{item}}</view>
+        </block>
+      </view>
+      <view class="fee">
+        <input @input="price" type="number" placeholder='输入您的意向价……' /></input>
+        <text>元</text>
+      </view>
+    </view>
+    <view class="footer">
+      <view @tap="abolish" class="left">取消</view>
+      <view @tap="ensure" class="right">确定</view>
+    </view>
+  </view>
+  <!-- 租金对比分析 -->
+  <view class="zujin" hidden="{{showRent}}">
+    <!-- <web-view  src='http://test.pusandai.cn/rent_comp.html?store_id={{store_id}}'></web-view> -->
+  </view>
+  <!-- 遮罩 -->
+  <view catchtouchmove="preventD" class="mask" hidden="{{!isShowMask}}">
+
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Detail extends wepy.page {
+  config = {
+    navigationBarTitleText: '店铺列表'
+  }
+
+  data = {
+    priceList: ['租金', '转让费'],
+    store_id: '',
+    question: true,
+    isShowMask: false,
+    isShowFee: false,
+    bargain: false,
+    switchImage: false,
+    isShowAddress: true,
+    showRent: true,
+    detailList: [],
+    selectIndex: 0,
+    token: '',
+    price: '',
+    fee: '',
+    type: ''
+    // address: ''
+  }
+
+  components = {}
+
+  methods = {
+    preventD() {},
+    // 详情
+    toDetail(id) {
+      wx.navigateTo({
+        url: `/pages/detail?id=${id}`
+      })
+    },
+    // 查看详细地址
+    addressDetail() {
+      this.addressData()
+    },
+    // 查看所有商铺报告
+    shopReport() {
+      wx.navigateTo({
+        url: `/pages/report?id=${this.store_id}`
+      })
+    },
+    toProblem(id) {
+      wx.navigateTo({
+        url: `/pages/problem?id=${id}`
+      })
+    },
+    move() {},
+    telePhone() {
+      wx.makePhoneCall({
+        phoneNumber: '13888888888'
+      })
+    },
+    // 直拨店主
+    appointment() {
+      wx.makePhoneCall({
+        phoneNumber: '13655555555'
+      })
+    },
+    inputQuestion() {},
+    showFee() {
+      if (this.fee === null) {
+        wx.showToast({
+          title: '本店暂时无转让费',
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+        return
+      }
+      this.isShowFee = true
+      this.isShowMask = true
+    },
+    abolish() {
+      this.isShowFee = false
+      this.isShowMask = false
+      this.bargain = false
+    },
+    confirm() {
+      this.isShowFee = false
+      this.isShowMask = false
+      this.$apply()
+      this.transferPrice()
+    },
+    // 砍价
+    chaffer() {
+      this.bargain = true
+      this.isShowMask = true
+    },
+    // 砍价确定
+    ensure() {
+      this.bargain = false
+      this.isShowMask = false
+      this.priceData()
+    },
+    select(index) {
+      this.selectIndex = index
+    },
+    // 更多铺源信息
+    moreInfo() {
+      wx.navigateTo({
+        url: `/pages/homeInfo?id=${this.store_id}`
+      })
+    },
+    // 租金对比分析
+    // 转让费的值
+    price(e) {
+      this.price = e.detail.value
+    },
+    // 收藏
+    collect() {
+      this.collectData()
+    },
+    // 跳转到纠错页面
+    correctError() {
+      wx.navigateTo({
+        url: `/pages/correctError?id=${this.store_id}`
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.store_id = option.id
+    this.getDetailData()
+  }
+
+  onShow() {}
+  async getDetailData() {
+    let userInfo = wx.getStorageSync('userInfo')
+    this.token = userInfo.token
+    // 后面要传token
+    let res = await method.request({
+      url: 'api/v1/store',
+      data: {
+        token: this.token,
+        store_id: this.store_id
+      }
+    })
+    console.log(res)
+
+    if (res.data.data.is_view === 0) {
+      this.isShowAddress = false
+    }
+    res.data.data.is_call === 0
+      ? (this.switchImage = false)
+      : (this.switchImage = true)
+    this.detailList = res.data.data
+    this.fee = res.data.data.transfer_fee
+    this.$apply()
+  }
+  async transferPrice() {
+    let res = await method.request({
+      url: 'api/v1/transfer/notice',
+      method: 'post',
+      data: {
+        token: this.token,
+        store_id: this.store_id,
+        cost: this.price
+      }
+    })
+    wx.showToast({
+      title: res.data.msg,
+      icon: 'none',
+      duration: 1500,
+      mask: false
+    })
+  }
+  async priceData() {
+    this.selectIndex === 0 ? (this.type = 1) : (this.type = 2)
+    let res = await method.request({
+      url: 'api/v1/bargaining',
+      method: 'post',
+      data: {
+        token: this.token,
+        store_id: this.store_id,
+        type: this.type,
+        expected_price: this.price
+      }
+    })
+    wx.showToast({
+      title: res.data.msg,
+      icon: 'none',
+      duration: 1500,
+      mask: false
+    })
+  }
+  async collectData() {
+    if (!this.token) {
+      wx.switchTab({
+        url: '/pages/me'
+      })
+      return
+    }
+    this.switchImage = !this.switchImage
+    let res = await method.request({
+      url: 'api/v1/store/call',
+      method: 'post',
+      data: {
+        token: this.token,
+        store_id: this.store_id
+      }
+    })
+    wx.showToast({
+      title: res.data.msg,
+      icon: 'none',
+      duration: 1500,
+      mask: false
+    })
+  }
+  async addressData() {
+    let res = await method.request({
+      url: 'api/v1/show/address',
+      data: {
+        token: this.token,
+        store_id: this.store_id
+      }
+    })
+    let num = res.data.data.number
+    if (num === null) {
+      wx.showToast({
+        title: '你没有查看次数了,请明天再来或者充值会员',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      })
+      return
+    }
+    this.detailList.is_view = 1
+    this.isShowAddress = true
+    this.$apply()
+    wx.showToast({
+      title: `今日还可以查看${num}次地址`,
+      icon: 'none',
+      duration: 1500,
+      mask: false
+    })
+  }
+}
+</script>
+
+<style lang='less'>
+@import '../style/detail.less';
+</style>

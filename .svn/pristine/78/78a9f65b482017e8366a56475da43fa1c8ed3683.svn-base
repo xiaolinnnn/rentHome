@@ -1,0 +1,74 @@
+<template>
+  <view class="message">
+    <view class="top">
+      <view class="info">系统消息</view>
+      <view class="date">06-28 12:12:29</view>
+    </view>
+    <view class="bottom">单价7.5万到15万，稀缺资源，紧临两大... ...</view>
+  </view>
+  <view class="message">
+    <view class="top">
+      <view class="info">系统消息</view>
+      <view class="date">06-28 12:12:29</view>
+    </view>
+    <view class="bottom">单价7.5万到15万，稀缺资源，紧临两大... ...</view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Information extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的消息'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.message {
+  padding: 30rpx 24rpx;
+  height: 140rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 6rpx;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    .info {
+     
+      
+      font-weight: bold;
+    }
+    .date {
+      font-size: 22rpx;
+      color: #ccc;
+    }
+  }
+  .bottom {
+    font-size: 22rpx;
+    color: #666;
+  }
+}
+</style>

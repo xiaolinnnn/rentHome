@@ -1,0 +1,176 @@
+<template>
+  <view class="header">
+    <view class="top">
+      <text class="money">{{walletList.userBalance.money}}</text>
+      <text class="balance">余额(元)</text>
+    </view>
+    <view class="bottom">
+      <view class="left">
+        <text class="moneys">{{walletList.userBalance.commission}}</text>
+        <text class="vield">佣金收益</text>
+      </view>
+      <view class="right">
+        <text class="moneys">{{walletList.userBalance.red_envelope}}</text>
+        <text class="vield">累计收入</text>
+      </view>
+    </view>
+  </view>
+  <view class="center">
+    <text class="detail">流水明细</text>
+    <view class="withdraw">提现</view>
+  </view>
+  <block wx:for="{{walletList.runningWater}}" wx:key="">
+    <view class="footer">
+      <view class="left">
+        <text class="packet">红包收入</text>
+        <text class="remaining">余额:{{item.balance}}</text>
+      </view>
+      <view class="right">
+        <view class="redMoney">{{item.amount}}</view>
+        <view class="date">{{item.time}}</view>
+      </view>
+    </view>
+  </block>
+</template>
+
+<script>
+import wepy from 'wepy'
+import date from '../utils/date.js'
+let method = require('../utils/method.js')
+export default class Mywallet extends wepy.page {
+  config = {
+    navigationBarTitleText: '我的钱包'
+  }
+
+  data = {
+    page: 1,
+    rows: 10,
+    walletList: []
+  }
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {
+    this.getData()
+  }
+
+  onShow() {}
+  async getData() {
+    let userInfo = wx.getStorageSync('userInfo')
+    let token = userInfo.token
+    let res = await method.request({
+      url: 'api/v1/user/wallet',
+      data: {
+        token,
+        page: this.page,
+        rows: this.rows
+      }
+    })
+    res.data.data.runningWater.forEach(item => {
+      item.time = date.formatTime(item.created_at, 'Y-M-D')
+    })
+    this.walletList = res.data.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang='less'>
+.header {
+  height: 352rpx;
+  .top {
+    height: 232rpx;
+    background-color: #00b4d7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    align-items: center;
+    .money {
+      font-size: 60rpx;
+    }
+    .balance {
+      font-size: 24rpx;
+    }
+  }
+  .bottom {
+    height: 120rpx;
+    background-color: #14b8d7;
+    display: flex;
+    justify-content: space-between;
+    padding: 32rpx 143rpx;
+    box-sizing: border-box;
+    .left,
+    .right {
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .moneys {
+      font-size: 32rpx;
+    }
+    .vield {
+      font-size: 22rpx;
+    }
+  }
+}
+.center {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #ddd;
+  padding: 0 23rpx;
+  .detail {
+    font-size: 30rpx;
+    font-weight: bold;
+  }
+  .withdraw {
+    width: 90rpx;
+    height: 44rpx;
+    font-size: 24rpx;
+    color: #fff;
+    line-height: 44rpx;
+    text-align: center;
+    background-color: #00b4d7;
+  }
+}
+.footer {
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+  padding: 28rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #ddd;
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .right {
+    text-align: right;
+  }
+  .packet {
+    font-size: 30rpx;
+  }
+  .remaining,
+  .date {
+    font-size: 24rpx;
+    color: #999;
+  }
+  .redMoney {
+    font-size: 30rpx;
+    color: #f50101;
+  }
+}
+</style>

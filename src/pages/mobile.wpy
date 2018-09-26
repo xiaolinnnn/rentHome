@@ -1,0 +1,202 @@
+<template>
+    <view class="centerLogin">
+        <view class="mobileNum">
+            <input class="mobileNumber" @input="getMobile" type="number" placeholder='手机号' value="{{mobile}}" /></input>
+            <view @tap="getCode" class="getCode">{{getCode}}</view>
+        </view>
+
+        <input class="verification" type="number" @input="code" value="{{code}}" placeholder='验证码' /></input>
+        <view @tap="toPerson" class="login">绑定手机号</view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Example extends wepy.page {
+  config = {
+    navigationBarTitleText: '绑定手机号'
+  }
+
+  data = {
+    mobile: '',
+    code: '',
+    getCode: '获取验证码',
+    currentTime: 60,
+    isclick: true
+  }
+
+  components = {}
+
+  methods = {
+    // // 登录
+    // toPerson() {
+    //   if (!this.mobile.trim() || !this.code.trim()) {
+    //     wx.showToast({
+    //       title: '请输入手机号或者验证码',
+    //       icon: 'none',
+    //       duration: 1500,
+    //       mask: false
+    //     })
+    //     return
+    //   }
+    //   wx.getStorage({
+    //     key: 'wxInfo',
+    //     success: res => {
+    //       console.log(res)
+
+    //       method.request({
+    //         url: 'api/v1/user/bindInfo',
+    //         method: 'post',
+    //         data: {
+    //           mobile: this.mobile,
+    //           captcha: this.code,
+    //           openid: res.data.openid,
+    //           unionid: res.data.unionid,
+    //           avatar: res.data.avatar,
+    //           nickname: res.data.nickname
+    //         },
+    //         success: res => {
+    //           if (res.data.code === 200) {
+    //             wx.setStorage({
+    //               key: 'userInfo',
+    //               data: res.data.data.userInfo
+    //             })
+    //             wx.switchTab({
+    //               url: '/pages/mine'
+    //             })
+    //           } else {
+    //             wx.showToast({
+    //               title: res.data.msg,
+    //               icon: 'none',
+    //               duration: 1500,
+    //               mask: false
+    //             })
+    //           }
+    //         }
+    //       })
+    //     }
+    //   })
+    // },
+    getCode() {
+      this.getCodeData()
+    },
+    toPerson() {
+      this.bindMobile()
+    },
+    // 获取手机号
+    getMobile(e) {
+      this.mobile = e.detail.value
+    },
+    // 获取输入的验证码的值
+    code(e) {
+      this.code = e.detail.value
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {
+    this.getCode = '获取验证码'
+  }
+  async getCodeData() {
+    if (!this.isclick) {
+      return
+    }
+    let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/
+    if (!myreg.test(this.mobile)) {
+      wx.showToast({
+        title: '手机号有误',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      })
+      return false
+    }
+    let currentTime = this.currentTime
+    this.isclick = false
+    let interval = setInterval(() => {
+      currentTime--
+      this.getCode = currentTime + '秒'
+      if (currentTime <= 0) {
+        this.getCode = '重新发送'
+        // this.currentTime = 60
+        this.isclick = true
+        clearInterval(interval)
+        this.$apply()
+      }
+      this.$apply()
+    }, 1000)
+    let res = await method.request({
+      url: 'api/v1/sendBindMobeilSms',
+      method: 'post',
+      data: { mobile: this.mobile }
+    })
+    if (res.data.code === 200) {
+      wx.showToast({
+        title: '发送成功',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      })
+    } else {
+      wx.showToast({
+        title: '发送失败',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      })
+    }
+  }
+  async bindMobile() {
+    if (!this.mobile.trim() || !this.code.trim()) {
+      wx.showToast({
+        title: '请输入手机号或者验证码',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      })
+      return
+    }
+    let userInfo = wx.getStorageSync('wxInfo')
+    let res = await method.request({
+      url: 'api/v1/user/bindInfo',
+      method: 'post',
+      data: {
+        mobile: this.mobile,
+        captcha: this.code,
+        openid: userInfo.openid,
+        unionid: userInfo.unionid,
+        avatar: userInfo.avatar,
+        nickname: userInfo.nickname
+      }
+    })
+    if (res.data.code === 200) {
+      wx.setStorage({
+        key: 'userInfo',
+        data: res.data.data.userInfo
+      })
+      wx.switchTab({
+        url: '/pages/me'
+      })
+    } else {
+      wx.showToast({
+        title: res.data.msg,
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      })
+    }
+  }
+}
+</script>
+
+<style lang='less'>
+@import '../style/login.less';
+</style>

@@ -1,0 +1,101 @@
+<template>
+    <view class='container'>
+        <view class="brand">
+            <view class="left">
+                <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3275824772,1342111386&fm=26&gp=0.jpg"></image>
+            </view>
+            <view class="right">
+                <view class="top">
+                    <view class="title">渝月</view>
+                    <view class="shop">计划开店: 10</view>
+                </view>
+                <view class="middle">面积范围: 100~200㎡</view>
+                <view class="bottom">租金预算: 10.0元/天㎡</view>
+                <view></view>
+            </view>
+        </view>
+          <view class="brand">
+            <view class="left">
+                <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3275824772,1342111386&fm=26&gp=0.jpg"></image>
+            </view>
+            <view class="right">
+                <view class="top">
+                    <view class="title">渝月</view>
+                    <view class="shop">计划开店: 10</view>
+                </view>
+                <view class="middle">面积范围: 100~200㎡</view>
+                <view class="bottom">租金预算: 10.0元/天㎡</view>
+                <view></view>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Trademark extends wepy.page {
+  config = {
+    navigationBarTitleText: '品牌选址'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.container {
+  padding: 30rpx 25rpx;
+  .brand {
+    height: 200rpx;
+    background-color: #fff;
+    padding: 31rpx 20rpx 29rpx 29rpx;
+    box-sizing: border-box;
+    display: flex;
+    margin-bottom: 20rpx;
+    .left {
+      width: 140rpx;
+      image {
+        width: 140rpx;
+        height: 140rpx;
+      }
+    }
+    .right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      margin-left: 22rpx;
+      .top {
+        display: flex;
+        justify-content: space-between;
+        .title {
+          color: #273e71;
+          font-size: 30rpx;
+        }
+      }
+      .middle,
+      .bottom {
+        color: #666;
+        font-size: 24rpx;
+      }
+    }
+  }
+}
+</style>

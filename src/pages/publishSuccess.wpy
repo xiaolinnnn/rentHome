@@ -1,0 +1,73 @@
+<template>
+    <view class='container'>
+        <image src="../image/icon_right.png"></image>
+        <view class="content">发布成功，一旦发现有符合要求的店铺，我们的选址专家将会在第一时间通知您</view>
+        <view @tap="seeHome" class="seeHome">查看其它店铺</view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class publishSuccess extends wepy.page {
+  config = {
+    navigationBarTitleText: '发布成功'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {
+    seeHome() {
+      wx.switchTab({
+        url: '/pages/issueDemand'
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  image {
+    width: 264rpx;
+    height: 141rpx;
+    margin-top: 165rpx;
+  }
+  .content {
+    color: #666;
+    padding: 0 182rpx;
+    text-align: center;
+    margin-top: 61rpx;
+  }
+  .seeHome {
+    margin-top: 349rpx;
+    width: 460rpx;
+    height: 80rpx;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 176, 214, 1),
+      rgba(0, 214, 211, 1)
+    );
+    line-height: 80rpx;
+    text-align: center;
+    border-radius: 6rpx;
+    color: #fff;
+    font-size: 30rpx;
+  }
+}
+</style>

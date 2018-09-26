@@ -1,0 +1,202 @@
+<template>
+  <view class="header">
+    <view class="icon">
+      <image src="{{userInfo.head_portrait}}"></image>
+    </view>
+    <view class="info">
+      <view>选址顾问-{{userInfo.name}}</view>
+      <view>"完善信息，将会加快选址速度哦"</view>
+    </view>
+  </view>
+  <view class="main">
+    <view class="infoList" @tap="baseInfo">
+      <view class="left">
+        <image src="../image/icon_file.png"></image>
+      </view>
+      <view class="right">
+        <view class="title">基本信息
+          <text>*必填信息</text>
+        </view>
+        <view class="subtitle">请填写您店铺的基本信息</view>
+      </view>
+    </view>
+    <view class="infoList" @tap="toPhoto">
+      <view class="left">
+        <image src="../image/icon_file.png"></image>
+      </view>
+      <view class="right">
+        <view class="title">商铺照片
+          <text>*必填信息</text>
+        </view>
+        <view class="subtitle">请上传您店铺的照片</view>
+      </view>
+    </view>
+    <view class="infoList" @tap="toReview">
+      <view class="left">
+        <image src="../image/icon_file.png"></image>
+      </view>
+      <view class="right">
+        <view class="title">点评店铺
+          <text>*必填信息</text>
+        </view>
+        <view class="subtitle">请说说您店铺的优势</view>
+      </view>
+    </view>
+    <view class="infoList" @tap="license">
+      <view class="left">
+        <image src="../image/icon_file.png"></image>
+      </view>
+      <view class="right">
+        <view class="title">店铺证件
+          <text>*必填信息</text>
+        </view>
+        <view class="subtitle">请上传您店铺的证照</view>
+      </view>
+    </view>
+  </view>
+  <view class="pubilshShop">发布我的店铺</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class turnHome extends wepy.page {
+  config = {
+    navigationBarTitleText: '快速转店'
+  }
+
+  data = {
+    cityId: '',
+    userInfo: []
+  }
+
+  components = {}
+
+  methods = {
+    baseInfo() {
+      wx.navigateTo({
+        url: `/pages/baseinfo?id=${this.cityId}`
+      })
+    },
+    license() {
+      wx.navigateTo({
+        url: '/pages/license'
+      })
+    },
+    toPhoto() {
+      wx.navigateTo({
+        url: '/pages/photo'
+      })
+    },
+    toReview() {
+      wx.navigateTo({
+        url: '/pages/review'
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.cityId = option.id
+    this.getUserInfo()
+  }
+  async getUserInfo() {
+    let res = await method.request({
+      url: 'api/v1/store/kszd',
+      data: {
+        cityId: this.cityId
+      }
+    })
+    console.log(res)
+    this.userInfo = res.data.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.header {
+  height: 180rpx;
+  background-color: #d7f8ff;
+  display: flex;
+  align-items: center;
+  .icon {
+    width: 145rpx;
+    image {
+      flex: 1;
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 50%;
+      margin-left: 45rpx;
+    }
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #00b4d7;
+    font-size: 24rpx;
+    view {
+    }
+  }
+}
+.main {
+  padding: 10rpx 24rpx;
+  .infoList {
+    height: 160rpx;
+    background-color: #fff;
+    display: flex;
+    margin-bottom: 20rpx;
+    .left {
+      width: 149rpx;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      image {
+        width: 94rpx;
+        height: 94rpx;
+        border-radius: 50%;
+      }
+    }
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .title {
+        font-size: 30rpx;
+        color: #333;
+        text {
+          font-size: 22rpx;
+          color: #ff8d8d;
+        }
+      }
+      .subtitle {
+        margin-top: 26rpx;
+        font-size: 24rpx;
+        color: #999;
+      }
+    }
+  }
+}
+.pubilshShop {
+  height: 100rpx;
+  width: 100%;
+  background-color: #00b4d7;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+</style>

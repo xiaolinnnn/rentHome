@@ -1,0 +1,95 @@
+<template>
+  <block wx:for="{{messageList}}" wx:key="">
+    <view @tap="systemMessage({{item.id}})" class="message">
+      <view class="top">
+        <view class="info">系统消息</view>
+        <view class="date">{{item.created_at}}</view>
+      </view>
+      <view class="bottom">{{item.text}}</view>
+    </view>
+  </block>
+
+</template>
+
+<script>
+import wepy from 'wepy'
+let method = require('../utils/method.js')
+export default class Information extends wepy.page {
+  config = {
+    navigationBarTitleText: '消息'
+  }
+
+  data = {
+    rows: 10,
+    page: 1,
+    messageList: []
+  }
+
+  components = {}
+
+  methods = {
+    systemMessage(id) {
+      wx.navigateTo({
+        url: `/pages/systemMessage?id=${id}`
+      })
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {
+    this.messageData()
+  }
+
+  onShow() {}
+  async messageData() {
+    let res = await method.request({
+      url: `api/v1/systemMsg?rows=${this.rows}&page=${this.page}`,
+      data: {
+        rows: this.rows,
+        page: this.page
+      }
+    })
+    this.messageList = res.data.data
+    this.$apply()
+  }
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.message {
+  padding: 30rpx 24rpx;
+  height: 140rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 6rpx;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    .info {
+      font-weight: bold;
+    }
+    .date {
+      font-size: 22rpx;
+      color: #ccc;
+    }
+  }
+  .bottom {
+    font-size: 22rpx;
+    color: #666;
+    overflow: hidden; /*  溢出隐藏   */
+    text-overflow: ellipsis; /*显示省略号*/
+    white-space: nowrap; /*不换行*/
+  }
+}
+</style>

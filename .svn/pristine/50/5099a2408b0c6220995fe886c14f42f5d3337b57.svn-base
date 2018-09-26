@@ -1,0 +1,85 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _wepy = require('./../npm/wepy/lib/wepy.js');
+
+var _wepy2 = _interopRequireDefault(_wepy);
+
+var _searchBar = require('./../components/searchBar.js');
+
+var _searchBar2 = _interopRequireDefault(_searchBar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// let method = require('./../utils/method.js')
+var searchHome = function (_wepy$page) {
+  _inherits(searchHome, _wepy$page);
+
+  function searchHome() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, searchHome);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = searchHome.__proto__ || Object.getPrototypeOf(searchHome)).call.apply(_ref, [this].concat(args))), _this), _this.config = {
+      navigationBarTitleText: '店铺列表'
+    }, _this.data = {
+      tabs: [{
+        id: 1,
+        name: '区域'
+      }, {
+        id: 2,
+        name: '面积'
+      }, {
+        id: 3,
+        name: '费用'
+      }, {
+        id: 4,
+        name: '更多'
+      }],
+      isShowMask: false,
+      isShowArea: true
+    }, _this.components = {
+      searchBar: _searchBar2.default
+    }, _this.methods = {
+      // showModel(index) {
+      //   console.log(index)
+      //   if (index === 0) {
+      //     // this.isShowArea = true
+      //     // this.isShowMask = true
+      //   }
+      // }
+    }, _this.events = {}, _this.watch = {}, _this.computed = {}, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(searchHome, [{
+    key: 'onLoad',
+    value: function onLoad() {}
+  }, {
+    key: 'onShow',
+    value: function onShow() {}
+  }]);
+
+  return searchHome;
+}(_wepy2.default.page);
+
+
+Page(require('./../npm/wepy/lib/wepy.js').default.$createPage(searchHome , 'pages/searchHome'));
+
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNlYXJjaEhvbWUuanMiXSwibmFtZXMiOlsic2VhcmNoSG9tZSIsImNvbmZpZyIsIm5hdmlnYXRpb25CYXJUaXRsZVRleHQiLCJkYXRhIiwidGFicyIsImlkIiwibmFtZSIsImlzU2hvd01hc2siLCJpc1Nob3dBcmVhIiwiY29tcG9uZW50cyIsInNlYXJjaEJhciIsIm1ldGhvZHMiLCJldmVudHMiLCJ3YXRjaCIsImNvbXB1dGVkIiwid2VweSIsInBhZ2UiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQ0E7Ozs7QUFDQTs7Ozs7Ozs7Ozs7O0FBQ0E7SUFDcUJBLFU7Ozs7Ozs7Ozs7Ozs7OzhMQUNuQkMsTSxHQUFTO0FBQ1BDLDhCQUF3QjtBQURqQixLLFFBR1RDLEksR0FBTztBQUNMQyxZQUFNLENBQ0o7QUFDRUMsWUFBSSxDQUROO0FBRUVDLGNBQU07QUFGUixPQURJLEVBS0o7QUFDRUQsWUFBSSxDQUROO0FBRUVDLGNBQU07QUFGUixPQUxJLEVBU0o7QUFDRUQsWUFBSSxDQUROO0FBRUVDLGNBQU07QUFGUixPQVRJLEVBYUo7QUFDRUQsWUFBSSxDQUROO0FBRUVDLGNBQU07QUFGUixPQWJJLENBREQ7QUFtQkxDLGtCQUFZLEtBbkJQO0FBb0JMQyxrQkFBWTtBQXBCUCxLLFFBdUJQQyxVLEdBQWE7QUFDWEM7QUFEVyxLLFFBSWJDLE8sR0FBVTtBQUNSO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBUFEsSyxRQVVWQyxNLEdBQVMsRSxRQUVUQyxLLEdBQVEsRSxRQUVSQyxRLEdBQVcsRTs7Ozs7NkJBRUYsQ0FBRTs7OzZCQUVGLENBQUU7Ozs7RUFqRDJCQyxlQUFLQyxJOztrQkFBeEJoQixVIiwiZmlsZSI6InNlYXJjaEhvbWUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuaW1wb3J0IHdlcHkgZnJvbSAnd2VweSdcclxuaW1wb3J0IHNlYXJjaEJhciBmcm9tICcuLi9jb21wb25lbnRzL3NlYXJjaEJhcidcclxuLy8gbGV0IG1ldGhvZCA9IHJlcXVpcmUoJy4uL3V0aWxzL21ldGhvZC5qcycpXHJcbmV4cG9ydCBkZWZhdWx0IGNsYXNzIHNlYXJjaEhvbWUgZXh0ZW5kcyB3ZXB5LnBhZ2Uge1xyXG4gIGNvbmZpZyA9IHtcclxuICAgIG5hdmlnYXRpb25CYXJUaXRsZVRleHQ6ICflupfpk7rliJfooagnXHJcbiAgfVxyXG4gIGRhdGEgPSB7XHJcbiAgICB0YWJzOiBbXHJcbiAgICAgIHtcclxuICAgICAgICBpZDogMSxcclxuICAgICAgICBuYW1lOiAn5Yy65Z+fJ1xyXG4gICAgICB9LFxyXG4gICAgICB7XHJcbiAgICAgICAgaWQ6IDIsXHJcbiAgICAgICAgbmFtZTogJ+mdouenrydcclxuICAgICAgfSxcclxuICAgICAge1xyXG4gICAgICAgIGlkOiAzLFxyXG4gICAgICAgIG5hbWU6ICfotLnnlKgnXHJcbiAgICAgIH0sXHJcbiAgICAgIHtcclxuICAgICAgICBpZDogNCxcclxuICAgICAgICBuYW1lOiAn5pu05aSaJ1xyXG4gICAgICB9XHJcbiAgICBdLFxyXG4gICAgaXNTaG93TWFzazogZmFsc2UsXHJcbiAgICBpc1Nob3dBcmVhOiB0cnVlXHJcbiAgfVxyXG5cclxuICBjb21wb25lbnRzID0ge1xyXG4gICAgc2VhcmNoQmFyXHJcbiAgfVxyXG5cclxuICBtZXRob2RzID0ge1xyXG4gICAgLy8gc2hvd01vZGVsKGluZGV4KSB7XHJcbiAgICAvLyAgIGNvbnNvbGUubG9nKGluZGV4KVxyXG4gICAgLy8gICBpZiAoaW5kZXggPT09IDApIHtcclxuICAgIC8vICAgICAvLyB0aGlzLmlzU2hvd0FyZWEgPSB0cnVlXHJcbiAgICAvLyAgICAgLy8gdGhpcy5pc1Nob3dNYXNrID0gdHJ1ZVxyXG4gICAgLy8gICB9XHJcbiAgICAvLyB9XHJcbiAgfVxyXG5cclxuICBldmVudHMgPSB7fVxyXG5cclxuICB3YXRjaCA9IHt9XHJcblxyXG4gIGNvbXB1dGVkID0ge31cclxuXHJcbiAgb25Mb2FkKCkge31cclxuXHJcbiAgb25TaG93KCkge31cclxufVxyXG4iXX0=

@@ -1,0 +1,97 @@
+<template>
+    <view class="search-bar">
+        <icon type="search" size="14"></icon>
+        <input type="text" placeholder='搜索' confirm-type="search" />
+        <text class="cancel">取消</text>
+    </view>
+    <view class="hotSearch">热门搜索
+        <view class="hotRegion">
+            <view class="region">南山区</view>
+            <view class="region">深圳</view>
+            <view class="region">东莞</view>
+            <view class="region">龙岗</view>
+        </view>
+
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+export default class Search extends wepy.page {
+  config = {
+    navigationBarTitleText: '搜索'
+  }
+
+  data = {}
+
+  components = {}
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #fff;
+}
+.search-bar {
+  padding: 30rpx 24rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 36rpx;
+  }
+  input {
+    width: 620rpx;
+    height: 56rpx;
+    background-color: #fff;
+    padding-left: 60rpx;
+    box-sizing: border-box;
+    border-radius: 10rpx;
+    
+    color: #999;
+    margin-right: 20rpx;
+    border: 1rpx solid #ddd;
+    flex: 1;
+  }
+  .cancel {
+    color: #00b4d7;
+    
+  }
+}
+.hotSearch {
+  font-size: 32rpx;
+  
+  font-weight: 900;
+  padding-left: 24rpx;
+  margin-top: 40rpx;
+  .hotRegion {
+    display: flex;
+    margin-top: 29rpx;
+    .region {
+      margin-right: 20rpx;
+      width: 110rpx;
+      height: 60rpx;
+      background-color: #eee;
+      
+      text-align: center;
+      line-height: 60rpx;
+      font-size: 22rpx;
+    }
+  }
+}
+</style>

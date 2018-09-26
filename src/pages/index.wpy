@@ -1,0 +1,497 @@
+<style lang="less">
+// 头部
+.top {
+  position: absolute;
+  left: 20rpx;
+  top: 43rpx;
+  z-index: 555;
+  .header {
+    display: flex;
+    align-items: center;
+    image {
+      width: 18rpx;
+      height: 22rpx;
+      margin-right: 5rpx;
+    }
+    .city {
+      color: #fefefe;
+      font-weight: bold;
+      font-size: 30rpx;
+      margin-right: 5rpx;
+    }
+
+    .phone {
+      width: 37rpx;
+      height: 37rpx;
+      margin-left: 21rpx;
+    }
+  }
+}
+
+// 分类列表
+.classify {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  height: 329rpx;
+  align-items: center;
+  border-bottom: 10rpx solid #f4f4f4;
+  // 图标列表
+  .list {
+    width: 33.3333333333333%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    image {
+      width: 60rpx;
+      height: 60rpx;
+    }
+    text {
+      margin-top: 28rpx;
+      font-size: 24rpx;
+      color: #333;
+    }
+  }
+}
+// 租金列表
+.rent {
+  display: flex;
+  padding: 32rpx 24rpx;
+  flex-direction: column;
+  box-sizing: border-box;
+  border-bottom: 10rpx solid #f4f4f4;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    .left {
+      font-size: 32rpx;
+
+      font-weight: bold;
+    }
+    .right {
+      font-size: 24rpx;
+      color: #555;
+    }
+    image {
+      width: 8rpx;
+      height: 18rpx;
+    }
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 67rpx;
+    image {
+      width: 16rpx;
+      height: 28rpx;
+    }
+    .money {
+      color: #ee3e3e;
+      font-size: 60rpx;
+    }
+    .day {
+      display: flex;
+      flex-direction: column;
+      .up {
+        font-size: 20rpx;
+        color: #333;
+        text {
+          color: #ee4150;
+        }
+      }
+      .down {
+        font-size: 20rpx;
+      }
+    }
+  }
+}
+// 品牌合作
+.brand {
+  padding: 40rpx 25rpx;
+  border-bottom: 10rpx solid #f4f4f4;
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .brands {
+      font-size: 32rpx;
+
+      font-weight: bold;
+    }
+    .more {
+      display: flex;
+      .many {
+        color: #555;
+        font-size: 24rpx;
+        margin-right: 10rpx;
+      }
+      image {
+        width: 8rpx;
+        height: 18rpx;
+      }
+    }
+  }
+  scroll-view {
+    white-space: nowrap;
+    .cooperation {
+      display: flex;
+      margin-top: 41rpx;
+      .lists {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 19rpx;
+        animation: move 15s linear infinite;
+        image {
+          width: 180rpx;
+          height: 180rpx;
+        }
+        text {
+          margin-top: 24rpx;
+        }
+      }
+    }
+  }
+}
+// @keyframes move {
+//   50% {
+//     transform: translateX(-750rpx);
+//   }
+// }
+// 推荐房源
+.recommend {
+  padding: 40rpx 25rpx;
+}
+.rec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .left {
+    font-size: 32rpx;
+
+    font-weight: bold;
+  }
+  .right {
+    color: #555;
+    image {
+      width: 8rpx;
+      height: 18rpx;
+    }
+  }
+}
+// 城市
+.modelCity {
+  height: 527rpx;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  .buydes-dialog-container-bottom {
+    width: 100%;
+    height: 527rpx;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    .opencity {
+      font-size: 28rpx;
+      color: #111;
+      margin-left: 24rpx;
+      margin-top: 39rpx;
+    }
+    .city {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 50rpx 0 64rpx;
+      view {
+        display: flex;
+        flex-wrap: wrap;
+        width: 33.333333333333%;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 26rpx;
+        color: #999;
+        margin-top: 63rpx;
+        text {
+          background-color: #f4f4f4;
+          width: 110rpx;
+          height: 50rpx;
+          line-height: 50rpx;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+</style>
+<template>
+  <view class="top">
+    <view class="header">
+      <image src="../image/icon_dingwei.png"></image>
+      <text @tap="openCity" class="city">{{city_name}}</text>
+      <searchBar :cityId.sync='cityId'></searchBar>
+      <image @tap="callPhone" class="phone" src="../image/btn_phone.png"></image>
+    </view>
+  </view>
+  <!-- 轮播图 -->
+  <swiper indicator-dots autoplay circular>
+    <block wx:for="{{indexData.bannerList}}" wx:key="">
+      <swiper-item>
+        <navigator url="" open-type="navigate" hover-class="none">
+          <image mode="aspectFill" src="{{item.cover}}"></image>
+        </navigator>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 分类 -->
+  <view class="classify">
+    <view @tap="toHome" class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>查看新铺</text>
+    </view>
+    <view @tap="toTurnHome" class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>委托转铺</text>
+    </view>
+    <view @tap="toMap" class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>地图找铺</text>
+    </view>
+    <view @tap="helpMineHome" class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>帮我找铺</text>
+    </view>
+    <view class="list">
+      <image src="../image/home_icon_see.png"></image>
+      <text>选址评估</text>
+    </view>
+  </view>
+  <!-- 租金列表 -->
+  <view class="rent" @tap="toShopIndex">
+    <view class="header">
+      <view class="left">{{city_name}}本周商铺租金均价</view>
+      <view class="right">查看详细
+        <image src="../image/icon_more.png"></image>
+      </view>
+    </view>
+    <view class="center">
+      <image wx:if="{{trend}}" src="../image/icon_shang.png"></image>
+      <image wx:if="{{!trend}}" src="../image/icon_xiajiang.png"></image>
+      <view class="money">{{indexData.rentQuote.day_money}}</view>
+      <view class="day">
+        <view class="up">环比上周升
+          <text>{{indexData.rentQuote.Promote}}</text>
+        </view>
+        <view class="down">元/m²/天</view>
+      </view>
+    </view>
+    <view class="numList">
+      <view class="list">
+        <view class="num">{{indexData.rentQuote.online_shop_number}}</view>
+        <view class="today">今日上新</view>
+      </view>
+      <view class="list">
+        <view class="num">{{indexData.rentQuote.hours_new_number}}</view>
+        <view class="today">今日降价</view>
+      </view>
+      <view class="list">
+        <view class="num">{{indexData.rentQuote.looking_shop}}</view>
+        <view class="today">今日成交</view>
+      </view>
+      <view class="line1"></view>
+      <view class="line2"></view>
+    </view>
+  </view>
+  <!-- 品牌合作商 -->
+  <view class="brand">
+    <view class="rec">
+      <view class="left">品牌合作商</view>
+      <view @tap="toTrademark" class="right">更多
+        <image src="../image/icon_more.png"></image>
+      </view>
+    </view>
+    <scroll-view scroll-x scroll-with-animation="true" @scroll="">
+      <view class="cooperation">
+        <block wx:for="{{indexData.brandBussineList}}" wx:key="">
+          <view class="lists">
+            <image src="{{item.brand_logo}}"></image>
+            <text>{{item.brand_name}}</text>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 推荐房源 -->
+  <view class="recommend">
+    <view class="rec">
+      <view class="left">推荐房源</view>
+      <view @tap="toHome" class="right">更多
+        <image src="../image/icon_more.png"></image>
+      </view>
+    </view>
+    <block wx:for="{{homeData}}" wx:key="">
+      <view class="homes" @tap="toDetail({{item.id}})">
+        <view class="left">
+          <image src="{{item.imgs[0]}}"></image>
+        </view>
+        <view class="right">
+          <view class="title">{{item.name}}
+            <text>{{item.uarea}}m²</text>
+          </view>
+          <view class="detail">
+            <view class="road">{{item.address}}</view>
+            <view class="sum">{{item.rent}}元/月</view>
+          </view>
+          <view class="location">
+            <block wx:for="{{item.tag_item}}" wx:for-item="subitem" wx:key="">
+              <view class="loc">{{subitem.name}}</view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="modelCity" hidden="{{!isShowCity}}">
+    <view class="buydes-dialog-container-bottom">
+      <text class='opencity'>已开通城市</text>
+      <view class='city'>
+        <block wx:for="{{cityList}}" wx:key="" data-city_id="item.city_id">
+          <view @tap="citys({{item.city_id}},{{item.city_name}})">
+            <text>{{item.city_name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="mask" hidden="{{!isShowMask}}"></view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import searchBar from '../components/searchBar'
+let method = require('../utils/method.js')
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '租铺精灵'
+  }
+  data = {
+    indexData: [],
+    homeData: [],
+    cityList: [],
+    trend: true,
+    isShowCity: false,
+    isShowMask: false,
+    cityId: 440300,
+    city_name: '深圳市',
+    rows: 10,
+    page: 1
+  }
+  onLoad() {
+    this.getData()
+  }
+  onHide() {
+    wx.setStorage({
+      key: 'city',
+      data: this.cityId
+    })
+  }
+  components = {
+    searchBar
+  }
+  methods = {
+    // 详情
+    toDetail(id) {
+      wx.navigateTo({
+        url: `/pages/detail?id=${id}`
+      })
+    },
+    // 找铺
+    toHome() {
+      wx.switchTab({
+        url: '/pages/searchHome'
+      })
+    },
+    // 转铺
+    toTurnHome() {
+      wx.navigateTo({
+        url: '/pages/turnHome'
+      })
+    },
+    // 地图找铺
+    toMap() {
+      wx.navigateTo({
+        url: '/pages/mapHome'
+      })
+    },
+    // 帮我找铺
+    helpMineHome() {
+      wx.navigateTo({
+        url: `/pages/helpMineHome?id=${this.cityId}`
+      })
+    },
+    // 商铺指数
+    toShopIndex() {
+      wx.navigateTo({
+        url: `/pages/shopIndex?id=${this.cityId}`
+      })
+    },
+    // 更多品牌
+    toTrademark() {
+      wx.navigateTo({
+        url: `/pages/trademark?cityId=${this.cityId}`
+      })
+    },
+    // 开放城市
+    openCity() {
+      this.getCityData()
+      this.isShowCity = true
+      this.isShowMask = true
+    },
+    citys(id, name) {
+      this.cityId = id
+      this.isShowMask = false
+      this.isShowCity = false
+      this.city_name = name
+      this.getData()
+    },
+    // 电话
+    callPhone() {
+      wx.makePhoneCall({
+        phoneNumber: '4008208820',
+        success: () => {}
+      })
+    }
+  }
+  async getData() {
+    // 上半部分
+    let res = await method.request({
+      url: 'api/v1/app/index',
+      data: { cityId: this.cityId }
+    })
+    this.indexData = res.data.data
+    // 上升下降
+    res.data.data.rentQuote.status === 'rise'
+      ? (this.trend = true)
+      : (this.trend = false)
+    // 推荐店铺
+    let res1 = await method.request({
+      url: `api/v1/store/list?rows=${this.rows}&page=${this.page}`,
+      data: { cityId: this.cityId }
+    })
+    this.homeData = res1.data.data
+    this.$apply()
+  }
+  async getCityData() {
+    let res = await method.request({
+      url: 'api/v1/opened/city'
+    })
+    this.cityList = res.data.data
+    this.$apply()
+  }
+}
+</script>

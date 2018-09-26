@@ -1,0 +1,549 @@
+<template>
+  <view class="top">
+    <view class="left">
+      <image src="{{personInfo.head_portrait}}"></image>
+    </view>
+    <view class="right">
+      <view class="name">{{personInfo.name}}</view>
+      <view class="info">"完善信息,将会加快选址速度哦"</view>
+    </view>
+  </view>
+  <view class="section">
+    <block wx:for="{{optionList}}" wx:key="">
+      <view @tap="optionList({{index}},{{item.option}})" class="list">
+        <view class="left">{{item.name}}</view>
+        <view class="right">{{item.option}}</view>
+      </view>
+    </block>
+    <view class="lists">
+      <view class="left">是否接受转让费</view>
+      <view class="right">
+        <switch @change="switchChange" class="wx-switch-input" checked />
+      </view>
+    </view>
+  </view>
+  <view @tap="publishLocation" class="release">发布我的选址需求</view>
+  <!-- 区域 -->
+  <view class="manage" hidden="{{!region}}">
+    <view class="head">
+      <view>最多可选择三个理想商圈</view>
+      <view @tap="confirm" class="confirm">确定</view>
+    </view>
+    <view class="bottom">
+      <scroll-view class="left" scroll-y scroll-with-animation @scroll="">
+        <view>
+          <block wx:for="{{cityList}}" wx:key="">
+            <view @tap="select({{index}},{{item.id}})" class="{{index==leftIndex?'active':''}}">{{item.name}}</view>
+          </block>
+        </view>
+      </scroll-view>
+      <scroll-view class="right" scroll-y scroll-with-animation @scroll="">
+        <view class="right">
+          <block wx:for="{{cityList[leftIndex].tArea}}" wx:key="">
+            <view @tap="chioce({{index}},{{item.name}})" class="{{item.status===true?'active':''}}">{{item.name}}</view>
+          </block>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <manager :manageList.sync="manageList" :manageType.sync="manageType" :isShowMask.sync="isShowMask" :rightIndex.sync="rightIndex" :planned_operation="planned_operation" @manageFn.user="manage" hidden="{{!manageType}}"></manager>
+  <!-- 商铺类型 -->
+  <view class="homeType" hidden="{{!homeType}}">
+    <view class="head">
+      <view>选择您的商铺类型</view>
+      <view @tap="ensure" class="confirm">确定</view>
+    </view>
+    <view class="bottom">
+      <block wx:for="{{shopList.storeTypes}}" wx:key="">
+        <view @tap="shopType({{index}},{{item.id}})" class="{{item.state===true?'option':''}}">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+  <proportion hidden="{{!areaModel}}" :areaModel.sync="areaModel" :isShowMask.sync="isShowMask" @childFn.user="parentFn"></proportion>
+  <rentMoney hidden="{{!rentModel}}" :isShowMask.sync="isShowMask" :rentModel.sync="rentModel" @priceFn.user="priceFn"></rentMoney>
+  <view @tap="vanish" class="mask" hidden="{{!isShowMask}}"></view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import manager from '../components/planManager'
+import proportion from '../components/proportion'
+import rentMoney from '../components/rentPrice'
+// import areacom from '../components/areaComponents'
+let method = require('../utils/method.js')
+export default class helpMineHome extends wepy.page {
+  config = {
+    navigationBarTitleText: '帮我找铺'
+  }
+
+  data = {
+    optionList: [
+      { name: '期望区域', option: '请选择理想开店区域' },
+      { name: '计划经营', option: '请选择计划经营的行业' },
+      { name: '商铺类型', option: '档口/店铺/摊位' },
+      { name: '面积要求', option: '选择可接受的面积范围' },
+      { name: '租金预算', option: '选择可接受的租金范围' }
+    ],
+    region: false,
+    manageType: false,
+    homeType: false,
+    areaModel: false,
+    rentModel: false,
+    isShowMask: false,
+    adviser_id: '',
+    cityId: '',
+    aid: '',
+    trading_area: '',
+    planned_operation: '',
+    source: '',
+    min_area: '',
+    max_area: '',
+    min_price: '',
+    max_price: '',
+    r_type: 'month',
+    is_sub: 1,
+    typeName: '',
+    personInfo: [],
+    cityList: [], // 区域列表
+    manageList: [], // 计划经营
+    shopList: [], // 商铺类型
+    leftIndex: 0,
+    rightIndex: undefined,
+    subCityList: [],
+    num: 0
+  }
+
+  components = {
+    manager,
+    proportion,
+    rentMoney
+  }
+
+  methods = {
+    // 选择
+    optionList(index, name) {
+      this.isShowMask = true
+
+      switch (index) {
+        case 0:
+          this.region = true
+          this.getCityList()
+          break
+        case 1:
+          this.manageType = true
+          this.rightIndex = -1
+          this.getManageData()
+          break
+        case 2:
+          this.homeType = true
+          this.getShopData()
+          break
+        case 3:
+          this.areaModel = true
+          break
+        case 4:
+          this.rentModel = true
+          break
+      }
+    },
+    // 点击遮罩
+    vanish() {
+      this.isShowMask = false
+      this.region = false
+      this.manageType = false
+      this.homeType = false
+      this.areaModel = false
+      this.rentModel = false
+    },
+    // 区域右边
+    chioce(twoIndex, name) {
+      this.subCityList = this.cityList[this.leftIndex].tArea
+      // this.subCityList.filter((item, index, arr) => {
+      //   if (index === twoIndex) {
+      //     item.status = !item.status
+      //     if (item.status === true) {
+      //       this.num++
+      //     } else {
+      //       this.num--
+      //     }
+      //     return item.status === true
+      //   }
+      // })
+      this.num = 0
+      for (let index = 0; index < this.subCityList.length; index++) {
+        if (this.subCityList[index].status && this.num <= 3) {
+          this.num++
+        }
+      }
+      if (this.num === 3 && !this.subCityList[twoIndex].status) {
+        return
+      }
+      this.subCityList[twoIndex].status = !this.subCityList[twoIndex].status
+    },
+    // 区域确认
+    confirm() {
+      let temArr = []
+      this.subCityList.forEach((item, index) => {
+        if (item.status === true) {
+          temArr.push(item.name)
+        }
+      })
+      this.trading_area = temArr.join('/')
+      if (!this.trading_area) {
+        wx.showToast({
+          title: '请至少选择一个商圈',
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+        return
+      }
+      this.optionList.forEach((item, index) => {
+        if (index === 0) {
+          item.option = this.trading_area
+        }
+      })
+      this.isShowMask = false
+      this.region = false
+    },
+    // 选择区域左边
+    select(index, id) {
+      this.cityList[this.leftIndex].tArea.forEach(item => {
+        this.num = 0
+        item.status = false
+      })
+      this.leftIndex = index
+      this.aid = id
+    },
+    // 选择高亮取反
+    shopType(shopIndex, id) {
+      this.shopList.storeTypes.forEach((item, index) => {
+        if (index === shopIndex) {
+          item.state = !item.state
+        }
+      })
+    },
+    // 商铺类型
+    ensure() {
+      let temArr = []
+      let idArr = []
+      if (!this.typeName) {
+        wx.showToast({
+          title: '请选择',
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+        return
+      }
+      this.shopList.storeTypes.forEach((item, index) => {
+        if (item.state === true) {
+          temArr.push(item.name)
+          idArr.push(item.id)
+        }
+      })
+      this.source = idArr.join(',')
+      this.typeName = temArr.join(',')
+      this.optionList.forEach((item, index) => {
+        if (index === 2) {
+          item.option = this.typeName
+        }
+      })
+      this.homeType = false
+      this.isShowMask = false
+    },
+    parentFn(area) {
+      this.min_area = area.min_area
+      this.max_area = area.max_area
+      this.optionList.forEach((item, index) => {
+        if (index === 3) {
+          item.option = area.message
+        }
+      })
+    },
+    priceFn(price) {
+      this.r_type = price.r_type
+      this.min_price = price.min_price
+      this.max_price = price.max_price
+      this.optionList.forEach((item, index) => {
+        if (index === 4) {
+          item.option = price.priceName
+        }
+      })
+    },
+    manage(manage) {
+      this.planned_operation = manage.planned_operation
+      this.optionList.forEach((item, index) => {
+        if (index === 1) {
+          item.option = manage.manageName
+        }
+      })
+    },
+    // 转让费开关
+    switchChange(e) {
+      e.detail.value === true ? (this.is_sub = 1) : (this.is_sub = 0)
+    },
+    // 发布选址需求
+    publishLocation() {
+      if (this.optionList[0].option === '请选择理想开店区域') {
+        wx.showToast({
+          title: '请选择' + this.optionList[0].name,
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+      } else if (this.optionList[1].option === '请选择计划经营的行业') {
+        wx.showToast({
+          title: '请选择' + this.optionList[1].name,
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+      } else if (this.optionList[2].option === '档口/店铺/摊位') {
+        wx.showToast({
+          title: '请选择' + this.optionList[2].name,
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+      } else if (this.optionList[3].option === '选择可接受的面积范围') {
+        wx.showToast({
+          title: '请选择' + this.optionList[3].name,
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+      } else if (this.optionList[4].option === '选择可接受的租金范围') {
+        wx.showToast({
+          title: '请选择' + this.optionList[4].name,
+          icon: 'none',
+          duration: 1500,
+          mask: false
+        })
+      } else {
+        this.getAddressData()
+      }
+
+      //
+      // if(item.option===item.option)
+    }
+  }
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad(option) {
+    this.cityId = option.id
+    this.homeData()
+  }
+
+  onShow() {}
+  async homeData() {
+    let res = await method.request({
+      url: 'api/v1/storeSeek/bwzp',
+      data: { cityId: this.cityId }
+    })
+    this.personInfo = res.data.data
+    this.adviser_id = res.data.data.id
+    this.$apply()
+  }
+  async getCityList() {
+    let res = await method.request({
+      url: 'api/v1/area',
+      method: 'post',
+      data: {
+        cityId: this.cityId
+      }
+    })
+    this.aid = res.data.data[0].id
+    res.data.data.forEach(item => {
+      item.tArea.forEach(item => {
+        item.status = false
+      })
+    })
+    this.cityList = res.data.data
+    this.$apply()
+  }
+  // 计划经营
+  async getManageData() {
+    let res = await method.request({
+      url: 'api/v1/find/operTypeList'
+    })
+    this.manageList = res.data.data
+    this.$apply()
+  }
+  // 商铺类型
+  async getShopData() {
+    let res = await method.request({
+      url: 'api/v1/searchList'
+    })
+    res.data.data.storeTypes.forEach(item => {
+      item.state = false
+    })
+    this.shopList = res.data.data
+    this.$apply()
+  }
+  // 发布
+  async getAddressData() {
+    let userInfo = wx.getStorageSync('userInfo')
+    let token = userInfo.token
+    let res = await method.request({
+      url: 'api/v1/store/rentSeek',
+      method: 'post',
+      data: {
+        token,
+        adviser_id: this.adviser_id,
+        cityId: this.cityId,
+        aid: this.aid,
+        trading_area: this.trading_area,
+        planned_operation: this.planned_operation,
+        source: this.source,
+        min_area: this.min_area,
+        max_area: this.max_area,
+        min_budget: this.min_price,
+        max_budget: this.max_price,
+        r_type: this.r_type,
+        is_sub: this.is_sub
+      }
+    })
+    if (res.data.code === 200) {
+      wx.navigateTo({
+        url: '/pages/publishSuccess'
+      })
+    } else {
+      wx.showToast({
+        title: '发布失败',
+        icon: 'none',
+        duration: 1500,
+        mask: false
+      })
+    }
+  }
+}
+</script>
+
+<style lang='less'>
+page {
+  background-color: #f4f4f4;
+}
+.top {
+  height: 136rpx;
+  background-color: #d7f8ff;
+  color: #00b4d7;
+  display: flex;
+  align-items: center;
+  .left {
+    width: 150rpx;
+    display: flex;
+    justify-content: space-around;
+    image {
+      width: 80rpx;
+      height: 80rpx;
+      border-radius: 50%;
+    }
+  }
+  .right {
+    flex: 1;
+  }
+}
+.section {
+  background-color: #fff;
+  padding: 0 25rpx;
+  .list {
+    padding-top: 45rpx;
+    padding-bottom: 35rpx;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1rpx solid #ddd;
+    .left {
+      font-size: 30rpx;
+    }
+    .right {
+      color: #999;
+    }
+  }
+  .lists {
+    display: flex;
+    justify-content: space-between;
+    padding: 45rpx 0 38rpx;
+    .left {
+      font-size: 30rpx;
+    }
+  }
+}
+.release {
+  width: 702rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 176, 214, 1),
+    rgba(0, 214, 211, 1)
+  );
+  border-radius: 4rpx;
+  color: #fff;
+  font-weight: bold;
+  font-size: 30rpx;
+  position: fixed;
+  left: 24rpx;
+  bottom: 90rpx;
+}
+// 计划经营
+
+.require {
+  .title {
+    font-weight: bold;
+  }
+  .form {
+    display: flex;
+    align-items: center;
+    margin-top: 34rpx;
+    input {
+      width: 200rpx;
+      height: 56rpx;
+      background-color: #fff;
+      text-align: center;
+      line-height: 56rpx;
+      font-size: 24rpx;
+      color: #666;
+    }
+    .to {
+      font-weight: 900;
+      padding: 0 25rpx;
+    }
+  }
+}
+
+// 商铺类型
+.homeType {
+  width: 100%;
+  height: 300rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 555;
+  .bottom {
+    height: 200rpx;
+    padding: 10rpx 0;
+    box-sizing: border-box;
+    background-color: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    view {
+      width: 200rpx;
+      height: 56rpx;
+      background-color: #fff;
+      color: #666;
+      font-size: 26rpx;
+      text-align: center;
+      line-height: 56rpx;
+    }
+  }
+}
+</style>

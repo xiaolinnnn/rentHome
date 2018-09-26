@@ -1,0 +1,139 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": false,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.5",
+	"appid": "wxa2933d6928dc3849",
+	"projectname": "%E7%A7%9F%E9%93%BA%E7%B2%BE%E7%81%B5",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 15,
+			"list": [
+				{
+					"id": 0,
+					"name": "开店找铺",
+					"pathName": "pages/searchHome",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布需求",
+					"pathName": "pages/issueDemand",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的页面",
+					"pathName": "pages/me",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商铺详情",
+					"pathName": "pages/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索页面",
+					"pathName": "pages/search",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的收藏页面",
+					"pathName": "pages/collect",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的钱包",
+					"pathName": "pages/mywallet",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的订阅",
+					"pathName": "pages/subscription",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单页",
+					"pathName": "pages/order",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的消息",
+					"pathName": "pages/information",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布的店铺",
+					"pathName": "pages/publishHome",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的匹配列表",
+					"pathName": "pages/matching",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "选址需求",
+					"pathName": "pages/siteSelection",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "更多筛选",
+					"pathName": "pages/filter",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商铺指数",
+					"pathName": "pages/shopIndex",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "品牌选址",
+					"pathName": "pages/trademark"
+				}
+			]
+		}
+	}
+}

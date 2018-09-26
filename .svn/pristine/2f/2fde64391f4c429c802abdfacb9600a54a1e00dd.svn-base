@@ -1,0 +1,79 @@
+<template>
+  <tabBars :tabList.sync="tabList" :selectIndex="selectIndex"></tabBars>
+  <view class="tab-content">
+    <view hidden="{{selectIndex!=0}}" class="unfinished">
+      <view class="homes" @tap="toDetail">
+        <view class="left">
+          <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"></image>
+        </view>
+        <view class="right">
+          <view class="title">南山区蛇口
+            <text>60m²</text>
+          </view>
+          <view class="detail">
+            <view class="road">育知东路60㎡商铺转租/写字楼</view>
+            <view class="sum">1.68万/月</view>
+          </view>
+          <view class="location">
+            <view class="loc">地铁</view>
+            <view class="loc">临近学校</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view hidden="{{selectIndex!=1}}" class="completed">
+      <view class="homes" @tap="toDetail">
+        <view class="left">
+          <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"></image>
+        </view>
+        <view class="right">
+          <view class="title">南山区蛇口
+            <text>60m²</text>
+          </view>
+          <view class="detail">
+            <view class="road">育知东路60㎡商铺转租/写字楼</view>
+            <view class="sum">1.68万/月</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import tabBars from '../components/tabBars'
+export default class publishHome extends wepy.page {
+  config = {
+    navigationBarTitleText: '我发布的店铺'
+  }
+
+  data = {
+    selectIndex: 0,
+    tabList: ['已发布', '未发布']
+  }
+
+  components = {
+    tabBars
+  }
+
+  methods = {}
+
+  events = {}
+
+  watch = {}
+
+  computed = {}
+
+  onLoad() {}
+
+  onShow() {}
+}
+</script>
+
+<style lang='less'>
+.tab-content {
+  margin-top: 6rpx;
+  padding: 24rpx;
+}
+</style>

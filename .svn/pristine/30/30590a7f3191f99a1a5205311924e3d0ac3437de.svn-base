@@ -1,0 +1,88 @@
+
+  <view class="personCenter">
+    <view class="info">
+      <image class="head" src="https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLpRc4s0HSWlyEqricPqK7WU9x54OrdWwcGFNajicCdhGniaUf6icFNiczjBrpibEoPicNxrlS63BWDUgRcw/132"/>
+      <view class="personInfo">
+        <view class="headInfo">
+          <text class="name">胡歌</text>
+        </view>
+        <text class="phone">1388888888</text>
+        <view class="vip">
+          <image src="../image/icon_weirz.png"/>点亮我
+        </view>
+      </view>
+    </view>
+    <view class="broker">认证经纪人</view>
+    <view class="seeHome">今日已查看8套铺源(共10套/日)</view>
+  </view>
+  <view class="person">
+    <view class="list">
+      <image src="../image/btn_wallet.png"/>
+      <text>我的钱包</text>
+    </view>
+    <view class="list">
+      <image src="../image/btn_wallet.png"/>
+      <text>我的钱包</text>
+    </view>
+    <view class="list">
+      <image src="../image/btn_wallet.png"/>
+      <text>我的钱包</text>
+    </view>
+    <view class="list">
+      <image src="../image/btn_wallet.png"/>
+      <text>我的钱包</text>
+    </view>
+  </view>
+  <view class="feature">
+    <view class="lists">
+      <view class="left">我的消息</view>
+      <view class="right">
+        <text class="iconfont icon-jiantouyou"/>
+      </view>
+    </view>
+    <view class="lists">
+      <view class="left">我发布的店铺</view>
+      <view class="right">
+        <text class="iconfont icon-jiantouyou"/>
+      </view>
+    </view>
+    <view class="lists">
+      <view class="left">我的匹配列表</view>
+      <view class="right">
+        <text class="iconfont icon-jiantouyou"/>
+      </view>
+    </view>
+    <view class="lists">
+      <view class="left">选址需求</view>
+      <view class="right">
+        <text class="iconfont icon-jiantouyou"/>
+      </view>
+    </view>
+  </view>
+  <view class="footer" bindtap="phone">
+    <view class="mobile">客服电话</view>
+  </view>
+  <view class="buydes-dialog-container"  wx:if="{{!isShowPhone}}">
+    <view class="buydes-dialog-container-bottom">
+      <view class="buydes-dialog-container-bottom-item">
+        <view class="view4_1">
+          <text>业务咨询,服务热线投诉</text>
+        </view>
+        <view class="view4_2">
+          <text>400-8888-8888</text>
+        </view>
+        <view class="view4_3">
+          <text>服务时间：每天9:00到21:00</text>
+        </view>
+        <view class="view4_4">
+          <view class="left fl" bindtap="cancel">
+            <text>取消</text>
+          </view>
+          <view class="right fr" bindtap="cell">
+            <text>拨打</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>

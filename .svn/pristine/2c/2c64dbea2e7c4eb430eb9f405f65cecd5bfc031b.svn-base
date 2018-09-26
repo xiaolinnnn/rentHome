@@ -1,0 +1,21 @@
+
+    <view class="container">
+        <view class="homes" bindtap="toDetail">
+            <view class="left">
+                <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"/>
+            </view>
+            <view class="right">
+                <view class="title">南山区蛇口
+                    <text>60m²</text>
+                </view>
+                <view class="detail">
+                    <view class="road">育知东路60㎡商铺转租/写字楼</view>
+                    <view class="sum">1.68万/月</view>
+                </view>
+                <view class="location">
+                    <view class="loc">地铁</view>
+                    <view class="loc">临近学校</view>
+                </view>
+            </view>
+        </view>
+    </view>

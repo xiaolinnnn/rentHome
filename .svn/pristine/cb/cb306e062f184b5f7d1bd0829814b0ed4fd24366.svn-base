@@ -1,0 +1,28 @@
+
+  <view class="demand">
+    <view class="head"/>
+    <view class="footer">
+      <view class="list">
+        <view class="img">
+          <image src="../image/home_icon_see.png"/>
+        </view>
+        <text>帮我找铺</text>
+      </view>
+      <view class="list">
+        <view class="img">
+          <image src="../image/home_icon_see.png"/>
+        </view>
+        <text>帮我找铺</text>
+      </view>
+      <view class="list">
+        <view class="img">
+          <image src="../image/home_icon_see.png"/>
+        </view>
+        <text>帮我找铺</text>
+      </view>
+      <view class="guanbi">
+        <image src="../image/icon_guanbi.png"/>
+      </view>
+    </view>
+
+  </view>

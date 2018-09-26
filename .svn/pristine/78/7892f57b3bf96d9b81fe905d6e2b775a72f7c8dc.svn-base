@@ -1,0 +1,64 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _wepy = require('./../npm/wepy/lib/wepy.js');
+
+var _wepy2 = _interopRequireDefault(_wepy);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var tabBars = function (_wepy$component) {
+  _inherits(tabBars, _wepy$component);
+
+  function tabBars() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, tabBars);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = tabBars.__proto__ || Object.getPrototypeOf(tabBars)).call.apply(_ref, [this].concat(args))), _this), _this.props = {
+      tabList: {
+        type: Array,
+        default: []
+      },
+      selectIndex: {
+        type: Number,
+        default: 0,
+        twoWay: true
+      }
+    }, _this.data = {}, _this.components = {}, _this.methods = {
+      selectItem: function selectItem(index) {
+        this.selectIndex = index;
+      }
+    }, _this.events = {}, _this.watch = {}, _this.computed = {}, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(tabBars, [{
+    key: 'onLoad',
+    value: function onLoad() {}
+  }, {
+    key: 'onShow',
+    value: function onShow() {}
+  }]);
+
+  return tabBars;
+}(_wepy2.default.component);
+
+exports.default = tabBars;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhYkJhcnMuanMiXSwibmFtZXMiOlsidGFiQmFycyIsInByb3BzIiwidGFiTGlzdCIsInR5cGUiLCJBcnJheSIsImRlZmF1bHQiLCJzZWxlY3RJbmRleCIsIk51bWJlciIsInR3b1dheSIsImRhdGEiLCJjb21wb25lbnRzIiwibWV0aG9kcyIsInNlbGVjdEl0ZW0iLCJpbmRleCIsImV2ZW50cyIsIndhdGNoIiwiY29tcHV0ZWQiLCJ3ZXB5IiwiY29tcG9uZW50Il0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUNBOzs7Ozs7Ozs7Ozs7SUFDcUJBLE87Ozs7Ozs7Ozs7Ozs7O3dMQUNuQkMsSyxHQUFRO0FBQ05DLGVBQVM7QUFDUEMsY0FBTUMsS0FEQztBQUVQQyxpQkFBUztBQUZGLE9BREg7QUFLTkMsbUJBQWE7QUFDWEgsY0FBTUksTUFESztBQUVYRixpQkFBUyxDQUZFO0FBR1hHLGdCQUFRO0FBSEc7QUFMUCxLLFFBWVJDLEksR0FBTyxFLFFBRVBDLFUsR0FBYSxFLFFBRWJDLE8sR0FBVTtBQUNSQyxnQkFEUSxzQkFDR0MsS0FESCxFQUNVO0FBQ2hCLGFBQUtQLFdBQUwsR0FBbUJPLEtBQW5CO0FBQ0Q7QUFITyxLLFFBTVZDLE0sR0FBUyxFLFFBRVRDLEssR0FBUSxFLFFBRVJDLFEsR0FBVyxFOzs7Ozs2QkFFRixDQUFFOzs7NkJBRUYsQ0FBRTs7OztFQS9Cd0JDLGVBQUtDLFM7O2tCQUFyQmxCLE8iLCJmaWxlIjoidGFiQmFycy5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5pbXBvcnQgd2VweSBmcm9tICd3ZXB5J1xyXG5leHBvcnQgZGVmYXVsdCBjbGFzcyB0YWJCYXJzIGV4dGVuZHMgd2VweS5jb21wb25lbnQge1xyXG4gIHByb3BzID0ge1xyXG4gICAgdGFiTGlzdDoge1xyXG4gICAgICB0eXBlOiBBcnJheSxcclxuICAgICAgZGVmYXVsdDogW11cclxuICAgIH0sXHJcbiAgICBzZWxlY3RJbmRleDoge1xyXG4gICAgICB0eXBlOiBOdW1iZXIsXHJcbiAgICAgIGRlZmF1bHQ6IDAsXHJcbiAgICAgIHR3b1dheTogdHJ1ZVxyXG4gICAgfVxyXG4gIH1cclxuXHJcbiAgZGF0YSA9IHt9XHJcblxyXG4gIGNvbXBvbmVudHMgPSB7fVxyXG5cclxuICBtZXRob2RzID0ge1xyXG4gICAgc2VsZWN0SXRlbShpbmRleCkge1xyXG4gICAgICB0aGlzLnNlbGVjdEluZGV4ID0gaW5kZXhcclxuICAgIH1cclxuICB9XHJcblxyXG4gIGV2ZW50cyA9IHt9XHJcblxyXG4gIHdhdGNoID0ge31cclxuXHJcbiAgY29tcHV0ZWQgPSB7fVxyXG5cclxuICBvbkxvYWQoKSB7fVxyXG5cclxuICBvblNob3coKSB7fVxyXG59XHJcbiJdfQ==

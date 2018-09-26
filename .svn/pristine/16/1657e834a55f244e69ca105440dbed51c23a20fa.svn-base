@@ -1,0 +1,119 @@
+
+  <view class="container">
+    <view class="header">
+      
+  <view class="section">
+    <text class="iconfont icon-sousuo"/>
+    <input bindtap="$searchBar$toSearch" type="text" placeholder="搜索"/>
+  </view>
+
+      <image src="../image/icon_dingwei.png"/>
+    </view>
+    <view class="lists">
+      <block  wx:for="{{tabs}}" wx:key="">
+        <view bindtap="showModel" class="list" data-wpyshowmodel-a="{{index}}">{{item.name}}
+          <text class="iconfont icon-jiantouxia"/>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="main">
+    <view class="top">
+      <view>南山区
+        <text class="iconfont icon-shanchu"/>
+      </view>
+      <view>50~100m²
+        <text class="iconfont icon-shanchu"/>
+      </view>
+      <view>1500元以下
+        <text class="iconfont icon-shanchu"/>
+      </view>
+      <view>市场
+        <text class="iconfont icon-shanchu"/>
+      </view>
+    </view>
+    <view class="homes" bindtap="toDetail">
+      <view class="left">
+        <image src="http://img5.imgtn.bdimg.com/it/u=3117383508,3197617605&fm=26&gp=0.jpg"/>
+      </view>
+      <view class="right">
+        <view class="title">南山区蛇口
+          <text>60m²</text>
+        </view>
+        <view class="detail">
+          <view class="road">育知东路60㎡商铺转租/写字楼</view>
+          <view class="sum">1.68万/月</view>
+        </view>
+        <view class="location">
+          <view class="loc">地铁</view>
+          <view class="loc">临近学校</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 区域 -->
+  <view class="modalFrame" hidden="{{!isShowArea}}">
+    <view class="top">
+      <scroll-view class="left" scroll-y scroll-with-animation="scroll-with-animation" bindscroll="">
+        <view class="active">福田区</view>
+        <view>罗湖区</view>
+        <view>南山区</view>
+      </scroll-view>
+      <scroll-view class="right" scroll-y scroll-with-animation="scroll-with-animation" bindscroll="">
+        <view>景田</view>
+        <view>景田</view>
+        <view>景田</view>
+      </scroll-view>
+    </view>
+    <view class="bottom">
+      <view bindtap="cancel" class="clear">取消</view>
+      <view class="confirm">确定</view>
+    </view>
+  </view>
+  <!-- 面积 -->
+  <view class="modelArea" hidden="{{!isShowAcreage}}">
+    <view class="top">
+      <block  wx:for="{{areaList}}" wx:key="">
+        <view data-min_area="{{item.min_area}}" data-max_area="{{item.max_area}}">{{item.name}}</view>
+      </block>
+    </view>
+    <view class="bottom">
+      <view class="totalArea">自定义面积</view>
+      <view class="count">
+        <view class="left">
+          <input bindinput="areaDown" class="down" placeholder-style="font-size:26rpx" value="{{areaDown}}" type="text" placeholder="下限">
+          </input>
+          <text class="to">至</text>
+          <input bindinput="areaUp" class="up" placeholder-style="font-size:26rpx" value="{{areaUp}}" type="text" placeholder="上限">
+          </input>
+        </view>
+      </view>
+      <view bindtap="ensureArea" class="ensure">确定</view>
+    </view>
+  </view>
+  <!-- 费用 -->
+  <view class="modelPrice" hidden="{{!isShowPrice}}">
+    <view class="left">
+      <view>月租金</view>
+      <view>转让费</view>
+    </view>
+    <view class="right">
+      <view class="head">
+        <view>不限</view>
+        <view>2千元以下</view>
+        <view>2-5千元</view>
+      </view>
+      <view class="foot">
+        <view class="customPrice">自定义价格</view>
+        <view class="prices">
+          <input bindinput="priceDown" class="down" placeholder-style="font-size:26rpx" value="{{areaDown}}" type="text" placeholder="下限">
+          </input>
+          <text class="to">至</text>
+          <input bindinput="priceUp" class="up" placeholder-style="font-size:26rpx" value="{{areaUp}}" type="text" placeholder="上限">
+          </input>
+          <view bindtap="ensurePrice" class="botton">确定</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="mask" hidden="{{!isShowMask}}"/>
